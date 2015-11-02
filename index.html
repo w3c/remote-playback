@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      Remote Playback API
+    </title>
+    <script src="https://www.w3.org/Tools/respec/respec-w3c-common" async
+    class="remove">
+    </script>
+    <script class="remove">
+    var respecConfig = {
+        specStatus: 'ED',
+        edDraftURI: 'http://w3c.github.io/remote-playback/',
+        shortName:  'remote-playback',
+        editors: [
+          {
+            w3cid: 68811,
+            name: 'Anton Vayvod',
+            company: 'Google',
+          },
+          {
+            w3cid: 45389,
+            name: 'Mounir Lamouri',
+            company: 'Google',
+          },
+        ],
+        // previousMaturity: 'WD',
+        // previousPublishDate: '2015-11-02',
+        otherLinks: [
+          {
+            key: 'Version history',
+            data: [
+              {
+                value: 'GitHub w3c/remote-playback/commits',
+                href: 'https://github.com/w3c/remote-playback/commits/'
+              }
+            ]
+          },
+          {
+            key: 'Participate',
+            data: [
+              {
+                value: 'GitHub w3c/remote-playback',
+                href: 'https://github.com/w3c/remote-playback/'
+              },
+              {
+                value: 'File an issue',
+                href: 'https://github.com/w3c/remote-playback/issues/new'
+              },
+              {
+                value: 'Open issues',
+                href: 'https://github.com/w3c/remote-playback/issues/'
+              },
+              {
+                value: 'Mailing-list (public-secondscreen@w3.org)',
+                href: 'https://lists.w3.org/Archives/Public/public-secondscreen/'
+              }
+            ]
+          }
+        ],
+        wg: 'Second Screen Presentation Working Group',
+        wgURI: 'http://www.w3.org/2014/secondscreen/',
+        wgPublicList: 'public-secondscreen',
+        wgPatentURI: 'http://www.w3.org/2004/01/pp-impl/74168/status',
+        issueBase: "https://www.github.com/w3c/remote-playback/issues/",
+        githubAPI: "https://api.github.com/repos/w3c/remote-playback",
+      };
+    </script>
+    <style>
+    /* Note formatting taken from Presentation API spec for consistency in the
+       Second Screen WG */
+    .note { border-left-style: solid; border-left-width: 0.25em; background: none repeat scroll 0 0 #E9FBE9; border-color: #52E052; }
+    .note em, .warning em, .note i, .warning i { font-style: normal; }
+    p.note, div.note { padding: 0.5em 2em; }
+    span.note { padding: 0 2em; }
+    .note p:first-child { margin-top: 0; }
+    .note p:last-child { margin-bottom: 0; }
+    p.note:before { content: 'NOTE: '; }
+    .non-normative { border-left-style: solid; border-left-width: 0.25em; background: none repeat scroll 0 0 #E9FBE9; border-color: #52E052; }
+    p.non-normative:before { content: 'Non-normative: '; font-weight: bolder;}
+    p.non-normative, div.non-normative { padding: 0.5em 2em; }
+    /* Pre.idl formatting taken from HTML5 spec */
+    pre.idl { border: solid thin #d3d3d3; background: #FCFCFC; color: black; padding: 0.5em 1em; position: relative; }
+    pre.idl :link, pre.idl :visited { color: inherit; background: transparent; }
+    pre.idl::before { content: "IDL"; font: bold small sans-serif;
+    padding: 0.5em; background: white; position: absolute; top: 0;
+    margin: -1px 0 0 -4em; width: 1.5em; border: thin solid;
+    border-radius: 0 0 0 0.5em }
+    /* .example idl formatting taken from HTML5 nightly spec */
+    .example {
+        display: block;
+        color: #222222;
+        background: #FCFCFC;
+        border-left-style: solid;
+        border-color: #c0c0c0;
+        border-left-width: 0.25em;
+        margin-left: 1em;
+        padding-left: 1em;
+        padding-bottom: 0.5em;
+    }
+    .algorithm li {
+        margin-bottom: 0.5em;
+    }
+    .interface dd, .parameters dt {
+        margin-bottom: 0.5em;
+    }
+    code { color: orangered; }
+    table { border-collapse: collapse; border-style: hidden hidden none hidden; }
+    table thead, table tbody { border-bottom: solid; }
+    table td, table th { border-left: solid; border-right: solid; border-bottom: solid thin; vertical-align: top; padding: 0.2em; }
+    dfn { font-weight: bolder; font-style: normal; }
+    .copyright { font-size: small; }
+    .issue[id^='issue-'] > *:not([role='heading']) { display: none; }
+    </style>
+  </head>
+  <body>
+    <section id="abstract">
+      <p>
+        This specification defines an API extending the <code>HTMLMediaElement</code>
+        that enables controlling remote playback of media from a web page.
+      </p>
+    </section>
+    <section id="sotd">
+      <p>
+        This document is a work in progress and is subject to change. In case of
+        issues or concerns, it is possible to <a href='https://github.com/w3c/remote-playback/issues/new'>file a bug</a>
+        or send an email to the <a href='https://lists.w3.org/Archives/Public/public-secondscreen/'>mailing list</a>.
+        For small editorial changes like typos, sending a pull requests is appreciated.
+      </p>
+    </section>
+    <section>
+      <h2>Extension to the <code>HTMLMediaElement</code></h2>
+      <pre class='idl'>
+        partial interface HTMLMediaElement {
+          readonly attribute RemotePlayback remote;
+
+          // This name is TBD - reflects the "hideremotecontrols" attribute.
+          attribute boolean hideRemoteControls;
+        };
+      </pre>
+    </section>
+    <section>
+      <h2><code>RemotePlayback</code> interface</h2>
+      <pre class='idl'>
+        interface RemotePlayback : EventTarget {
+          Promise&lt;RemotePlaybackAvailability&gt; getAvailability();
+
+          readonly attribute RemotePlaybackState state;
+
+          // This method will show a UI for the user to pick a device.
+          // Resolves with |true| if a device was picked and a session is
+          // initiating, |false| otherwise.
+          // TODO: consider a better name?
+          Promise<boolean> start();
+        };
+      </pre>
+
+      <pre class='idl'>
+        enum RemotePlaybackState {
+          // TODO: values do not match Presentation API.
+          // TODO: "connecting"?
+          "connected",
+          "disconnected"
+        };
+      </pre>
+
+      <pre class='idl'>
+        interface RemotePlaybackAvailability : EventTarget {
+          readonly attribute boolean value;
+          attribute EventHandler onchange;
+        };
+      </pre>
+  </body>
+</html>
