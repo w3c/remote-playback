@@ -117,7 +117,7 @@
   <body>
     <section id="abstract">
       <p>
-        This specification defines an API extending the <code>HTMLMediaElement</code>
+        This specification defines an API extending the <code><a>HTMLMediaElement</a></code>
         that enables controlling remote playback of media from a web page.
       </p>
     </section>
@@ -129,18 +129,42 @@
         For small editorial changes like typos, sending a pull requests is appreciated.
       </p>
     </section>
-    <section>
-      <h2>Extension to the <code>HTMLMediaElement</code></h2>
-      <pre class='idl'>
-        partial interface HTMLMediaElement {
-          readonly attribute RemotePlayback remote;
-
-          attribute boolean hideRemoteControl;
-        };
-      </pre>
+    <section id='conformance'>
+      <p>
+        This specification defines conformance criteria that apply to a single
+        product: the <dfn>user agent</dfn> that implements the interfaces that
+        it contains.
+      </p>
+      <p>
+        Implementations that use ECMAScript to expose the APIs defined in this
+        specification MUST implement them in a manner consistent with the
+        ECMAScript Bindings defined in the Web IDL specification [[!WEBIDL]].
+      </p>
+    </section>
+    <section class='informative'>
+      <h2>Use cases and requirements</h2>
+      <p>
+        The use cases and requirements of this specification are captured in a
+        separate document available <a href='https://github.com/w3c/remote-playback/blob/gh-pages/use-cases.md'>here</a>.
+      </p>
     </section>
     <section>
-      <h2><code>RemotePlayback</code> interface</h2>
+      <h2>Dependencies</h2>
+      <p>
+        The following concepts and interfaces are defined in [[!HTML]]:
+      </p>
+      <ul>
+        <li>
+          <dfn><a href=
+          'https://html.spec.whatwg.org/multipage/embedded-content.html#htmlmediaelement'>HTMLMediaElement</a></dfn>
+        </li>
+        <li>
+          <dfn><a href='https://html.spec.whatwg.org/multipage/embedded-content.html#media-element'>media element</a></dfn>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2><code><a>RemotePlayback</a></code> interface</h2>
       <pre class='idl'>
         interface RemotePlayback : EventTarget {
           Promise&lt;RemotePlaybackAvailability&gt; getAvailability();
@@ -153,9 +177,7 @@
           // TODO: consider a better name?
           Promise<boolean> start();
         };
-      </pre>
 
-      <pre class='idl'>
         enum RemotePlaybackState {
           // TODO: values do not match Presentation API.
           // TODO: "connecting"?
@@ -163,12 +185,65 @@
           "disconnected"
         };
       </pre>
-
+      <p>
+        <b>Draft summary:</b><br>
+        <ul>
+          <li>getAvailability()'s promise resolves with a RemotePlaybackInstance,
+            similar to function with same name in Presentation API.</li>
+          <li>state returns the remote playback session's current state.</li>
+          <li>start() should show the user agent's device picker if the session
+            is not yet connected.</li>
+        </ul>
+      </p>
+    </section>
+    <section>
+      <h2><code><a>RemotePlaybackAvailability</a></code> interface</h2>
       <pre class='idl'>
         interface RemotePlaybackAvailability : EventTarget {
           readonly attribute boolean value;
           attribute EventHandler onchange;
         };
       </pre>
+      <p>
+        <b>Draft summary:</b><br>
+        The <code><a>RemotePlaybackAvailability</a></code> interface exposes
+        whether there is a device in the user's network able to play one of the
+        sources available for the associated media element.
+      </p>
+    </section>
+    <section>
+      <h2>Extension to the <code><a>HTMLMediaElement</a></code></h2>
+      <pre class='idl'>
+        partial interface HTMLMediaElement {
+          readonly attribute RemotePlayback remote;
+
+          attribute boolean hideRemoteControl;
+        };
+      </pre>
+      <p>
+        The <a for='HTMLMediaElement'>remote</a> attribute MUST return the <a>RemotePlayback</a>
+        instance associated with the <a>media element</a>.
+      </p>
+      <p>
+        The <a for='HTMLMediaElement'>hideRemoteControl</a> IDL attribute MUST
+        reflect the content attribute of the same name.
+      </p>
+
+      <section>
+        <h2>Hiding default remote playback controls</h2>
+        <p>
+          If the <code>hideremotecontrol</code> attribute is present on the <a>media
+          element</a>, the <a>user agent</a> MUST hide all the default controls
+          related to the remote playback.
+        </p>
+        <p>
+          This is expected to be used when the page provides other means to
+          handle remote playback, whether by using this API or with the [[presentation-api]].
+        </p>
+        <div class='issue'>
+          The name 'hideremotecontrol' is still in flux.
+        </div>
+      </section>
+    </section>
   </body>
 </html>
