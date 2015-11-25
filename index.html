@@ -217,7 +217,7 @@
         partial interface HTMLMediaElement {
           readonly attribute RemotePlayback remote;
 
-          attribute boolean hideRemoteControl;
+          attribute boolean disableRemotePlayback;
         };
       </pre>
       <p>
@@ -225,24 +225,17 @@
         instance associated with the <a>media element</a>.
       </p>
       <p>
-        The <a for='HTMLMediaElement'>hideRemoteControl</a> IDL attribute MUST
-        reflect the content attribute of the same name.
+        The <a for='HTMLMediaElement'>disableRemotePlayback</a> IDL attribute
+        MUST reflect the content attribute of the same name.
       </p>
 
       <section>
-        <h2>Hiding default remote playback controls</h2>
+        <h2>Disabling remote playback</h2>
         <p>
-          If the <code>hideremotecontrol</code> attribute is present on the <a>media
-          element</a>, the <a>user agent</a> MUST hide all the default controls
-          related to the remote playback.
+          If the <code>disableRemotePlayback</code> attribute is present on the
+          <a>media element</a>, the <a>user agent</a> MUST NOT play the media
+          remotely or present any UI to do so.
         </p>
-        <p>
-          This is expected to be used when the page provides other means to
-          handle remote playback, whether by using this API or with the [[presentation-api]].
-        </p>
-        <div class='issue'>
-          The name 'hideremotecontrol' is still in flux.
-        </div>
       </section>
     </section>
   </body>
