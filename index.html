@@ -188,8 +188,8 @@
       <p>
         <b>Draft summary:</b><br>
         <ul>
-          <li>getAvailability()'s promise resolves with a RemotePlaybackInstance,
-            similar to function with same name in Presentation API.</li>
+          <li>getAvailability()'s promise resolves with a RemotePlaybackAvailability,
+            similar to the function with same name in Presentation API.</li>
           <li>state returns the remote playback session's current state.</li>
           <li>start() should show the user agent's device picker if the session
             is not yet connected.</li>
@@ -207,7 +207,7 @@
       <p>
         <b>Draft summary:</b><br>
         The <code><a>RemotePlaybackAvailability</a></code> interface exposes
-        whether there is a device in the user's network able to play one of the
+        whether there is a device on the user's network able to play one of the
         sources available for the associated media element.
       </p>
     </section>
