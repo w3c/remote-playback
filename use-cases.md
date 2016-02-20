@@ -22,7 +22,7 @@ The Safari API can be described as:
 Safari, as well as Android versions of Firefox and Chrome allow users to play some website's media remotely. Safari will show an icon in order to send a video to an AirPlay device nearby. Chrome and Firefox will show a similar icon but for Cast devices.
 
 Safari:
-- Descrition link: https://support.apple.com/en-gb/HT201343
+- Description link: https://support.apple.com/en-gb/HT201343
 - The user will see an AirPlay button on the audio/video controls if there is an AirPlay device available in the local network.
 - When the AirPlay button is pressed, the user will be able to select a device from a picker (inc. local).
 - While playing remotely, the user can play/pause and seek using the default controls.
