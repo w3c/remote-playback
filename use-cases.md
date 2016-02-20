@@ -1,6 +1,7 @@
 # Use Cases and Requirements
 
-The primary goal of this API is to be able to create a UI to start remote playback even when using custom controls and disable default remote playback UI in case of remote playback is handled another way (eg. Presentation API or a button outside of the default controls). Thus, the use cases and requirements' inputs are the proprietary API and the browser UIs, the MVP being to be able to match them all.
+The primary goal of this API is to enable websites to customize the default UI for playing HTML media remotely, e.g. to implement custom media controls or disable the default UI in the case when presenting content remotely is implemented differently (i.e. via Presentation API). Thus he use cases and requirements are defined by the existing browsers' behaviors and also some related proprietary APIs (see below).
+
 
 ## Proprietary APIs
 
@@ -16,38 +17,41 @@ The Safari API can be described as:
 - ```webkitcurrentpalybacktargetiswireless``` event, it lets the website know whet the previous property changes.
 
 
-## Browser UIs
+## Existing remote media playback behavior in browsers
 
-Both Safari for iOS and Chrome Android have UIs specific to remote playback. Safari will show an icon in order to send a video to an AirPlay device nearby. Chrome will show a similar icon but for Chrome Cast devices.
+Safari, as well as Android versions of Firefox and Chrome allow users to play some website's media remotely. Safari will show an icon in order to send a video to an AirPlay device nearby. Chrome and Firefox will show a similar icon but for Cast devices.
 
-Safari iOS:
+Safari:
+- Descrition link: https://support.apple.com/en-gb/HT201343
 - The user will see an AirPlay button on the audio/video controls if there is an AirPlay device available in the local network.
 - When the AirPlay button is pressed, the user will be able to select a device from a picker (inc. local).
 - While playing remotely, the user can play/pause and seek using the default controls.
-- While playing remotely, the video element changes look and no longer shows the playback locally.
-- While playing remotely, the AirPlay button will allow the user to picke another device (inc. local).
+- While playing remotely, the media element changes look and no longer renders the video locally.
+- While playing remotely, the AirPlay button will allow the user to pick another device (inc. local).
+- The selected screen (local or remote) is a global system setting that affects all relevant apps
 
-Chrome Android:
-- Some screenshots: http://avayvod.github.io/chrome-android-remote-playback.pdf
+Chrome for Android:
+- Description link: http://googlesystem.blogspot.be/2014/04/cast-videos-in-chrome-for-android.html
 - The user will see a Cast button on the video controls if there is a Cast device available in the local network.
 - When the cast button is pressed, the user will be able to select a Cast device from a picker.
-- While casting, the video element shows a different Cast button and no longer shows the video playback locally.
+- While casting, the Cast button changes to the connected state and the media element no longer renders the video locally.
 - While casting, the user can play/pause and seek using the default controls.
-- While casting, the Cast button changes style.
-- While casting, the Cast button will show a different UI that allows setting the volume on the Cast device and stop casting.
+- While casting, tapping the Cast button will show a different dialog that allows setting the volume on the Cast device and stop casting.
 
 Firefox Android:
-- TODO
+- Description link: https://support.mozilla.org/en-US/kb/use-firefox-android-send-videos-chromecast
+- The user will see the Cast button in the omnibox if there's a castable video on the page
+- The rest of the behavior matches the one Chrome provides
 
 ## Use cases
 
-Based on the different UIs and APIs, we can define the following use cases:
+Based on the Safari's API and supported behaviors in various browsers, we can define the following use cases:
 - A website should be able to know if there is a remote device available and if this changes.
 - A website should be able to know when a remote playback session is connected, disconnected.
 - A website should be able to control a remote playback:
   - A website should be able start a remote playback session.
   - A website should be able to apply any usual media control to a remote playback session.
-- A website should be able to de-active the default browser UI button for remote playback.
+- A website should be able to disable the remote playback (e.g. the default browser UI or the feature completely if the UI is not necessary for initiating the remote playback).
 
 The following use cases might be added in the future or considered in the first set of use cases but there is no strong signal that they are needed as of yet:
 - A website should be able to know when a remote playback session is connecting (ie. in the process of being connected but not connected yet).
