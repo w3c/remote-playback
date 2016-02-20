@@ -19,7 +19,7 @@ The Safari API can be described as:
 
 ## Existing remote media playback behavior in browsers
 
-Safari, as well as Android versions of Firefox and Chrome allow users to play some website's media remotely. Safari will show an icon in order to send a video to an AirPlay device nearby. Chrome and Firefox will show a similar icon but for Cast devices.
+Safari, Edge on Windows 10, as well as Android versions of Firefox and Chrome allow users to play some website's media remotely. Safari will show an icon in order to send a video to an AirPlay device nearby. Chrome and Firefox will show a similar icon but for Cast devices. Edge provides a menu item.
 
 Safari:
 - Description link: https://support.apple.com/en-gb/HT201343
@@ -42,6 +42,10 @@ Firefox Android:
 - Description link: https://support.mozilla.org/en-US/kb/use-firefox-android-send-videos-chromecast
 - The user will see the Cast button in the omnibox if there's a castable video on the page
 - The rest of the behavior matches the one Chrome provides
+
+Edge on Windows 10:
+- Description link: https://blogs.windows.com/windowsexperience/2015/10/29/announcing-windows-10-insider-preview-build-10576/
+- The user will initialize media casting from the ... menu
 
 ## Use cases
 
