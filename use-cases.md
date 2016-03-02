@@ -1,13 +1,13 @@
 # Use Cases and Requirements
 
-The primary goal of this API is to enable websites to customize the default UI for playing HTML media remotely, e.g. to implement custom media controls or disable the default UI in the case when presenting content remotely is implemented differently (i.e. via Presentation API). Thus he use cases and requirements are defined by the existing browsers' behaviors and also some related proprietary APIs (see below).
+The primary goal of this API is to enable websites to customize the default UI for playing HTML media remotely, e.g. to implement custom media controls or disable the default UI in the case when presenting content remotely is implemented differently (i.e. via Presentation API). Thus the use cases and requirements are defined by the existing browsers' behaviors and also some related proprietary APIs (see below).
 
 
 ## Proprietary APIs
 
 Safari for iOS has some proprietary APIs in order to allow remote playback on AirPlay.
 - Safari 7 release notes: https://developer.apple.com/library/prerelease/mac/releasenotes/General/WhatsNewInSafari/Articles/Safari_7_0.html#//apple_ref/doc/uid/TP40014305-CH5-SW7
-- Safari 9 release notes: https://developer.apple.com/library/prerelease/mac/releasenotes/General/WhatsNewInSafari/Articles/Safari_9.html
+- Safari 9 release notes: https://developer.apple.com/library/prerelease/mac/releasenotes/General/WhatsNewInSafari/Articles/Safari_9_0.html#//apple_ref/doc/uid/TP40014305-CH9-SW16
 
 The Safari API can be described as:
 - ```x-webkit-wirelessvideoplaybackdisabled``` property, it lets the website disable AirPlay video playback, it superseeds ```x-webkit-airplay```.
