@@ -172,15 +172,14 @@
           readonly attribute RemotePlaybackState state;
 
           // This method will show a UI for the user to pick a device.
-          // Resolves with |true| if a device was picked and a session is
-          // initiating, |false| otherwise.
-          // TODO: consider a better name?
-          Promise&lt;boolean&gt;start();
+          // Resolves with true if a device was picked and the UA is
+          // connecting to it, with false if the user canceled the action,
+          // rejects if there was an error of some kind.
+          Promise&lt;bool&gt;connect();
         };
 
         enum RemotePlaybackState {
-          // TODO: values do not match Presentation API.
-          // TODO: "connecting"?
+          "connecting",
           "connected",
           "disconnected"
         };
@@ -190,9 +189,9 @@
         <ul>
           <li>getAvailability()'s promise resolves with a RemotePlaybackAvailability,
             similar to the function with same name in Presentation API.</li>
-          <li>state returns the remote playback session's current state.</li>
-          <li>start() should show the user agent's device picker if the session
-            is not yet connected.</li>
+          <li>state returns the remote playback connection's current state.</li>
+          <li>connect() should show the user agent's device picker if the connection
+            is not yet established or being established.</li>
         </ul>
       </p>
     </section>
