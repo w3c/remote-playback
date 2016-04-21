@@ -141,6 +141,54 @@
         ECMAScript Bindings defined in the Web IDL specification [[!WEBIDL]].
       </p>
     </section>
+    <section class="informative">
+      <h2>
+        Introduction
+      </h2>
+      <p>
+        This specification aims to make <a>remote playback devices</a> such as
+        connected TVs, projectors or audio-only speakers, available to the Web and
+        takes into account displays that are attached using wired (HDMI, DVI,
+        or similar) and wireless technologies (Miracast, Chromecast, DLNA, AirPlay, or
+        similar).
+      </p>
+      <p>
+        Devices with limited screen size or quiet speakers lack the ability to
+        playback media content to a larger audience, for example, a group of
+        colleagues in a conference room, or friends and family at home. Playing media
+        content on an external larger and/or louder <a>remote playback device</a> helps
+        to improve the perceived quality and impact of the played media.
+      </p>
+      <p>
+        At its core, this specification enables a page that acts as the <a>controller</a>
+        to initiate and control remote playback of a particular media element on a selected
+        <a>remote playback device</a>. How the remoting is initiated and controlled
+        is left to the UA in order to allow the use of <a>remote playback devices</a> that
+        can be attached in a wide variety of ways. For example, when a <a>remote playback device</a>
+        is attached using HDMI or Miracast, the same UA that acts as the
+        <a>controller</a> renders the remote media. Instead of playing the media on the same
+        device, however, it can use whatever means the operating system provides for using
+        the external <a>remote playback device</a>. In such a case, both the <a>controller</a> and
+        the media player run on the same UA and the operating system is used to route the player
+        output to the <a>remote playback device</a>. This is commonly referred to as the
+        <dfn><b id="1-ua">1-UA</b></dfn> case. This specification imposes no requirements on the
+        <a>remote playback devices</a> connected in such a manner.
+      </p>
+      <p>
+        If the <a>remote playback device</a> is able to play the media and
+        communicate with the <a>controller</a>, the <a>controller</a> does not
+        need to render the remoted media. In this case, the UA acts as a proxy
+        that requests the <a>remote playback device</a> to play the media itself by passing the necessary
+        data like a URL to the media file or encoded media frames. This is commonly referred to as
+        the <b id="2-ua">2-UA</b> case. This way of attaching to displays could be enhanced in the future by
+        defining a standard protocol for delivering these types of messages that remote playback devices could choose
+        to implement.
+      </p>
+      <p>
+        The API defined here is intended to be used with UAs that attach to
+        <a>remote playback device</a> devices through any of the above means.
+      </p>
+    </section>
     <section class='informative'>
       <h2>Use cases and requirements</h2>
       <p>
