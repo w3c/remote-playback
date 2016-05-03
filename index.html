@@ -226,7 +226,31 @@
           Monitor availability of remote playback devices example
         </h3>
         <pre class="example highlight">
-          
+&lt;!-- the video element with custom controls that supports remote playback --&gt;
+&lt;video id="videoElement" src="http://example.com/video.webm" /&gt;
+&lt;button id="remotePlaybackBtn" style="display: none;"&gt;Play remotely&lt;/button&gt;
+&lt;script&gt;
+  // The "Play remotely" button is visible if at least one presentation display is available
+  var remotePlaybackBtn = document.getElementById("remotePlaybackBtn");
+  // show or hide the remote playback button depending on display availability
+  var handleAvailabilityChange = function(available) {
+    remotePlaybackBtn.style.display = available ? "inline" : "none";
+  };
+  var videoElem = document.getElementById("videoElement");
+  // Promise is resolved as soon as the remote playback device availability is known.
+  videoElem.remote.getAvailability().then(function(availability) {
+    // availability.value may be kept up-to-date by the controlling UA as long
+    // as the availability object is alive. It is advised for the web developers
+    // to discard the object as soon as it's not needed.
+    handleAvailabilityChange(availability.value);
+    availability.onchange = function() { handleAvailabilityChange(this.value); };
+  }).catch(function() {
+    // Availability monitoring is not supported by the platform, so discovery of
+    // remote display devices will happen only after request.start() is called.
+    // Pretend the devices are available for simplicity; or, one could implement
+    // a third state for the button.
+    handleAvailabilityChange(true);
+  });          
         </pre>
       </section>
     </section>
