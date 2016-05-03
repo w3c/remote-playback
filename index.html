@@ -255,6 +255,23 @@
 &lt;/script&gt;  
         </pre>
       </section>
+      <section>
+        <h3>
+          Monitor availability of remote playback devices example
+        </h3>
+        <pre class="example highlight">
+&lt;!-- player.html --&gt;
+&lt;script&gt;
+  remotePlaybackBtn.onclick = function () {
+    // Start remote playback.
+    videoElem.remote.connect()
+      // Update the UI and monitor the connected state.
+      .then(setupRemotePlayback);
+      // Otherwise, the user cancelled the selection UI or no screens were found.
+  };
+&lt;script&gt;
+        </pre>
+      </section>      
     </section>
     <section>
       <h2><code><a>RemotePlayback</a></code> interface</h2>
