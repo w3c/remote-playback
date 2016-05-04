@@ -212,6 +212,51 @@
       </ul>
     </section>
     <section>
+      <h2>
+        Examples
+      </h2>
+      <p>
+        This section shows the code examples that highlight the usage of the main features of the Remote Playback API.
+        In these examples, <code>player.html</code> implements the player page controlling the remote playback and
+        <code>media.ext</code> is the media file to be played remotely. Both the page and the media are served from the
+        domain <code>https://example.org</code>. Please refer to the comments in the code examples for further details.
+      </p>
+      <section>
+        <h3>
+          Monitor availability of remote playback devices example
+        </h3>
+        <pre class="example highlight">
+&lt;!-- player.html --&gt;
+&lt;!-- the video element with custom controls that supports remote playback --&gt;
+&lt;video id="videoElement" src="http://example.org/video.ext" /&gt;
+&lt;button id="remotePlaybackBtn" style="display: none;"&gt;Play remotely&lt;/button&gt;
+&lt;script&gt;
+  // The "Play remotely" button is visible if at least one presentation display is available
+  var remotePlaybackBtn = document.getElementById("remotePlaybackBtn");
+  // show or hide the remote playback button depending on display availability
+  var handleAvailabilityChange = function(available) {
+    remotePlaybackBtn.style.display = available ? "inline" : "none";
+  };
+  var videoElem = document.getElementById("videoElement");
+  // Promise is resolved as soon as the remote playback device availability is known.
+  videoElem.remote.getAvailability().then(function(availability) {
+    // availability.value may be kept up-to-date by the controlling UA as long
+    // as the availability object is alive. It is advised for the web developers
+    // to discard the object as soon as it's not needed.
+    handleAvailabilityChange(availability.value);
+    availability.onchange = function() { handleAvailabilityChange(this.value); };
+  }).catch(function() {
+    // Availability monitoring is not supported by the platform, so discovery of
+    // remote display devices will happen only after request.start() is called.
+    // Pretend the devices are available for simplicity; or, one could implement
+    // a third state for the button.
+    handleAvailabilityChange(true);
+  });
+&lt;/script&gt;  
+        </pre>
+      </section>
+    </section>
+    <section>
       <h2><code><a>RemotePlayback</a></code> interface</h2>
       <pre class='idl'>
         interface RemotePlayback : EventTarget {
