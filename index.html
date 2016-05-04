@@ -247,7 +247,7 @@
     availability.onchange = function() { handleAvailabilityChange(this.value); };
   }).catch(function() {
     // Availability monitoring is not supported by the platform, so discovery of
-    // remote display devices will happen only after request.start() is called.
+    // remote playback devices will happen only after remote.connect() is called.
     // Pretend the devices are available for simplicity; or, one could implement
     // a third state for the button.
     handleAvailabilityChange(true);
