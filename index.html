@@ -337,7 +337,8 @@
         and represents the <dfn>remote playback device availability</dfn> for the media element. If the user
         agent can <a>monitor the list of available remote playback devices</a> in the background (without
         a pending request to <code><a for="RemotePlayback">connect()</a></code>), the 
-        <a><code>RemotePlaybackAvailability</a></code> object MUST be implemented by the user agent.
+        <a><code>RemotePlaybackAvailability</a></code> object MUST be implemented by the user agent. Otherwise, the
+        <a>Promise</a> returned by <code><a for="RemotePlayback">getAvailability</a>()</code> MUST be rejected with <a>NotSupportedError</a>.
       </p>
       <p>
         The <dfn for="RemotePlaybackAvailability">value</dfn> attribute MUST return the last value it was set to.
@@ -356,17 +357,17 @@
           availability objects</dfn> requested through the <code><a for=
           "RemotePlayback">getAvailability</a>()</code> method. The
           <a>set of availability objects</a> is represented as a set of
-          tuples <em>(<var>A</var>, <var>availabilitySource</var>)</em>,
+          tuples <em>(<var>availability</var>, <var>availabilitySource</var>)</em>,
           initially empty, where:
         </p>
         <ol>
           <li>
-            <var>A</var> is a live <a>RemotePlaybackAvailability</a> object;
+            <var>availability</var> is a live <a>RemotePlaybackAvailability</a> object;
           </li>
           <li>
             <var>availabilitySource</var> is the <a>source</a> of the media element
             when <code><a for="RemotePlayback">getAvailability</a>()</code> is called to
-            create <var>A</var>.
+            create <var>availability</var>.
           </li>
         </ol>
       </section>
@@ -391,7 +392,7 @@
           may not support continuous availability monitoring; for example,
           because of platform or power consumption restrictions. In this case
           the <a>Promise</a> returned by <code><a for="RemotePlayback">getAvailability</a>()</code>
-          MUST be <a data-lt="reject">rejected</a> and the algorithm to <a>monitor
+          MUST be <a data-lt="reject">rejected</a> with <a>NotSupportedError</a> and the algorithm to <a>monitor
           the list of available remote playback devices</a> will only run as part of the
           <a>initiate remote playback</a> algorithm.
         </p>
@@ -430,27 +431,28 @@
             Input
           </dt>
           <dd>
-            <var>remote media source</var>, the <a>media element source</a> preferred for remote playback
+            <var>availabilitySource</var>, the <a>media element source</a> preferred for remote playback
           </dd>
           <dt>
             Output
           </dt>
           <dd>
-            <var>P</var>, a <a>Promise</a>
+            <var>promise</var>, a <a>Promise</a>
           </dd>
         </dl>
         <ol>
-          <li>Let <var>P</var> be a new <a>Promise</a>.
+          <li>
+            Let <var>promise</var> be a new <a>Promise</a>.
           </li>
-          <li>Return <var>P</var>, but continue running these steps <a>in
-          parallel</a>.
+          <li>
+            Return <var>promise</var>, and run the following steps below:
           </li>
           <li>If the user agent is unable to <a>monitor the list of available
           remote playback devices</a> for the entire lifetime of the browsing context
           (for instance, because the user has disabled this feature), then:
             <ol>
               <li>
-                <a>Resolve</a> <var>P</var> with a new
+                <a>Resolve</a> <var>promise</var> with a new
                 <code>RemotePlaybackAvailability</code> object with its
                 <code>value</code> property set to <code>false</code>.
               </li>
@@ -463,7 +465,7 @@
           when initiating remote playback, then:
             <ol>
               <li>
-                <a>Reject</a> <var>P</var> with a <a>NotSupportedError</a>
+                <a>Reject</a> <var>promise</var> with a <a>NotSupportedError</a>
                 exception.
               </li>
               <li>Abort all the remaining steps.
@@ -471,12 +473,12 @@
             </ol>
           </li>
           <li>
-            If there exists a tuple <em>(<var>A</var>,
-            <var>remote media source</var>)</em> in the <a>set of availability
+            If there exists a tuple <em>(<var>availability</var>,
+            <var>availabilitySource</var>)</em> in the <a>set of availability
             objects</a>, then:
             <ol>
               <li>
-                <a>Resolve</a> <var>P</var> with <var>A</var>.
+                <a>Resolve</a> <var>promise</var> with <var>availability</var>.
               </li>
               <li>
                 Abort all the remaining steps.
@@ -484,20 +486,21 @@
             </ol>
           </li>
           <li>
-            Let <var>A</var> be a new <code>RemotePlaybackAvailability</code>
+            Let <var>availability</var> be a new <code>RemotePlaybackAvailability</code>
             object with its <code>value</code> property set to
             <code>false</code> if the <a>list of available remote playback devices</a>
             is empty or none of them is a <a>compatible remote playback device</a>,
             <code>true</code> otherwise.
           </li>
           <li>
-            Create a tuple <em>(<var>A</var>, <var>remote media source</var>)</em> and add it
+            Create a tuple <em>(<var>availability</var>, <var>availabilitySource</var>)</em> and add it
             to the <a>set of availability objects</a>.
           </li>
-          <li>Run the algorithm to <a>monitor the list of available remote playback devices</a>.
+          <li>
+            Run the algorithm to <a>monitor the list of available remote playback devices</a>.
           </li>
           <li>
-            <a>Resolve</a> <var>P</var> with <var>A</var>.
+            <a>Resolve</a> <var>promise</var> with <var>availability</var>.
           </li>
         </ol>
       </section>
@@ -517,26 +520,26 @@
             and let <var>newDevices</var> be this list.
           </li>
           <li>
-            For each member <em>(<var>A</var>, <var>availabilitySource</var>)</em>
+            For each member <em>(<var>availability</var>, <var>availabilitySource</var>)</em>
             of the <a>set of availability objects</a>:
             <ol>
               <li>
-                Set <var>previousAvailability</var> to the value of <var>A</var>'s <a>value</a> property.
+                Set <var>previousAvailabilityValue</var> to the value of <var>availability</var>'s <a>value</a> property.
               </li>
               <li>
-                Let <var>newAvailability</var> be <code>true</code> if <var>newDevices</var> is not empty
+                Let <var>newAvailabilityValue</var> be <code>true</code> if <var>newDevices</var> is not empty
                 and at least one device in <var>newDevices</var> is a <a>compatible remote playback device</a>
-                for <var>availabilitySource</var>. Otherwise, set <var>newAvailability</var> to <code>false</code>.
+                for <var>availabilitySource</var>. Otherwise, set <var>newAvailabilityValue</var> to <code>false</code>.
               </li>
               <li>
-                If <var>previousAvailability</var> is not equal to <var>newAvailability</var>, then <a>queue a task</a>
-                to run the following steps:
+                If <var>previousAvailabilityValue</var> is not equal to <var>newAvailabilityValue</var>, then
+                <a>queue a task</a> to run the following steps:
                 <ol>
                   <li>
-                    Set <var>A</var>'s <a>value</a> property to <var>newAvailability</var>.
+                    Set <var>availability</var>'s <a>value</a> property to <var>newAvailabilityValue</var>.
                   </li>
                   <li>
-                    <a>Fire a simple event</a> named <a>change</a> at <var>A</var>.
+                    <a>Fire a simple event</a> named <a>change</a> at <var>availability</var>.
                   </li>
                 </ol>
               </li>
@@ -553,8 +556,8 @@
         </p>
         <ol>
           <li>
-            Find and remove any entry <em>(<var>A</var>, <var>availabilitySource</var>)</em> in the
-            <a>set of availability objects</a> for the newly deceased <var>A</var>.
+            Find and remove any entry <em>(<var>availability</var>, <var>availabilitySource</var>)</em> in the
+            <a>set of availability objects</a> for the newly deceased <var>availability</var>.
           </li>
           <li>
             If the <a>set of availability objects</a> is now empty and there is no pending request to
