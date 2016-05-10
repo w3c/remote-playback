@@ -302,6 +302,8 @@
 
             readonly attribute RemotePlaybackState state;
 
+            attribute EventHandler onstatechange;
+
             Promise&lt;bool&gt;connect();
           };
 
@@ -311,16 +313,6 @@
             "disconnected"
           };
         </pre>
-        <p>
-          <b>Draft summary:</b><br>
-          <ul>
-            <li>getAvailability()'s promise resolves with a RemotePlaybackAvailability,
-              similar to the function with same name in Presentation API.</li>
-            <li>state returns the remote playback connection's current state.</li>
-            <li>connect() should show the user agent's device picker if the connection
-              is not yet established or being established.</li>
-          </ul>
-        </p>
         <section>
           <h4>
             Initiate remote playback
@@ -426,7 +418,7 @@
               <a>Resolve</a> <var>promise</var> with <code>true</code>.
             </li>
             <li>
-              <a>Queue a task</a> to fire an event</a> with
+              <a>Queue a task</a> to fire a simple event</a> with
               the name <a for="RemotePlayback">statechange</a>,
               that uses the <a>change</a> event interface at <var>remote</var>.
               The event must not bubble, must not be cancelable, and has no
@@ -453,6 +445,163 @@
             the local or a remote user agent. This specification defines
             behavior for any source supported by <a>HTMLMediaElement</a>.
           </div>
+        </section>
+        <section>
+          <h4>The <dfn for="RemotePlayback"><code>state</code></dfn> attribute</h4>
+          <p>
+            The <dfn><code>state</code></dfn> attribute represents the
+            <a>remote playback</a> connection's current state. It can take one of
+            the values of <a>RemotePlaybackState</a> depending on the
+            connection state:
+          </p>
+          <ul dfn-for="RemotePlaybackState">
+            <li>
+              <dfn>connecting</dfn> means that the user agent is attempting to
+              <a>initiate remote playback</a> with the selected <a>remote playback device</a>.
+              This is the initial state when the <code>promise</code> returned by
+              <code><a for="RemotePlayback">connect</a>()</code> is resolved with <code>true</code>.
+              The local playback of the media element continues in this
+              state and media commands still take effect on the local playback.
+            </li>
+            <li>
+              <dfn>connected</dfn> means that the transition from local to
+              <a>remote playback</a> has finished and all media commands now
+              take effect on the playback state of the <a>remote playback device</a>
+            </li>
+            <li>
+              <dfn>disconnected</dfn> means that the <a>remote playback</a>
+              has not been initiated, has failed to initiate or has been
+              stopped. All media commands will take effect on the local
+              playback in this state. The <a>remote playback</a> can be
+              initiated through a call to <code><a for="RemotePlayback">connect</a>()</code>.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4>
+            Establishing a connection with a remote playback device
+          </h4>
+          <p>
+            When the <a>user agent</a> is to <dfn>establish a connection with the remote playback device</dfn>,
+            it MUST run the following steps:
+          </p>
+          <dl>
+            <dt>
+              Input
+            </dt>
+            <dd>
+              <var>remotePlayback</var>, the <code>RemotePlayback</code> object that is to be connected.
+              The <a>remote playback state</a> of <var>remotePlayback</var> must be
+              <a for="RemotePlaybackState">connecting</a>.
+            </dd>
+          </dl>
+          <ol>
+            <li>
+              Request connection of <var>remotePlayback</var> to the <a>remote playback device</a>.
+            </li>
+            <li>
+              If connection completes successfully, <a>queue a task</a> to run the following steps:
+              <ol>
+                <li>
+                  Set the <a>remote playback state</a> of <var>remotePlayback</var> to
+                  <a for="RemotePlaybackState">connected</a>.
+                </li>
+                <li>
+                  <a>Fire a simple event</a> named <a>statechange</a> at <var>remotePlayback</var>.
+                </li>
+              </ol>
+            </li>
+          </ol>
+          <div class="note">
+            The mechanism that is used to connect the user agent with the <a>remote playback device</a> and
+            play the <a>remote playback source</a> is an implementation choice of the user agent. The
+            connection must provide a two-way messaging abstraction capable of carrying media commands to
+            the remote playback device and receiving media playback state in order to keep the remoted
+            media element state in sync.
+          </div>
+          <div class="note">
+            If the connection step does not complete successfully, the user
+            agent may choose to re-execute the connection algorithm at a later time.
+          </div>
+        </section>
+        <section>
+          <h4>Media commands and media playback state</h4>
+          <p>
+            The HTMLMediaElement interface interacts with the remotely played media
+            as soon as the state of RemotePlayback has changed to "connected".
+            All the media commands are sent to the remote playback device in order to change
+            the state of the remotely played media while all the status updates received from
+            the remote playback device are reflected on the HTMLMediaElement's state.
+            If sending any command fails, the user agent stops remote
+            playback and the state changes to "disconnected".
+          </p>
+        </section>
+        <section>
+          <h4>Stopping remote playback</h4>
+          <p>
+            When the <a>user agent</a> is to <dfn>stop remote playback<dfn>,
+            it MUST do the following:
+          </p>
+          <dl>
+            <dt>
+              Input
+            </dt>
+            <dd>
+              <var>remotePlayback</var>, the <a>remote playback</a> to be stopped.
+            </dd>
+          </dl>
+          <ol>
+            <li>
+              If the <a for="RemotePlabyack"><code>state</code></a> of <var>remotePlayback</var> is not
+              <code>connected</code>, abort the remaining steps.
+            </li>
+            <li>
+              <a>Queue a task</a> to run the following steps:
+              <ol>
+                <li>
+                  Request stopping the playback of the media from the <a>remote playback device</a>.
+                </li>
+                <li>
+                  Change the <var>remotePlayback</var>'s <code>state</code> to <code>disconnected</code>.
+                </li>
+                <li>
+                  <a>Fire an event</a> with the name <a for="RemotePlayback">statechange</a> at <var>remotePlayback</var>.
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </section>
+        <section>
+          <h4>
+            Event Handlers
+          </h4>
+          <p>
+            The following are the event handlers (and their corresponding event
+            handler event types) that must be supported, as event handler IDL
+            attributes, by objects implementing the <a>RemotePlayback</a> interface:
+          </p>
+          <table dfn-for="RemotePlayback">
+            <thead>
+              <tr>
+                <th>
+                  Event handler
+                </th>
+                <th>
+                  Event handler event type
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <dfn><code>onstatechange</code></dfn>
+                </td>
+                <td>
+                  <dfn><code>statechange</code></dfn>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </section>
       </section>
       <section>
