@@ -342,6 +342,11 @@
           </dl>
           <ol>
             <li>
+              If the <a>user agent</a> knows a priori that remoting <var>remotePlaybackSource</var> is not supported
+              by the user agent or is incompatible with any <a>remote playback device</a> type supported by the user agent,
+              return a <a>Promise</a> rejected with a <a>NotSupported</a> error and abort the remaining steps.
+            </li>
+            <li>
               If the algorithm isn't <a>allowed to show a popup</a>, return a
               <a>Promise</a> rejected with an <a>InvalidAccessError</a> exception
               and abort these steps.
