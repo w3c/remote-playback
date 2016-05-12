@@ -171,18 +171,24 @@
         the external <a>remote playback device</a>. In such a case, both the <a>controller</a> and
         the media player run on the same UA and the operating system is used to route the player
         output to the <a>remote playback device</a>. This is commonly referred to as the
-        <dfn><b id="1-ua">1-UA</b></dfn> case. This specification imposes no requirements on the
+        <dfn><b id="media-mirroring">media mirroring</b></dfn> case. This specification imposes no requirements on the
         <a>remote playback devices</a> connected in such a manner.
       </p>
       <p>
         If the <a>remote playback device</a> is able to play the media and
+        communicate with the <a>controller</a> but is unable to fetch the
+        media, the <a>controller</a> needs to fetch the media data and pass
+        it on to the <a>remote playback device</a> for rendering. This is
+        commonly referred to as <dfn><b id="media-remoting">media remoting</b></dfn> case.
+      </p>
+      <p>
+        If the <a>remote playback device</a> is able to fetch and play the media and
         communicate with the <a>controller</a>, the <a>controller</a> does not
-        need to render the remoted media. In this case, the UA acts as a proxy
+        need to fetch or render the remoted media. In this case, the UA acts as a proxy
         that requests the <a>remote playback device</a> to play the media itself by passing the necessary
-        data like a URL to the media file or encoded media frames. This is commonly referred to as
-        the <b id="2-ua">2-UA</b> case. This way of attaching to displays could be enhanced in the future by
-        defining a standard protocol for delivering these types of messages that remote playback devices could choose
-        to implement.
+        data like the media source. This is commonly referred to as the <dfn><b id="media-flinging">media flinging</b></dfn> case.
+        This way of attaching to displays could be enhanced in the future by defining a standard protocol for
+        delivering these types of messages that remote playback devices could choose to implement.
       </p>
       <p>
         The API defined here is intended to be used with UAs that attach to
@@ -327,11 +333,13 @@
               Input
             </dt>
             <dd>
-              <var>remotePlaybackSource</var>, the <a>media element source</a>
-            </dd>
-            <dd>
               <var>remote</var>, the <code><a>RemotePlayback</a></code> object
               associated with the media element.
+            </dd>
+            <dd>
+              <var>mediaSourceList</var>, the list of all media sources attributed to media element.
+              It includes sources set via <code>srcObject</code>, <code>src</code> attributes and <code>&lt;source&gt;</code>
+              elements at the moment <a for="RemotePlayback"><code>connect</code>()</a> was called.
             </dd>
             <dt>
               Output
@@ -342,23 +350,19 @@
           </dl>
           <ol>
             <li>
-              If the <a>user agent</a> knows a priori that remoting <var>remotePlaybackSource</var> is not supported
-              by the user agent or is incompatible with any <a>remote playback device</a> type supported by the user agent,
-              return a <a>Promise</a> rejected with a <a>NotSupported</a> error and abort the remaining steps.
+              If the <a>user agent</a> knows a priori that playing any source from <var>mediaSourceList</var>
+              remotely is not supported by the user agent or any of <a>remote playback device</a> types supported
+              by the user agent, return a <a>Promise</a> rejected with a <a>NotSupported</a> error and abort the
+              remaining steps.
+              <div class="note">
+                An example of such scenario could be when the user agent only supports <a>media flinging</a> case
+                while the media element's source is not a URL that could be passed over to any <a>remote playback device</a>.
+              </div>
             </li>
             <li>
               If the algorithm isn't <a>allowed to show a popup</a>, return a
               <a>Promise</a> rejected with an <a>InvalidAccessError</a> exception
               and abort these steps.
-            </li>
-            <li>
-              Using the document's <a>settings object</a>, run the
-              <a>prohibits mixed security contexts algorithm</a>.
-            </li>
-            <li>
-              If the result of the algorithm is <code>"Prohibits Mixed Security Contexts"</code>
-              and <var>remotePlaybackSource</var> is an <a>a priori unauthenticated source</a>
-              (for instance, a URL), then return a <a>Promise</a> rejected with a <a>SecurityError</a>.
             </li>
             <li>
               If there is already an unsettled <a>Promise</a> from a previous
@@ -392,8 +396,7 @@
                 </li>
                 <li>
                   No member in the <a>list of available remote playback device</a> is a
-                  <a>compatible remote playback device</a> for
-                  <var>remotePlaybackSource</var>.
+                  <a>compatible remote playback device</a> for any source from the <var>mediaSourceList</var>.
                 </li>
               </ol>
               Then run the following steps:
@@ -435,7 +438,7 @@
             </li>
             <li>
               Using an implementation specific mechanism start remote playback of
-              <var>remotePlaybackSource</var> on <var>device</var>.
+              the <a>best compatible media source</a> from <var>mediaSourceList</var> on <var>device</var>.
             </li>
           </ol>
           <div class="note">
@@ -446,9 +449,11 @@
             permission).
           </div>
           <div class="note">
-            The <var>remotePlaybackSource</var> should name a resource accessible to
-            the local or a remote user agent. This specification defines
-            behavior for any source supported by <a>HTMLMediaElement</a>.
+            The algorithm to select the <dfn>best compatible media source</dfn> for a selected device
+            depends on the user agent and supported <a>remote playback device</a> types. For example,
+            in case of <a>media mirroring</a> the user agent can simply follow the <a>HTMLMediaElement</a>'s
+            <a>resource selection algorithm</a>. However, if <a>media remoting</a> or <a>media flinging</a> is used,
+            the best media source depends on the selected <a>remote playback device</a> fetch and playback capabilities.
           </div>
         </section>
         <section>
@@ -522,7 +527,7 @@
             play the <a>remote playback source</a> is an implementation choice of the user agent. The
             connection will likely have to provide a two-way messaging abstraction capable of carrying media commands to
             the remote playback device and receiving media playback state in order to keep the remoted
-            media element state in sync.
+            media element state in sync, unless <a>media mirroring<a> is used.
           </div>
           <div class="note">
             If the connection step does not complete successfully, the user
@@ -721,7 +726,7 @@
               Input
             </dt>
             <dd>
-              <var>availabilitySource</var>, the <a>media element source</a> preferred for remote playback
+              <var>mediaSourceList</var>, a list of sources attributed to the media element.
             </dd>
             <dt>
               Output
@@ -765,7 +770,8 @@
             <li>
               If there exists a tuple <em>(<var>availability</var>,
               <var>availabilitySource</var>)</em> in the <a>set of availability
-              objects</a>, then:
+              objects</a> where <var>availabilitySource<var> is present in <var>mediaSourceList</var>,
+              then:
               <ol>
                 <li>
                   <a>Resolve</a> <var>promise</var> with <var>availability</var>.
@@ -779,12 +785,13 @@
               Let <var>availability</var> be a new <code>RemotePlaybackAvailability</code>
               object with its <code>value</code> property set to
               <code>false</code> if the <a>list of available remote playback devices</a>
-              is empty or none of them is a <a>compatible remote playback device</a>,
+              is empty or none of them is compatible with any source from <var>mediaSourceList</var>,
               <code>true</code> otherwise.
             </li>
             <li>
-              Create a tuple <em>(<var>availability</var>, <var>availabilitySource</var>)</em> and add it
-              to the <a>set of availability objects</a>.
+              For each <var>availabilitySource</var> in <var>mediaSourceList</var>, create a tuple
+              <em>(<var>availability</var>, <var>availabilitySource</var>)</em> and add it to the
+              <a>set of availability objects</a>.
             </li>
             <li>
               Run the algorithm to <a>monitor the list of available remote playback devices</a>.
