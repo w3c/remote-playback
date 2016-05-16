@@ -326,14 +326,14 @@
               Output
             </dt>
             <dd>
-              A <a>Promise</a>
+              A promise.
             </dd>
           </dl>
           <ol>
             <li>
               If the <a>user agent</a> knows a priori that playing any source from <var>mediaSourceList</var>
               remotely is not supported by the user agent or any of <a>remote playback device</a> types supported
-              by the user agent, return a <a>Promise</a> rejected with a <a>NotSupported</a> error and abort the
+              by the user agent, return a promise rejected with a <a>NotSupported</a> error and abort the
               remaining steps.
               <div class="note">
                 An example of such scenario could be when the user agent only supports <a>media flinging</a> case
@@ -342,17 +342,17 @@
             </li>
             <li>
               If the algorithm isn't <a>allowed to show a popup</a>, return a
-              <a>Promise</a> rejected with an <a>InvalidAccessError</a> exception
+              promise rejected with an <a>InvalidAccessError</a> exception
               and abort these steps.
             </li>
             <li>
-              If there is already an unsettled <a>Promise</a> from a previous
+              If there is already an unsettled promise from a previous
               call to <code>connect</code> for the same browsing context, return
-              a <a>Promise</a> rejected with an <a>OperationError</a> exception and
+              a promise rejected with an <a>OperationError</a> exception and
               abort all remaining steps.
             </li>
             <li>
-              Let <var>promise</var> be a new <a>Promise</a>.
+              Let <var>promise</var> be a new promise.
             </li>
             <li>
               Return <var>promise</var> and continue running these steps
@@ -614,7 +614,7 @@
           agent can <a>monitor the list of available remote playback devices</a> in the background (without
           a pending request to <code><a for="RemotePlayback">connect()</a></code>), the
           <a><code>RemotePlaybackAvailability</a></code> object MUST be implemented by the user agent. Otherwise, the
-          <a>Promise</a> returned by <code><a for="RemotePlayback">getAvailability</a>()</code> MUST be rejected with <a>NotSupportedError</a>.
+          promise returned by <code><a for="RemotePlayback">getAvailability</a>()</code> MUST be rejected with <a>NotSupportedError</a>.
         </p>
         <p>
           The <dfn for="RemotePlaybackAvailability">value</dfn> attribute MUST return the last value it was set to.
@@ -667,7 +667,7 @@
             when there are available devices. However, the <a>user agent</a>
             may not support continuous availability monitoring; for example,
             because of platform or power consumption restrictions. In this case
-            the <a>Promise</a> returned by <code><a for="RemotePlayback">getAvailability</a>()</code>
+            the promise returned by <code><a for="RemotePlayback">getAvailability</a>()</code>
             MUST be <a data-lt="reject">rejected</a> with <a>NotSupportedError</a> and the algorithm to <a>monitor
             the list of available remote playback devices</a> will only run as part of the
             <a>initiate remote playback</a> algorithm.
@@ -713,12 +713,12 @@
               Output
             </dt>
             <dd>
-              <var>promise</var>, a <a>Promise</a>
+              <var>promise</var>, a promise.
             </dd>
           </dl>
           <ol>
             <li>
-              Let <var>promise</var> be a new <a>Promise</a>.
+              Let <var>promise</var> be a new promise.
             </li>
             <li>
               Return <var>promise</var>, and run the following steps below:
