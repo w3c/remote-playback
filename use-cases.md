@@ -60,3 +60,37 @@ Based on the Safari's API and supported behaviors in various browsers, we can de
 The following use cases might be added in the future or considered in the first set of use cases but there is no strong signal that they are needed as of yet:
 - A website should be able to know when a remote playback session is connecting (ie. in the process of being connected but not connected yet).
 - A website should be able to stop a remote playback session.
+
+## Requirements
+
+This section collects all requirements derived from the [use cases](#use-cases)
+listed in the previews section.
+
+### Discovery & availability
+
+The UA must provide a way to find out whether at least one
+[remote playback device](https://w3c.github.io/remote-playback/#dfn-remote-playback-devices)
+is available.
+
+### Initiating remote playback
+
+The UA must provide a way to start sending content to a remote playback device from a
+[controlling browsing context](https://w3c.github.io/remote-playback/#dfn-controlling-browsing-context)
+(or <em>controller</em>). This may occur at the request of the controller or
+at the request of the UA.
+
+### Signaling disconnection
+
+The UA must signal disconnection between a controller and a remote playback device to the controller and the device.
+The controller or the remote playback device may choose to initiate disconnection; in that case, the UA must signal disconnection to the other side.
+
+## Non-functional Requirements
+
+### Power saving friendly
+
+All API design decisions must be analyzed from a power efficiency point of
+view. Especially when using wireless remoting technologies or querying
+availability over a radio channel, care needs to be taken to design the API in a
+way that does not pose obstacles to using radio resources in an efficient
+way. For example, powering up the remote playback device detection only when
+needed.
