@@ -415,7 +415,7 @@
             </li>
             <li>
               If any of the following steps fails, abort all remaining steps
-              and <a>stop the remote playback</a> for <var>remote</var>.
+              and <a>stop remote playback</a> for <var>remote</var>.
             </li>
             <li>
               Using an implementation specific mechanism start remote playback of
@@ -441,7 +441,7 @@
           <h4>The <code><a for="RemotePlayback">state</a></code> attribute</h4>
           <p>
             The <dfn><code>state</code></dfn> attribute represents the
-            <a>remote playback</a> connection's current state. It can take one of
+            <a>RemotePlayback</a> connection's current state. It can take one of
             the values of <a>RemotePlaybackState</a> depending on the
             connection state:
           </p>
@@ -455,15 +455,14 @@
               state and media commands still take effect on the local playback.
             </li>
             <li>
-              <dfn>connected</dfn> means that the transition from local to
-              <a>remote playback</a> has finished and all media commands now
-              take effect on the playback state of the <a>remote playback device</a>
+              <dfn>connected</dfn> means that the transition from local to remote playback has finished
+              and all media commands now take effect on the playback state of the <a>remote playback device</a>
             </li>
             <li>
-              <dfn>disconnected</dfn> means that the <a>remote playback</a>
-              has not been initiated, has failed to initiate or has been
+              <dfn>disconnected</dfn> means that the remote playback
+              has not been <a for="initiate remote playback">initiated</a>, has failed to initiate or has been
               stopped. All media commands will take effect on the local
-              playback in this state. The <a>remote playback</a> can be
+              playback in this state. The remote playback can be
               initiated through a call to <code><a for="RemotePlayback">connect</a>()</code>.
             </li>
           </ul>
@@ -481,24 +480,24 @@
               Input
             </dt>
             <dd>
-              <var>remotePlayback</var>, the <code>RemotePlayback</code> object that is to be connected.
-              The <a>remote playback state</a> of <var>remotePlayback</var> must be
+              <var>remote</var>, the <code>RemotePlayback</code> object that is to be connected.
+              The <a>remote playback state</a> of <var>remote</var> must be
               <a for="RemotePlaybackState">connecting</a>.
             </dd>
           </dl>
           <ol>
             <li>
-              Request connection of <var>remotePlayback</var> to the <a>remote playback device</a>.
+              Request connection of <var>remote</var> to the <a>remote playback device</a>.
             </li>
             <li>
               If connection completes successfully, <a>queue a task</a> to run the following steps:
               <ol>
                 <li>
-                  Set the <a>remote playback state</a> of <var>remotePlayback</var> to
+                  Set the <a>remote playback state</a> of <var>remote</var> to
                   <a for="RemotePlaybackState">connected</a>.
                 </li>
                 <li>
-                  <a>Fire a simple event</a> named <a>statechange</a> at <var>remotePlayback</var>.
+                  <a>Fire a simple event</a> named <a>statechange</a> at <var>remote</var>.
                 </li>
               </ol>
             </li>
@@ -538,12 +537,12 @@
               Input
             </dt>
             <dd>
-              <var>remotePlayback</var>, the <a>remote playback</a> to be stopped.
+              <var>remote</var>, the <a>RemotePlayback</a> object representing the playback to be stopped.
             </dd>
           </dl>
           <ol>
             <li>
-              If the <a for="RemotePlabyack"><code>state</code></a> of <var>remotePlayback</var> is not
+              If the <a for="RemotePlabyack"><code>state</code></a> of <var>remote</var> is not
               <code>connected</code>, abort the remaining steps.
             </li>
             <li>
@@ -553,16 +552,16 @@
                   Request stopping the playback of the media from the <a>remote playback device</a>.
                 </li>
                 <li>
-                  Change the <var>remotePlayback</var>'s <code>state</code> to <code>disconnected</code>.
+                  Change the <var>remote</var>'s <code>state</code> to <code>disconnected</code>.
                 </li>
                 <li>
-                  <a>Fire an event</a> with the name <a for="RemotePlayback">statechange</a> at <var>remotePlayback</var>.
+                  <a>Fire an event</a> with the name <a for="RemotePlayback">statechange</a> at <var>remote</var>.
                 </li>
               </ol>
             </li>
           </ol>
           <div class="note">
-            The remote playback device might not stop the remote playback of the media when requested by the user agent
+            The remote playback device might not <a>stop remote playback</a> of the media when requested by the user agent
             since it's implementation specific and depends on the device in question. In such case stopping remote playback
             merely means the user agent disconnecting from the remote playback device.
           </div>
