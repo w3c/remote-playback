@@ -284,7 +284,7 @@
       <section>
         <h3><code><a>RemotePlayback</a></code> interface</h3>
         <pre class='idl'>
-          interface RemotePlayback : EventTarget {
+          interface <dfn>RemotePlayback</dfn> : EventTarget {
             Promise&lt;RemotePlaybackAvailability&gt; getAvailability();
 
             readonly attribute RemotePlaybackState state;
@@ -294,7 +294,7 @@
             Promise&lt;bool&gt;connect();
           };
 
-          enum RemotePlaybackState {
+          enum <dfn>RemotePlaybackState</dfn> {
             "connecting",
             "connected",
             "disconnected"
@@ -376,7 +376,7 @@
                   completed.
                 </li>
                 <li>
-                  No member in the <a>list of available remote playback device</a> is a
+                  No member in the <a>list of available remote playback devices</a> is a
                   <a>compatible remote playback device</a> for any source from the <var>mediaSourceList</var>.
                 </li>
               </ol>
@@ -601,9 +601,9 @@
         </section>
       </section>
       <section>
-        <h3><code><a>RemotePlaybackAvailability</a></code> interface</h3>
+        <h3><code>RemotePlaybackAvailability</code> interface</h3>
         <pre class='idl'>
-          interface RemotePlaybackAvailability : EventTarget {
+          interface <dfn>RemotePlaybackAvailability</dfn> : EventTarget {
             readonly attribute boolean value;
             attribute EventHandler onchange;
           };
@@ -845,7 +845,7 @@
           </ol>
           <div class="note">
             The mechanism used to monitor <a>remote playback devices</a> availability and determine the
-            compatibility of a <a>presentation display</a> with a given media element source is left to the user agent.
+            compatibility of a <a>remote playback device</a> with a given media element source is left to the user agent.
           </div>
         </section>
       </section>
