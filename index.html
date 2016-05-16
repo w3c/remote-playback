@@ -200,6 +200,53 @@
     </section>
     <section>
       <h2>
+        Terminology
+      </h2>
+      <p>
+        The terms <dfn><a href= "http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing context</a></dfn>,
+        <dfn><a href="http://www.w3.org/TR/html5/webappapis.html#event-handlers">event handler</a></dfn>,
+        <dfn><a href="http://www.w3.org/TR/html5/webappapis.html#event-handler-event-type">
+          event handler event type</a></dfn>,
+        <dfn data-lt="fire|fires"><a href="http://www.w3.org/TR/html5/infrastructure.html#concept-event-fire">
+          firing an event</a></dfn>,
+        <dfn data-lt="fire a simple event"><a href="http://www.w3.org/TR/html5/webappapis.html#fire-a-simple-event">
+          firing a simple event</a></dfn>,
+        <dfn><a href="http://www.w3.org/TR/html5/webappapis.html#queue-a-task">queue a task</a></dfn>,
+        and <dfn><a href="http://www.w3.org/TR/html5/browsers.html#allowed-to-show-a-popup">
+          allowed to show a popup</a></dfn>
+        are defined in [[!HTML5]].
+      </p>
+      <p>
+        The term <dfn><a href=
+        "http://www.w3.org/TR/html51/infrastructure.html#in-parallel">in
+        parallel</a></dfn> is defined in [[!HTML51]].
+      </p>
+      <p>
+        The <dfn>term</dfn> throw in this specification is used as defined in
+        [[!WEBIDL]]. The following exception names are defined by WebIDL and
+        used by this specification:
+      </p>
+      <ul>
+        <li>
+          <dfn><code>InvalidAccessError</code></dfn>
+        </li>
+        <li>
+          <dfn><code>NotFoundError</code></dfn>
+        </li>
+        <li>
+          <dfn><code>NotSupportedError</code></dfn>
+        </li>
+        <li>
+          <dfn><code>OperationError</code></dfn>
+        </li>
+      </ul>
+      <p>
+        The term <dfn><a href="https://url.spec.whatwg.org/#url">URL</a></dfn>
+        is defined in the WHATWG URL standard [[!URL]].
+      </p>
+    </section>    
+    <section>
+      <h2>
         Examples
       </h2>
       <p>
@@ -337,7 +384,7 @@
               remaining steps.
               <div class="note">
                 An example of such scenario could be when the user agent only supports <a>media flinging</a> case
-                while the media element's source is not a URL that could be passed over to any <a>remote playback device</a>.
+                while the media element's source is not a <a>URL</a> that could be passed over to any <a>remote playback device</a>.
               </div>
             </li>
             <li>
@@ -347,7 +394,7 @@
             </li>
             <li>
               If there is already an unsettled promise from a previous
-              call to <code>connect</code> for the same browsing context, return
+              call to <code>connect</code> for the same <a>browsing context</a>, return
               a promise rejected with an <a>OperationError</a> exception and
               abort all remaining steps.
             </li>
@@ -361,7 +408,7 @@
             <li>
               If the <a>user agent</a> is not <a data-lt="monitor the list of available remote playback devices">
               monitoring the list of available remote playback devices</a>, run the steps to
-              <a>monitor the list of available remote playback devices</a> in parallel.
+              <a>monitor the list of available remote playback devices</a> <a>in parallel</a>.
             </li>
             <li>
               Request user permission for the use of a <a>remote playback device</a>
@@ -407,7 +454,7 @@
               Fulfill <var>promise</var> with <code>true</code>.
             </li>
             <li>
-              <a>Queue a task</a> to fire a simple event</a> with
+              <a>Queue a task</a> to <a>fire a simple event</a> with
               the name <a for="RemotePlayback">statechange</a>,
               that uses the <a>change</a> event interface at <var>remote</var>.
               The event must not bubble, must not be cancelable, and has no
@@ -555,7 +602,7 @@
                   Change the <var>remote</var>'s <code>state</code> to <code>disconnected</code>.
                 </li>
                 <li>
-                  <a>Fire an event</a> with the name <a for="RemotePlayback">statechange</a> at <var>remote</var>.
+                  <a data-lt="file">Fire an event</a> with the name <a for="RemotePlayback">statechange</a> at <var>remote</var>.
                 </li>
               </ol>
             </li>
@@ -572,7 +619,7 @@
           </h4>
           <p>
             The following are the event handlers (and their corresponding event
-            handler event types) that must be supported, as event handler IDL
+            handler event types) that must be supported, as <a>event handler</a> IDL
             attributes, by objects implementing the <a>RemotePlayback</a> interface:
           </p>
           <table dfn-for="RemotePlayback">
@@ -723,7 +770,7 @@
               Return <var>promise</var>, and run the following steps below:
             </li>
             <li>If the user agent is unable to <a>monitor the list of available
-            remote playback devices</a> for the entire lifetime of the browsing context
+            remote playback devices</a> for the entire lifetime of the <a>browsing context</a>
             (for instance, because the user has disabled this feature), then:
               <ol>
                 <li>
