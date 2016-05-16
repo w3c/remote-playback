@@ -284,17 +284,17 @@
       <section>
         <h3><code><a>RemotePlayback</a></code> interface</h3>
         <pre class='idl'>
-          interface <dfn>RemotePlayback</dfn> : EventTarget {
+          interface RemotePlayback : EventTarget {
             Promise&lt;RemotePlaybackAvailability&gt; getAvailability();
 
             readonly attribute RemotePlaybackState state;
 
             attribute EventHandler onstatechange;
 
-            Promise&lt;bool&gt;connect();
+            Promise&lt;bool&gt; connect();
           };
 
-          enum <dfn>RemotePlaybackState</dfn> {
+          enum RemotePlaybackState {
             "connecting",
             "connected",
             "disconnected"
@@ -305,7 +305,7 @@
             Initiate remote playback
           </h4>
           <p>
-            When the <code><dfn for="RemotePlayback">connect</dfn>()</code>
+            When the <code><a for="RemotePlayback">connect</a>()</code>
             method is called, the <a>user agent</a> MUST run the following
             steps to <dfn>initiate remote playback</dfn>:
           </p>
@@ -320,7 +320,7 @@
             <dd>
               <var>mediaSourceList</var>, the list of all media sources attributed to media element.
               It includes sources set via <code>srcObject</code>, <code>src</code> attributes and <code>&lt;source&gt;</code>
-              elements at the moment <a for="RemotePlayback"><code>connect</code>()</a> was called.
+              elements at the moment <code><a for="RemotePlayback">connect</a>()</code> was called.
             </dd>
             <dt>
               Output
@@ -438,7 +438,7 @@
           </div>
         </section>
         <section>
-          <h4>The <dfn for="RemotePlayback"><code>state</code></dfn> attribute</h4>
+          <h4>The <code><a for="RemotePlayback">state</dfn></code> attribute</h4>
           <p>
             The <dfn><code>state</code></dfn> attribute represents the
             <a>remote playback</a> connection's current state. It can take one of
