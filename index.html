@@ -329,6 +329,14 @@
     <section>
       <h2>API</h2>
       <section>
+        <h3>Common idioms</h3>
+        <p>
+          A <dfn>controlling browsing context</dfn> (or <dfn>controller</dfn> for short) is a
+          <a>browsing context</a> that has <a data-lt="initate remote playback">initiated remote playback</a>
+          by calling <code><a for="RemotePlayback">connect</a>()</code> or via <a>user agent</a> interface triggered action.
+        </p>
+      </section>
+      <section>
         <h3><code><a>RemotePlayback</a></code> interface</h3>
         <pre class='idl'>
           interface RemotePlayback : EventTarget {
@@ -380,7 +388,7 @@
             <li>
               If the <a>user agent</a> knows a priori that playing any source from <var>mediaSourceList</var>
               remotely is not supported by the user agent or any of <a>remote playback device</a> types supported
-              by the user agent, return a promise rejected with a <a>NotSupported</a> error and abort the
+              by the user agent, return a promise rejected with a <a>NotSupportedError</a> and abort the
               remaining steps.
               <div class="note">
                 An example of such scenario could be when the user agent only supports <a>media flinging</a> case
@@ -602,7 +610,7 @@
                   Change the <var>remote</var>'s <code>state</code> to <code>disconnected</code>.
                 </li>
                 <li>
-                  <a data-lt="file">Fire an event</a> with the name <a for="RemotePlayback">statechange</a> at <var>remote</var>.
+                  <a data-lt="fire">Fire an event</a> with the name <a for="RemotePlayback">statechange</a> at <var>remote</var>.
                 </li>
               </ol>
             </li>
