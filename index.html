@@ -225,7 +225,7 @@
     remotePlaybackBtn.style.display = available ? "inline" : "none";
   };
   var videoElem = document.getElementById("videoElement");
-  // Promise is resolved as soon as the remote playback device availability is known.
+  // Promise is fulfilled as soon as the remote playback device availability is known.
   videoElem.remote.getAvailability().then(function(availability) {
     // availability.value may be kept up-to-date by the controlling UA as long
     // as the availability object is alive. It is advised for the web developers
@@ -383,7 +383,7 @@
               Then run the following steps:
               <ol>
                 <li>
-                  <a>Reject</a> <var>promise</var> with a <a>NotFoundError</a> exception.
+                  Reject <var>promise</var> with a <a>NotFoundError</a> exception.
                 </li>
                 <li>
                   Abort all remaining steps.
@@ -391,7 +391,7 @@
               </ol>
             </li>
             <li>
-              If the user <em>denied permission</em> to use a device, resolve
+              If the user <em>denied permission</em> to use a device, fulfill
               <var>promise</var> with <code>false</code>, and abort
               all remaining steps.
             </li>
@@ -404,7 +404,7 @@
               <a for="RemotePlabyackState">connecting</a>.
             </li>
             <li>
-              <a>Resolve</a> <var>promise</var> with <code>true</code>.
+              Fulfill <var>promise</var> with <code>true</code>.
             </li>
             <li>
               <a>Queue a task</a> to fire a simple event</a> with
@@ -450,7 +450,7 @@
               <dfn>connecting</dfn> means that the user agent is attempting to
               <a>initiate remote playback</a> with the selected <a>remote playback device</a>.
               This is the initial state when the <code>promise</code> returned by
-              <code><a for="RemotePlayback">connect</a>()</code> is resolved with <code>true</code>.
+              <code><a for="RemotePlayback">connect</a>()</code> is fulfilled with <code>true</code>.
               The local playback of the media element continues in this
               state and media commands still take effect on the local playback.
             </li>
@@ -668,7 +668,7 @@
             may not support continuous availability monitoring; for example,
             because of platform or power consumption restrictions. In this case
             the promise returned by <code><a for="RemotePlayback">getAvailability</a>()</code>
-            MUST be <a data-lt="reject">rejected</a> with <a>NotSupportedError</a> and the algorithm to <a>monitor
+            MUST be rejected with <a>NotSupportedError</a> and the algorithm to <a>monitor
             the list of available remote playback devices</a> will only run as part of the
             <a>initiate remote playback</a> algorithm.
           </p>
@@ -728,7 +728,7 @@
             (for instance, because the user has disabled this feature), then:
               <ol>
                 <li>
-                  <a>Resolve</a> <var>promise</var> with a new
+                  Fulfill <var>promise</var> with a new
                   <code>RemotePlaybackAvailability</code> object with its
                   <code>value</code> property set to <code>false</code>.
                 </li>
@@ -741,7 +741,7 @@
             when initiating remote playback, then:
               <ol>
                 <li>
-                  <a>Reject</a> <var>promise</var> with a <a>NotSupportedError</a>
+                  Reject <var>promise</var> with a <a>NotSupportedError</a>
                   exception.
                 </li>
                 <li>Abort all the remaining steps.
@@ -755,7 +755,7 @@
               then:
               <ol>
                 <li>
-                  <a>Resolve</a> <var>promise</var> with <var>availability</var>.
+                  Fulfill <var>promise</var> with <var>availability</var>.
                 </li>
                 <li>
                   Abort all the remaining steps.
@@ -778,7 +778,7 @@
               Run the algorithm to <a>monitor the list of available remote playback devices</a>.
             </li>
             <li>
-              <a>Resolve</a> <var>promise</var> with <var>availability</var>.
+              Fulfill <var>promise</var> with <var>availability</var>.
             </li>
           </ol>
         </section>
