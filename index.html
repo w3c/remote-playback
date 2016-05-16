@@ -212,8 +212,13 @@
         <dfn data-lt="fire a simple event"><a href="http://www.w3.org/TR/html5/webappapis.html#fire-a-simple-event">
           firing a simple event</a></dfn>,
         <dfn><a href="http://www.w3.org/TR/html5/webappapis.html#queue-a-task">queue a task</a></dfn>,
-        and <dfn><a href="http://www.w3.org/TR/html5/browsers.html#allowed-to-show-a-popup">
-          allowed to show a popup</a></dfn>
+        <dfn><a href="http://www.w3.org/TR/html5/browsers.html#allowed-to-show-a-popup">
+          allowed to show a popup</a></dfn>,
+        <dfn data-lt="resource selection algorithm">
+          <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#concept-media-load-algorithm">
+            selecting media resource</a></dfn>,
+        <dfn><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#location-of-the-media-resource">
+          media resource</a></dfn>
         are defined in [[!HTML5]].
       </p>
       <p>
@@ -474,7 +479,7 @@
             </li>
             <li>
               Using an implementation specific mechanism start remote playback of
-              the <a>best compatible media source</a> from <var>mediaSourceList</var> on <var>device</var>.
+              the <a>remote playback source</a> from <var>mediaSourceList</var> on <var>device</var>.
             </li>
           </ol>
           <div class="note">
@@ -485,7 +490,7 @@
             permission).
           </div>
           <div class="note">
-            The algorithm to select the <dfn>best compatible media source</dfn> for a selected device
+            The algorithm to select the <dfn>remote playback source</dfn> for a selected device
             depends on the user agent and supported <a>remote playback device</a> types. For example,
             in case of <a>media mirroring</a> the user agent can simply follow the <a>HTMLMediaElement</a>'s
             <a>resource selection algorithm</a>. However, if <a>media remoting</a> or <a>media flinging</a> is used,
@@ -515,7 +520,7 @@
             </li>
             <li>
               <dfn>disconnected</dfn> means that the remote playback
-              has not been <a for="initiate remote playback">initiated</a>, has failed to initiate or has been
+              has not been <a data-lt="initiate remote playback">initiated</a>, has failed to initiate or has been
               stopped. All media commands will take effect on the local
               playback in this state. The remote playback can be
               initiated through a call to <code><a for="RemotePlayback">connect</a>()</code>.
@@ -536,7 +541,7 @@
             </dt>
             <dd>
               <var>remote</var>, the <code>RemotePlayback</code> object that is to be connected.
-              The <a>remote playback state</a> of <var>remote</var> must be
+              The <a for="RemotePlayback" data-lt="state">remote playback state</a> of <var>remote</var> must be
               <a for="RemotePlaybackState">connecting</a>.
             </dd>
           </dl>
@@ -548,7 +553,7 @@
               If connection completes successfully, <a>queue a task</a> to run the following steps:
               <ol>
                 <li>
-                  Set the <a>remote playback state</a> of <var>remote</var> to
+                  Set the <a for="RemotePlayback" data-lt="state">remote playback state</a> of <var>remote</var> to
                   <a for="RemotePlaybackState">connected</a>.
                 </li>
                 <li>
@@ -695,7 +700,7 @@
               <var>availability</var> is a live <a>RemotePlaybackAvailability</a> object;
             </li>
             <li>
-              <var>availabilitySource</var> is the <a>source</a> of the media element
+              <var>availabilitySource</var> is the <a>remote playback source</a> of the media element
               when <code><a for="RemotePlayback">getAvailability</a>()</code> is called to
               create <var>availability</var>.
             </li>
@@ -743,9 +748,8 @@
             limitations. Examples are set-top boxes, smart TVs or networked
             speakers capable of rendering only certain formats of video and/or audio.
             We say that such a device is a <dfn>compatible remote playback device</dfn> for a
-            <a>media element source</a> if the <a>user agent</a> can
-            reasonably guarantee that the remote playback of the media speficied by the source
-            on that device will succeed.
+            <a>media resource</a> if the <a>user agent</a> can reasonably guarantee that
+            the remote playback of the media speficied by the resource will succeed on that device.
           </p>
         </section>
         <section>
