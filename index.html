@@ -401,7 +401,7 @@
             </li>
             <li>
               Set the <a for="RemotePlayback">state</a> of the <var>remote</var> object to
-              <a for="RemotePlabyackState">connecting</a>.
+              <a for="RemotePlaybackState">connecting</a>.
             </li>
             <li>
               Fulfill <var>promise</var> with <code>true</code>.
@@ -611,7 +611,7 @@
           A <a><code>RemotePlaybackAvailability</code></a> object is associated with available <a>remote playback devices</a>
           and represents the <dfn>remote playback device availability</dfn> for the media element. If the user
           agent can <a>monitor the list of available remote playback devices</a> in the background (without
-          a pending request to <code><a for="RemotePlayback">connect()</a></code>), the
+          a pending request to <code><a for="RemotePlayback">connect</a>()</code>), the
           <a><code>RemotePlaybackAvailability</a></code> object MUST be implemented by the user agent. Otherwise, the
           promise returned by <code><a for="RemotePlayback">getAvailability</a>()</code> MUST be rejected with <a>NotSupportedError</a>.
         </p>
