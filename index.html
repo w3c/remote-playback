@@ -587,13 +587,28 @@
         <section>
           <h4>Media commands and media playback state</h4>
           <p>
-            The HTMLMediaElement interface interacts with the remotely played media
-            as soon as the state of RemotePlayback has changed to <a for="RemotePlaybackState">connected</a>.
-            All the media commands are sent to the remote playback device in order to change
-            the state of the remotely played media while all the status updates received from
-            the remote playback device are reflected on the HTMLMediaElement's state.
-            If sending any command fails, the user agent stops remote
-            playback and the state changes to <a for="RemotePlaybackState">disconnected</a>.
+            The <a>HTMLMediaElement</a> interface interacts with the remotely
+            played media as soon as the connection with the <a>remote playback
+            device</a> is established.
+          </p>
+          <p>
+            In particular, as soon as the <a for="RemotePlayback">state</a> of a
+            <a>RemotePlayback</a> object has changed to
+            <a for="RemotePlaybackState">connected</a>, the <a>user agent</a>
+            MUST send all the media commands issued on the
+            <a>HTMLMediaElement</a> object with which the <a>RemotePlayback</a>
+            object is associated to the <a>remote playback device</a> in order
+            to change the state of the remotely played media.
+          </p>
+          <p>
+            Similarly, the <a>user agent</a> MUST reflect all status updates
+            received from the <a>remote playback device</a> on the
+            <a>HTMLMediaElement</a>'s state.
+          </p>
+          <p>
+            If sending any command fails, the <a>user agent</a> MUST <a>stop
+            remote playback</a>, effectively disconnecting from the <a>remote
+            playback device</a>.
           </p>
         </section>
         <section>
