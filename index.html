@@ -255,7 +255,7 @@
         Examples
       </h2>
       <p>
-        This section shows the code examples that highlight the usage of the main features of the Remote Playback API.
+        This section shows code examples that highlight the usage of the main features of the Remote Playback API.
         In these examples, <code>player.html</code> implements the player page controlling the remote playback and
         <code>media.ext</code> is the media file to be played remotely. Both the page and the media are served from the
         domain <code>https://example.org</code>. Please refer to the comments in the code examples for further details.
@@ -267,11 +267,11 @@
         <pre class="example highlight">
 &lt;!-- player.html --&gt;
 &lt;!-- The video element with custom controls that supports remote playback. --&gt;
-&lt;video src="https://example.org/media.ext" /&gt;
+&lt;video id="videoElement" src="https://example.org/media.ext" /&gt;
 &lt;button id="remotePlaybackBtn" style="display: none;"&gt;Play remotely&lt;/button&gt;
 &lt;script&gt;
   // The "Play remotely" button is visible if at least one remote playback device is available.
-  var remotePlaybackBtn = document.querySelector("video");
+  var remotePlaybackBtn = document.getElementById("remotePlaybackBtn");
   // Show or hide the remote playback button depending on device availability.
   var handleAvailabilityChange = function(available) {
     remotePlaybackBtn.style.display = available ? "inline" : "none";
@@ -280,7 +280,7 @@
   // Promise is fulfilled as soon as the remote playback device availability is known.
   videoElem.remote.getAvailability().then(function(availability) {
     // availability.value may be kept up-to-date by the controlling UA as long
-    // as the availability object is alive. It is advised for the web developers
+    // as the availability object is alive. It is advised for web developers
     // to discard the object as soon as it's not needed.
     handleAvailabilityChange(availability.value);
     availability.onchange = function() { handleAvailabilityChange(this.value); };
@@ -301,7 +301,7 @@
         <pre class="example highlight">
 &lt;!-- player.html --&gt;
 &lt;script&gt;
-  remotePlaybackBtn.onclick = function () {
+  remotePlaybackBtn.onclick = function() {
     // Start remote playback.
     videoElem.remote.connect()
       // Update the UI and monitor the connected state.
