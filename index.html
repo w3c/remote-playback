@@ -400,10 +400,29 @@
           </dl>
           <ol>
             <li>
-              If the <a>user agent</a> knows a priori that playing any source from <var>mediaSourceList</var>
+              If the <a for="RemotePlayback">state</a> of <var>remote</var> is anything other than
+              <a for="RemotePlaybackState">disconnected</a>, return a
+              promise rejected with an <a>OperationError</a> exception and
+              abort all remaining steps.
+            </li>
+            <li>
+              If there is already an unsettled promise from a previous
+              call to <a for="RemotePlayback">connect</a> for the same
+              <a>media element</a> or even for the same <a>browsing context</a>,
+              the user agent MAY return a promise rejected with an <a>OperationError</a>
+              exception and abort all remaining steps.
+              <div class="note">
+                The rationale here is that the user agent might use the UI
+                for the <a>remote playback device</a> selection that's modal
+                to either the <a>media element</a> or the <a>browsing context</a>.
+                In such a case, the second call to <code><a for="RemotePlayback">connect</a>()</code>
+                would not be able to show any UI for device selection.
+              </div>
+            </li>
+            <li>
+              OPTIONALLY, if the <a>user agent</a> knows a priori that playing any source from <var>mediaSourceList</var>
               remotely is not supported by the user agent or any of <a>remote playback device</a> types supported
-              by the user agent, return a promise rejected with a <a>NotSupportedError</a> and abort the
-              remaining steps.
+              by the user agent, return a promise rejected with a <a>NotSupportedError</a> and abort all remaining steps.
               <div class="note">
                 An example of such scenario could be when the user agent only supports <a>media flinging</a> case
                 while the media element's source is not a <a>URL</a> that could be passed over to any <a>remote playback device</a>.
@@ -413,12 +432,6 @@
               If the algorithm isn't <a>allowed to show a popup</a>, return a
               promise rejected with an <a>InvalidAccessError</a> exception
               and abort these steps.
-            </li>
-            <li>
-              If there is already an unsettled promise from a previous
-              call to <a for="RemotePlayback">connect</a> for the same <a>browsing context</a>, return
-              a promise rejected with an <a>OperationError</a> exception and
-              abort all remaining steps.
             </li>
             <li>
               Let <var>promise</var> be a new promise.
@@ -437,27 +450,15 @@
               and selection of one remote playback device.
             </li>
             <li>
-              If either of the following is true:
-              <ol>
-                <li>
-                  The <a>list of available remote playback devices</a> is empty
-                  and will remain so before the request for user permission is
-                  completed.
-                </li>
-                <li>
-                  No member in the <a>list of available remote playback devices</a> is a
-                  <a>compatible remote playback device</a> for any source from the <var>mediaSourceList</var>.
-                </li>
-              </ol>
-              Then run the following steps:
-              <ol>
-                <li>
-                  Reject <var>promise</var> with a <a>NotFoundError</a> exception.
-                </li>
-                <li>
-                  Abort all remaining steps.
-                </li>
-              </ol>
+              If the <a>list of available remote playback devices</a> is empty and will remain so
+              before the request for user permission is completed, reject
+              <var>promise</var> with a <a>NotFoundError</a> exception and abort all remaining steps.
+            </li>
+            <li>
+              If no member in the <a>list of available remote playback devices</a> is a
+              <a>compatible remote playback device</a> for any source from
+              the <var>mediaSourceList</var>, reject <var>promise</var> with
+              a <a>NotSupportedError</a> exception and abort all remaining steps.
             </li>
             <li>
               If the user <em>denied permission</em> to use a device, fulfill
@@ -576,6 +577,18 @@
                 </li>
               </ol>
             </li>
+            <li>
+              If connection fails, <a>queue a task</a> to run the following steps:
+              <ol>
+                <li>
+                  Set the <a for="RemotePlayback" data-lt="state">remote playback state</a> of <var>remote</var> to
+                  <a for="RemotePlaybackState">disconnected</a>.
+                </li>
+                <li>
+                  <a>Fire a simple event</a> named <a>statechange</a> at <var>remote</var>.
+                </li>
+              </ol>
+            </li>
           </ol>
           <div class="note">
             The mechanism that is used to connect the user agent with the <a>remote playback device</a> and
@@ -633,7 +646,7 @@
           <ol>
             <li>
               If the <a for="RemotePlayback"><code>state</code></a> of <var>remote</var> is not
-              <code>connected</code>, abort the remaining steps.
+              <code>connected</code>, abort all remaining steps.
             </li>
             <li>
               <a>Queue a task</a> to run the following steps:
@@ -821,7 +834,7 @@
                   <a>RemotePlaybackAvailability</a> object with its
                   <a for="RemotePlaybackAvailability">value</a> property set to <code>false</code>.
                 </li>
-                <li>Abort all the remaining steps.
+                <li>Abort all remaining steps.
                 </li>
               </ol>
             </li>
@@ -833,7 +846,7 @@
                   Reject <var>promise</var> with a <a>NotSupportedError</a>
                   exception.
                 </li>
-                <li>Abort all the remaining steps.
+                <li>Abort all remaining steps.
                 </li>
               </ol>
             </li>
@@ -847,7 +860,7 @@
                   Fulfill <var>promise</var> with <var>availability</var>.
                 </li>
                 <li>
-                  Abort all the remaining steps.
+                  Abort all remaining steps.
                 </li>
               </ol>
             </li>
