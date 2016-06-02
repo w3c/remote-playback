@@ -265,12 +265,14 @@
 &lt;button id="remotePlaybackBtn" style="display: none;"&gt;Play remotely&lt;/button&gt;
 &lt;script&gt;
   // The "Play remotely" button is visible if at least one remote playback device is available.
+  // It is also hidden when the remote playback is happening.
   var remotePlaybackBtn = document.getElementById("remotePlaybackBtn");
+  var videoElem = document.getElementById("videoElement");
+
   // Show or hide the remote playback button depending on device availability.
-  var handleAvailabilityChange = function(available) {
+  function handleAvailabilityChange(available) {
     remotePlaybackBtn.style.display = available ? "inline" : "none";
   };
-  var videoElem = document.getElementById("videoElement");
   // Promise is fulfilled as soon as the remote playback device availability is known.
   videoElem.remote.getAvailability().then(function(availability) {
     // availability.value may be kept up-to-date by the controlling UA as long
@@ -299,7 +301,7 @@
     // Start remote playback.
     videoElem.remote.connect()
       // Update the UI and monitor the connected state.
-      .then(setupRemotePlayback);
+      .then(switchToRemoteUI);
       // Otherwise, the user cancelled the selection UI or no screens were found.
   };
 &lt;script&gt;
@@ -314,12 +316,25 @@
 &lt;script&gt;
   // The remote playback may be initiated by the user agent.
   if (videoElem.remote.state != 'disconnected')
-    setupRemotePlayback();
+    switchToRemoteUI();
   videoElem.remote.onstatechange = function(evt) {
     if (videoElem.remote.state != 'disconnected')
-      setupRemotePlayback();
+      switchToRemoteUI();
     else
-      stopRemotePlayback();
+      switchToLocalUI();
+  };
+
+  // Handles both 'connecting' and 'connected' state. Calling more than once
+  // is a no-op.
+  function switchToRemoteUI() {
+    remotePlaybackBtn.style.display = 'none';
+    // Indicate that the state is 'connecting' or 'connected' to the user.
+    // For example, hide the video element with bigger overlay controls.
+  };
+
+  function switchToLocalUI() {
+    remotePlaybackBtn.style.display = 'inline';
+    // Hide the overlay controls and show the video element.
   };
 &lt;script&gt;
         </pre>
