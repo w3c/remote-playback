@@ -317,12 +317,9 @@
   // The remote playback may be initiated by the user agent.
   if (videoElem.remote.state != 'disconnected')
     switchToRemoteUI();
-  videoElem.remote.onstatechange = function(evt) {
-    if (videoElem.remote.state != 'disconnected')
-      switchToRemoteUI();
-    else
-      switchToLocalUI();
-  };
+  videoElem.remote.onconnecting = switchToRemoteUI;
+  videoElem.remote.onconnect = swithToRemoteUI;
+  videoElem.remote.ondisconnect = switchToLocalUI;
 
   // Handles both 'connecting' and 'connected' state. Calling more than once
   // is a no-op.
@@ -358,7 +355,9 @@
 
             readonly attribute RemotePlaybackState state;
 
-            attribute EventHandler onstatechange;
+            attribute EventHandler onconnecting;
+            attribute EventHandler onconnect;
+            attribute EventHandler ondisconnect;
 
             Promise&lt;boolean&gt; connect();
           };
@@ -478,8 +477,7 @@
             </li>
             <li>
               <a>Queue a task</a> to <a>fire a simple event</a> with
-              the name <a for="RemotePlayback">statechange</a>,
-              that uses the <a>change</a> event interface at <var>remote</var>.
+              the name <a>connecting</a> at <var>remote</var>.
               The event must not bubble, must not be cancelable, and has no
               default action.
             </li>
@@ -573,7 +571,7 @@
                   <a for="RemotePlaybackState">connected</a>.
                 </li>
                 <li>
-                  <a>Fire a simple event</a> named <a>statechange</a> at <var>remote</var>.
+                  <a>Fire a simple event</a> named <a data-lt="connect event">connect</a> at <var>remote</var>.
                 </li>
               </ol>
             </li>
@@ -585,7 +583,7 @@
                   <a for="RemotePlaybackState">disconnected</a>.
                 </li>
                 <li>
-                  <a>Fire a simple event</a> named <a>statechange</a> at <var>remote</var>.
+                  <a>Fire a simple event</a> named <a>disconnect</a> at <var>remote</var>.
                 </li>
               </ol>
             </li>
@@ -658,7 +656,7 @@
                   Change the <var>remote</var>'s <code>state</code> to <code>disconnected</code>.
                 </li>
                 <li>
-                  <a data-lt="fire">Fire an event</a> with the name <a for="RemotePlayback">statechange</a> at <var>remote</var>.
+                  <a data-lt="fire">Fire an event</a> with the name <a>disconnect</a> at <var>remote</var>.
                 </li>
               </ol>
             </li>
@@ -692,10 +690,26 @@
             <tbody>
               <tr>
                 <td>
-                  <dfn><code>onstatechange</code></dfn>
+                  <dfn><code>onconnecting</code></dfn>
                 </td>
                 <td>
-                  <dfn><code>statechange</code></dfn>
+                  <dfn><code>connecting</code></dfn>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <dfn><code>onconnect</code></dfn>
+                </td>
+                <td>
+                  <dfn><code>connect</code> event</dfn>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <dfn><code>ondisconnect</code></dfn>
+                </td>
+                <td>
+                  <dfn><code>disconnect</code></dfn>
                 </td>
               </tr>
             </tbody>
