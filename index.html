@@ -285,7 +285,7 @@
     deviceBtn.style.display = available ? "inline" : "none";
   }
 
-  videoElem.watchAvailability(availabilityCallback).catch(function() {
+  videoElem.remote.watchAvailability(availabilityCallback).catch(function() {
     // Availability monitoring is not supported by the platform, so discovery of
     // remote playback devices will happen only after remote.connect() is called.
     // Pretend the devices are available for simplicity; or, one could implement
@@ -423,7 +423,7 @@
           </h4>
           <p>
             A <a><code>RemotePlaybackAvailabilityCallback</code></a> is the way for the page to obtain the
-            <dfn>remote playback device availability</dfn> for the correspodning <a>media element</a>. If the user
+            <dfn>remote playback device availability</dfn> for the corresponding <a>media element</a>. If the user
             agent can <a>monitor the list of available remote playback devices</a> in the background (without
             a pending request to <code><a for="RemotePlayback">prompt</a>()</code>), the
             <a><code>RemotePlaybackAvailabilityCallback</a></code> behavior defined below MUST be implemented by
