@@ -1095,10 +1095,18 @@
           remotely or present any UI to do so.
         </p>
         <p>
-          When the <a for='HTMLMediaElement'>disableRemotePlayback</a> attribute is added to the <a>media element</a> and
-          its <a for="RemotePlayback">state</a> is not <code>disconnected</code>, the user agent MUST run the
-          <a>disconnect from remote playback device</a> algorithm for the <a>remote playback device</a> the media
-          element is connected or connecting to.
+          When the <a for='HTMLMediaElement'>disableRemotePlayback</a> attribute is added to the <a>media element</a>,
+          the user agent MUST do the following:
+          <ol>
+            <li>
+              Clear the <a>set of availability callbacks</a> for the media element.
+            </li>
+            <li>
+              If its <a for="RemotePlayback">state</a> is not <code>disconnected</code>, run the
+              <a>disconnect from remote playback device</a> algorithm for the <a>remote playback device</a>
+              the media element is connected or connecting to.
+            </li>
+          </ol>
         </p>
       </section>
     </section>
