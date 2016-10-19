@@ -1099,6 +1099,9 @@
           the user agent MUST run these steps:
           <ol>
             <li>
+              Reject any pending promises returned by the <a>RemotePlayback</a> methods with <a>InvalidStateError</a>.
+            </li>
+            <li>
               Clear the <a>set of availability callbacks</a> for the media element.
             </li>
             <li>
