@@ -469,7 +469,7 @@
               The <a>user agent</a> MUST keep a <dfn>list of available remote playback devices</dfn>.
               This list contains <a>remote playback devices</a> and is populated based on an implementation
               specific discovery mechanism. It is set to the most recent result of the algorithm to <a>monitor
-              the list of available remote playback devices</a>.
+              the list of available remote playback devices</a> or an empty list if the algorithm hasn't been run yet.
             </p>
             <p>
               The <a>user agent</a> MAY not support running the algorithm to <a>monitor the list of available remote
@@ -605,7 +605,9 @@
                     <a>media element</a>.
                   </li>
                   <li>
-                    Run the algorithm to <a>monitor the list of available remote playback devices</a>.
+                    If the <a>user agent</a> is not <a data-lt="monitor the list of available remote playback devices">
+                    monitoring the list of available remote playback devices</a>, run the algorithm to <a>monitor the
+                    list of available remote playback devices</a>.
                   </li>
                 </ol>
               </li>
