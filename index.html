@@ -963,6 +963,20 @@
             the remote playback device and receiving media playback state in order to keep the <a>media element state</a> and
             <a>remote playback state</a> in sync (unless <a>media mirroring</a> is used).
           </div>
+        <section>
+          <h4>Browser initiated remote playback</h4>
+          <p>
+            A user agent MAY support <a data-lt="establish a connection with the remote playback device">connecting
+            to remote playback device</a> without the <code><a for="RemotePlayback">prompt</a>()</code> call, 
+            <dfn>browser initiated remote playback</dfn> for short. In this case, the <a>user agent</a> SHOULD require
+            user to express an intent to start remote playback via a user gesture, for example by clicking a button
+            in the browser.
+          </p>
+          <p>
+            If the user agent supports <a>browser initiated remote playback</a>, it MUST support the <a for="RemotePlayback">state</a>
+            attribute and the corresponding events by following the algorithms to
+            <a>establish a connection with the remote playback device</a> and <a>disconnect from remote playback device</a>.
+          </p>
         </section>
         <section>
           <h4>Media commands and media playback state</h4>
