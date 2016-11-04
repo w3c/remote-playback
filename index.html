@@ -218,6 +218,7 @@
           <dfn data-lt="currentSrc"><a
               href="https://html.spec.whatwg.org/multipage/embedded-content.html#dom-media-currentsrc">current source</a></dfn> and
           <dfn data-lt="media resources"><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#location-of-the-media-resource">media resource</a></dfn>
+          <dfn><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#expose-a-user-interface-to-the-user">expose a user interface to the user</a></dfn>
         </li>
         <li>
           <dfn><a href='https://html.spec.whatwg.org/multipage/browsers.html#browsing-context'>browsing context</a></dfn> and
@@ -963,6 +964,22 @@
             the remote playback device and receiving media playback state in order to keep the <a>media element state</a> and
             <a>remote playback state</a> in sync (unless <a>media mirroring</a> is used).
           </div>
+        <section>
+          <h4>Browser initiated remote playback</h4>
+          <p>
+            A user agent MAY support <a data-lt="establish a connection with the remote playback device">
+            connecting to a remote playback device</a> from the browser, e.g. by including appropriate
+            controls to <a data-lt="expose a user interface to the user">the user interface that is exposed
+            to the user</a>. This feature is known as <dfn>browser initiated remote playback</dfn>. A
+            <a>user agent</a> that supports <a>browser initiated remote playback</a> SHOULD initiate
+            the remote playback only when the user has expressed an intention to do so via a user gesture,
+            for example by clicking a button in the browser.
+          </p>
+          <p>
+            If the user agent supports <a>browser initiated remote playback</a>, it MUST support the <a for="RemotePlayback">state</a>
+            attribute and the corresponding events by following the algorithms to
+            <a>establish a connection with the remote playback device</a> and <a>disconnect from remote playback device</a>.
+          </p>
         </section>
         <section>
           <h4>Media commands and media playback state</h4>
