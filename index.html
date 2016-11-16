@@ -1110,7 +1110,7 @@
       <h2>Extension to the <code><a>HTMLMediaElement</a></code></h2>
       <pre class='idl'>
         partial interface HTMLMediaElement {
-          readonly attribute RemotePlayback remote;
+          [SameObject] readonly attribute RemotePlayback remote;
 
           [CEReactions] attribute boolean disableRemotePlayback;
         };
