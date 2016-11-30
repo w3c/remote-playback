@@ -221,7 +221,8 @@
           <dfn><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#expose-a-user-interface-to-the-user">expose a user interface to the user</a></dfn>
         </li>
         <li>
-          <dfn><a href='https://html.spec.whatwg.org/multipage/browsers.html#browsing-context'>browsing context</a></dfn> and
+          <dfn><a href='https://html.spec.whatwg.org/multipage/browsers.html#browsing-context'>browsing context</a></dfn>,
+          <dfn><a href="https://www.w3.org/TR/html5/browsers.html#nested-browsing-contexts">nested browsing context</a></dfn>and
           <dfn><a href='https://html.spec.whatwg.org/multipage/browsers.html#allowed-to-show-a-popup'>allowed to show a popup</a></dfn>
         </li>
         <li>
@@ -248,7 +249,11 @@
         The term <dfn>throw</dfn> in this specification is used as defined in
         [[!WEBIDL]].
       </p>
-
+      <p>
+        The term <dfn><a href=
+        "https://www.w3.org/TR/mixed-content/#potentially-secure-origin">potentially
+        secure</a></dfn> is defined in [[!MIXED-CONTENT]].
+      </p>
       <p>
         The following exception names are defined by [[!WEBIDL]] and used by
         this specification:
@@ -815,6 +820,15 @@
               a <a>NotSupportedError</a> exception and abort all remaining steps.
             </li>
             <li>
+              Request user a permission to <dfn>change remote playback state</dfn>
+              <div class="note">
+                An example would be showing UI that allows
+                the user to pick a <a>remote playback device</a> or switch between
+                the local or remote playback devices or has a button to
+                <a>disconnect from remote playback device</a>.
+              </div>
+            </li>
+            <li>
               If the user picked a <a>remote playback device</a> <var>device</var> to
               <dfn>initiate remote playback</dfn> with, the <a>user agent</a> MUST run the following steps:
               <ol>
@@ -1105,48 +1119,131 @@
           </table>
         </section>
       </section>
-    </section>
-    <section>
-      <h2>Extension to the <code><a>HTMLMediaElement</a></code></h2>
-      <pre class='idl'>
-        partial interface HTMLMediaElement {
-          [SameObject] readonly attribute RemotePlayback remote;
-
-          [CEReactions] attribute boolean disableRemotePlayback;
-        };
-      </pre>
-      <p>
-        The <dfn for='HTMLMediaElement'>remote</dfn> attribute MUST return the <a>RemotePlayback</a>
-        instance associated with the <a>media element</a>.
-      </p>
-      <p>
-        The <dfn for='HTMLMediaElement'>disableRemotePlayback</dfn> IDL attribute
-        MUST reflect the content attribute of the same name.
-      </p>
-
       <section>
-        <h2>Disabling remote playback</h2>
+        <h3>Extension to the <code><a>HTMLMediaElement</a></code></h3>
+        <pre class='idl'>
+          partial interface HTMLMediaElement {
+            [SameObject] readonly attribute RemotePlayback remote;
+
+            [CEReactions] attribute boolean disableRemotePlayback;
+          };
+        </pre>
         <p>
-          If the <a for='HTMLMediaElement'>disableRemotePlayback</a> attribute is present on the
-          <a>media element</a>, the <a>user agent</a> MUST NOT play the media
-          remotely or present any UI to do so.
+          The <dfn for='HTMLMediaElement'>remote</dfn> attribute MUST return the <a>RemotePlayback</a>
+          instance associated with the <a>media element</a>.
         </p>
         <p>
-          When the <a for='HTMLMediaElement'>disableRemotePlayback</a> attribute is added to the <a>media element</a>,
-          the user agent MUST run these steps:
-          <ol>
-            <li>
-              Reject any pending promises returned by the <a>RemotePlayback</a> methods with <a>InvalidStateError</a>.
-            </li>
-            <li>
-              Clear the <a>set of availability callbacks</a> for the media element.
-            </li>
-            <li>
-              If its <a for="RemotePlayback">state</a> is not <code>disconnected</code>, run the
-              <a>disconnect from remote playback device</a> algorithm for the <a>remote playback device</a>
-              the media element is connected or connecting to.
-            </li>
-          </ol>
+          The <dfn for='HTMLMediaElement'>disableRemotePlayback</dfn> IDL attribute
+          MUST reflect the content attribute of the same name.
+        </p>
+
+        <section>
+          <h4>Disabling remote playback</h4>
+          <p>
+            If the <a for='HTMLMediaElement'>disableRemotePlayback</a> attribute is present on the
+            <a>media element</a>, the <a>user agent</a> MUST NOT play the media
+            remotely or present any UI to do so.
+          </p>
+          <p>
+            When the <a for='HTMLMediaElement'>disableRemotePlayback</a> attribute is added to the <a>media element</a>,
+            the user agent MUST run these steps:
+            <ol>
+              <li>
+                Reject any pending promises returned by the <a>RemotePlayback</a> methods with <a>InvalidStateError</a>.
+              </li>
+              <li>
+                Clear the <a>set of availability callbacks</a> for the media element.
+              </li>
+              <li>
+                If its <a for="RemotePlayback">state</a> is not <code>disconnected</code>, run the
+                <a>disconnect from remote playback device</a> algorithm for the <a>remote playback device</a>
+                the media element is connected or connecting to.
+              </li>
+            </ol>
+          </p>
+        </section>
+      </section>
+    </section>
+    <section class="informative">
+      <h2>
+        Security and privacy considerations
+      </h2>
+      <section>
+        <h3>
+          Personally identifiable information
+        </h3>
+        <p>
+          Firing the <code>callback</code> provided via the
+          <code><a for="RemotePlayback">watchAvailability</a>()</code> method
+          reveals one bit of information about the presence (or non-presence) of a
+          <a>remote playback device</a> typically discovered through the local area network.
+          This could be used in conjunction with other information for fingerprinting the
+          user. However, this information is also dependent on the user's local
+          network context, so the risk is minimized.
+        </p>
+        <p>
+          The API enables <a href=
+          "#monitoring-the-list-of-available-presentation-displays">monitoring
+          the list of available remote playback devices</a>. How the user agent
+          determines the compatibility and availability of a <a>remote playback device</a>
+          with a <a>media element</a>'s <a data-lt="media resource">resource</a> is an
+          implementation detail. If a <a>user agent</a> matches a <a>media resource</a> to
+          a particular type of device to determine its availability, this feature can be used
+          to probe information about which <a>remote playback device</a> the user has without
+          user consent.
+        </p>
+      </section>
+      <section>
+        <h3>
+          User interface guidelines
+        </h3>
+        <dl>
+          <dt>
+            Origin display
+          </dt>
+          <dd>
+            <p>
+              When the user is asked permission to use a <a>remote playback
+              device</a> during the steps to <a>change remote playback state</a>,
+              the user agent should make it clear what origin the request is coming from.
+            </p>
+            <p>
+              Display of the origin requesting remote playback will help the user
+              understand what content is making the request, especially when
+              the request is initiated from a <a>nested browsing context</a>.
+              For example, embedded content may try to convince the user to
+              click to trigger a request to start an unwanted remote playback.
+            </p>
+            <p>
+              Showing the origin that will be presented will help the user know
+              if that content is from an <a>potentially secure</a> (e.g.,
+              <code>https:</code>) origin, and corresponds to a known or
+              expected site.
+            </p>
+          </dd>
+        </dl>
+      </section>
+      <section>
+        <h3>
+          Device Access
+        </h3>
+        <p>
+          The Remote Playback API abstracts away what "local" means for displays,
+          meaning that it exposes network-accessible displays as though they
+          were local displays. The Remote Playback API requires user permission
+          for a page to access any display to mitigate issues that could arise,
+          such as showing unwanted content on a display viewable by others.
+        </p>
+      </section>
+      <section>
+        <h3>
+          Messaging between the local and remote playback devices
+        </h3>
+        <p>
+          This spec will not mandate communication protocols between the
+          <a>local playback device</a> and the <a>remote playback device</a>,
+          but it should set some guarantees of message confidentiality and
+          authenticity between them.
         </p>
       </section>
     </section>
