@@ -332,7 +332,7 @@
         <h3>
           Monitor availability of remote playback devices example
         </h3>
-        <pre class="example highlight">
+        <pre class="example">
 &lt;!-- player.html --&gt;
 &lt;!-- The video element with custom controls that supports remote playback. --&gt;
 &lt;video id="videoElement" src="https://example.org/media.ext" /&gt;
@@ -361,7 +361,7 @@
         <h3>
           Starting remote playback of a video example
         </h3>
-        <pre class="example highlight">
+        <pre class="example">
 &lt;!-- player.html --&gt;
 &lt;script&gt;
   devicesBtn.onclick = function() {
@@ -378,7 +378,7 @@
         <h3>
           Monitoring remote playback state changes
         </h3>
-        <pre class="example highlight">
+        <pre class="example">
 &lt;!-- player.html --&gt;
 &lt;script&gt;
   // The remote playback may be initiated by the user agent,
@@ -497,6 +497,17 @@
 
           callback RemotePlaybackAvailabilityCallback = void(boolean available);
         </pre>
+        <p>
+          A <dfn>RemotePlayback</dfn> object represents a <a>remote playback
+          device</a>.
+        </p>A <dfn>RemotePlaybackState</dfn> enumeration represents the
+        <a>remote playback device</a>'s <a data-lt=
+        "remote playback state">remote playback states</a>.
+        <p></p>
+        <p>
+          A <dfn>RemotePlaybackAvailabilityCallback</dfn> represents the
+          <a>remote playback device availability</a> information.
+        </p>
         <section>
           <h4>
             Observing remote playback device availability
