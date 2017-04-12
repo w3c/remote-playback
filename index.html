@@ -362,7 +362,7 @@
 
   videoElem.remote.watchAvailability(availabilityCallback).catch(function() {
     // Availability monitoring is not supported by the platform, so discovery of
-    // remote playback devices will happen only after remote.connect() is called.
+    // remote playback devices will happen only after remote.prompt() is called.
     // Pretend the devices are available for simplicity; or, one could implement
     // a third state for the button.
     deviceBtn.style.display = "inline";
