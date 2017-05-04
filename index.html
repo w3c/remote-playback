@@ -252,7 +252,7 @@
           "currentSrc"><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#dom-media-currentsrc">
           current source</a></dfn> and <dfn data-lt="media resources"><a href=
           "https://html.spec.whatwg.org/multipage/embedded-content.html#location-of-the-media-resource">
-          media resource</a></dfn> <dfn><a href=
+          media resource</a></dfn> <dfn data-lt="exposing a user interface to the user"><a href=
           "https://html.spec.whatwg.org/multipage/embedded-content.html#expose-a-user-interface-to-the-user">
           expose a user interface to the user</a></dfn>
         </li>
@@ -1130,6 +1130,17 @@
             playback device and receiving media playback state in order to keep
             the <a>media element state</a> and <a>remote playback state</a> in
             sync (unless <a>media mirroring</a> is used).
+          </div>
+          <div class="note">
+            The user agent SHOULD pause local audio and video output of the
+            media element while remote playback
+            is <a data-link-for="RemotePlaybackState">connected</a>.
+          </div>
+          <div class="note">
+            If the user agent is <a>exposing a user interface to the user</a>
+            for the media element (i.e., using default controls), the user agent
+            SHOULD convey the fact that remote playback is connected through an
+            icon or other means.
           </div>
         </section>
         <section>
