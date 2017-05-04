@@ -78,8 +78,6 @@
         wgURI: 'https://www.w3.org/2014/secondscreen/',
         wgPublicList: 'public-secondscreen',
         wgPatentURI: 'https://www.w3.org/2004/01/pp-impl/74168/status',
-        issueBase: "https://www.github.com/w3c/remote-playback/issues/",
-        githubAPI: "https://api.github.com/repos/w3c/remote-playback",
       };
     </script>
     <style>
@@ -911,27 +909,30 @@
             the user agent MAY reject <var>promise</var> with an
             <a>OperationError</a> exception and abort all remaining steps.
               <div class="note">
-                The rationale here is that the user agent might use the UI
+                The rationale here is that the user agent might show a dialog
                 that's modal to either the <a>media element</a> or the
                 <a>browsing context</a>. In such a case, the second call to
                 <code><a data-link-for="RemotePlayback">prompt</a>()</code>
                 would not be able to show any UI.
               </div>
             </li>
-            <li>OPTIONALLY, if the <a>user agent</a> knows a priori that
-            showing the UI for this particular <a>media element</a> is not
-            feasible, reject <var>promise</var> with a <a>NotSupportedError</a>
-            and abort all remaining steps.
-              <div class="note">
-                An example of such scenario could be when the user agent only
-                supports <a>media flinging</a> case while the media element's
-                source is not a <a>URL</a> that could be passed over to any
-                <a>remote playback device</a>.
-              </div>
-            </li>
             <li>If the algorithm isn't <a>allowed to show a popup</a>, reject
             <var>promise</var> with an <a>InvalidAccessError</a> exception and
             abort these steps.
+            </li>
+            <li>OPTIONALLY, if the <a>user agent</a> knows a priori that remote playback
+            of this particular <a>media element</a> is not feasible
+            (independent of the current
+            <code><a data-link-for="RemotePlayback">state</a></code> or
+            the <a>list of available remote playback devices</a>),
+            reject <var>promise</var> with a <a>NotSupportedError</a> and abort
+            all remaining steps.
+              <div class="note">
+                An example of this situation is when the user agent only
+                supports <a>media flinging</a>, and the media element's source
+                is not a <a>URL</a> that can be passed to a
+                <a>remote playback device</a>.
+              </div>
             </li>
             <li>If the <a>user agent</a> needs to show the <a>list of available
             remote playback devices</a> and is not <a data-lt=
@@ -940,10 +941,10 @@
             <a>monitor the list of available remote playback devices</a> <a>in
             parallel</a>.
             </li>
-            <li>If the <a>list of available remote playback devices</a> is
-            empty and will remain so before the request for user permission is
-            completed, reject <var>promise</var> with a <a>NotFoundError</a>
-            exception and abort all remaining steps.
+            <li>If remote playback is <a>unavailable</a> and will remain so
+            before the request for user permission is completed,
+            reject <var>promise</var> with a <a>NotFoundError</a> exception and
+            abort all remaining steps.
             </li>
             <li>If the <code><a data-link-for="RemotePlayback">state</a></code>
             is <code>disconnected</code> and <a>availability</a> for the
