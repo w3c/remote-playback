@@ -946,14 +946,8 @@
             reject <var>promise</var> with a <a>NotFoundError</a> exception and
             abort all remaining steps.
             </li>
-            <li>If the <code><a data-link-for="RemotePlayback">state</a></code>
-            is <code>disconnected</code> and <a>availability</a> for the
-            <a>media element</a> is <code>false</code>, reject
-            <var>promise</var> with a <a>NotSupportedError</a> exception and
-            abort all remaining steps.
-            </li>
             <li>Request user a permission to <dfn>change remote playback
-            state</dfn>
+            state</dfn>.
               <div class="note">
                 An example would be showing UI that allows the user to pick a
                 <a>remote playback device</a> or switch between the local or
