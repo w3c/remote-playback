@@ -1403,14 +1403,12 @@
           the user has without user consent.
         </p>
         <p>
-          If a user <a data-lt="disable remote playback">disables remote
-          playback</a> on all <a data-lt="media element">media elements</a>
-          (through a browser setting, for example), the user agent should
-          stop <a data-lt="monitor the list of available remote playback devices">
-          monitoring the list of available remote playback devices</a>
-          and will clear the <a>global set of availability callbacks</a>. In
-          this state, pages will receive no further information about the
-          availability of <a>remote playback devices</a>.
+          The user agent MAY stop <a data-lt="monitor the list of available
+          remote playback devices"> monitoring the list of available remote
+          playback devices</a> at any time if the user disables remote playback
+          (for example, through a browser setting).  In this state, pages will
+          receive no further information about the availability of <a>remote
+          playback devices</a>.
         </p>
       </section>
       <section>
