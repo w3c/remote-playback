@@ -620,10 +620,11 @@
               "https://github.com/w3c/remote-playback/blob/gh-pages/use-cases.md#power-saving-friendly">
               power saving non-functional requirement</a>. For example, the
               <a>user agent</a> MAY not run the monitoring algorithm when the
-              <a>global set of availability callbacks</a> is empty or each page
-              that has <a data-lt="media element">media elements</a> with
-              non-empty <a>set of availability callbacks</a> is not in the
-              foreground.
+              <a>global set of availability callbacks</a> is empty, when every
+              page that has <a data-lt="media element">media elements</a> with
+              non-empty <a>set of availability callbacks</a> is in the
+              background, or when the user has <a data-lt="disable remote
+              playback">disabled remote playback</a> on all media elements.
             </p>
             <p>
               Some <a>remote playback devices</a> may only be able to play a
@@ -736,7 +737,7 @@
                 </ol>
               </li>
               <li>Let <var>callbackId</var> be a number unique to the <a>media
-              element</a> that will identify the <var>callback</var>.
+              element</a> that will identify the <var>callback</var>.                
               </li>
               <li>Create a tuple <em>(<var>callbackId</var>,
               <var>callback</var>)</em> and add it to the <a>set of
@@ -759,6 +760,14 @@
                 </ol>
               </li>
             </ol>
+            <div class="note">
+              To avoid leaking information that could fingerprint the user, the
+              user agent SHOULD assign the <var>callbackId</var> based on the
+              identity of the <a>media element</a> alone, and not the identity
+              of the browser profile or any <a>remote playback device</a>.  For
+              example, the user agent could base the <var>callbackId</var> on
+              the timestamp the <a>media element</a> was created.
+            </div>
           </section>
           <section>
             <h5>
@@ -1329,7 +1338,8 @@
           <p>
             When the <a data-link-for=
             'HTMLMediaElement'>disableRemotePlayback</a> attribute is added to
-            the <a>media element</a>, the user agent MUST run these steps:
+            the <a>media element</a>, the user agent MUST run the steps
+            to <dfn>disable remote playback</dfn>:
           </p>
           <ol>
             <li>Reject any pending promises returned by the
@@ -1362,10 +1372,11 @@
           "RemotePlayback">watchAvailability</a>()</code> method reveals one
           bit of information about the presence (or non-presence) of a
           <a>remote playback device</a> typically discovered through the local
-          area network. This could be used in conjunction with other
+          area network.  This could be used in conjunction with other
           information for fingerprinting the user. However, this information is
           also dependent on the user's local network context, so the risk is
-          minimized.
+          minimized.  Also, by design, the human readable name of a <a>remote
+          playback device</a> is not revealed to the page.
         </p>
         <p>
           The API enables <a href=
@@ -1378,6 +1389,16 @@
           type of device to determine its availability, this feature can be
           used to probe information about which <a>remote playback device</a>
           the user has without user consent.
+        </p>
+        <p>
+          If a user <a data-lt="disable remote playback">disables remote
+          playback</a> on all <a data-lt="media element">media elements</a>
+          (through a browser setting, for example), the user agent should
+          stop <a data-lt="monitor the list of available remote playback devices">
+          monitoring the list of available remote playback devices</a>
+          and will clear the <a>global set of availability callbacks</a>. In
+          this state, pages will receive no further information about the
+          availability of <a>remote playback devices</a>.
         </p>
       </section>
       <section>
