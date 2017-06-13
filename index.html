@@ -623,8 +623,7 @@
               <a>global set of availability callbacks</a> is empty, when every
               page that has <a data-lt="media element">media elements</a> with
               non-empty <a>set of availability callbacks</a> is in the
-              background, or when the user has <a data-lt="disable remote
-              playback">disabled remote playback</a> on all media elements.
+              background.
             </p>
             <p>
               Some <a>remote playback devices</a> may only be able to play a
@@ -762,9 +761,9 @@
             </ol>
             <div class="note">
               To avoid leaking information that could fingerprint the user, the
-              user agent SHOULD assign the <var>callbackId</var> based on the
-              identity of the <a>media element</a> alone, and not the identity
-              of the browser profile or any <a>remote playback device</a>.
+              user agent SHOULD NOT assign a <var>callbackId</var> that uses any
+              persistent information from the browser profile or a <a>remote
+              playback device</a>.
             </div>
           </section>
           <section>
@@ -1401,10 +1400,9 @@
           the user has without user consent.
         </p>
         <p>
-          The user agent MAY stop <a data-lt="monitor the list of available
-          remote playback devices">monitoring the list of available remote
-          playback devices</a> at any time if the user disables remote playback
-          (for example, through a browser setting).
+          The user agent SHOULD NOT <a>monitor the list of available remote
+          playback devices</a> if the user disables background monitoring
+          through a browser setting.
         </p>
       </section>
       <section>
