@@ -556,15 +556,16 @@
             </p>
             <ol>
               <li>
-                <var>callbackId</var> is an id unique to the
-                <a>RemotePlayback</a> object;
+                <var>callbackId</var> is an positive integer unique among all ids
+                returned by
+                <code><a data-link-for="RemotePlayback">watchAvailability</a>()</code>
+                in a given <a>browsing context</a>;
               </li>
               <li>
                 <var>callback</var> is a
-                <a>RemotePlaybackAvailabilityCallback</a> object;
+                <a>RemotePlaybackAvailabilityCallback</a> object.
               </li>
             </ol>
-            <p></p>
             <p>
               Since there's one and only one <a>RemotePlayback</a> object per
               each <a>media element</a>, <a>set of availability callbacks</a>
@@ -735,8 +736,9 @@
                   </li>
                 </ol>
               </li>
-              <li>Let <var>callbackId</var> be a number unique to the <a>media
-              element</a> that will identify the <var>callback</var>.
+              <li>Let <var>callbackId</var> be a positive integer unique among
+                all the <var>callbackIds</var> previously returned by these steps
+                in the <a>browsing context</a> of the <a>media element</a>.
               </li>
               <li>Create a tuple <em>(<var>callbackId</var>,
               <var>callback</var>)</em> and add it to the <a>set of
@@ -759,6 +761,11 @@
                 </ol>
               </li>
             </ol>
+            <p class="note">
+              A simple algorithm for assigning <var>callbackId</var> values is
+              to keep a counter for each <a>browsing context</a> and
+              incrementing it in step 6.
+            </p>
           </section>
           <section>
             <h5>
