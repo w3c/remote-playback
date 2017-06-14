@@ -147,6 +147,15 @@
         accessibility, internationalization, privacy, security and technical
         architecture principles.
       </p>
+      <p>
+        The Second Screen Working Group will develop a test suite for the
+        Remote Presentation API during the Candidate Recommendation period and
+        prepare an implementation report. For this specification to advance to
+        Proposed Recommendation, two independent, interoperable implementations
+        of each feature must be demonstrated, as detailed in the <a href=
+        "#candidate-recommendation-exit-criteria">Candidate Recommendation exit
+        criteria</a> section.
+      </p>
     </section>
     <section id='conformance'>
       <p>
@@ -1448,6 +1457,61 @@
           authenticity between them.
         </p>
       </section>
+    </section>
+    <section class="appendix">
+      <h2>
+        Candidate Recommendation exit criteria
+      </h2>
+      <p>
+        For this specification to be advanced to Proposed Recommendation, there
+        must be at least two independent, interoperable implementations of each
+        feature. Each feature may be implemented by a different set of
+        products, there is no requirement that all features be implemented by a
+        single product. Additionally, implementations must demonstrate support
+        for the <a>media remoting</a> and <a>media flinging</a> cases, either
+        within the same product or within different products.
+      </p>
+      <p>
+        For the purposes of these criteria, we define the following terms:
+      </p>
+      <dl>
+        <dt>
+          Independent
+        </dt>
+        <dd>
+          Each implementation must be developed by a different party, and
+          cannot share, reuse, or derive from code used by another qualifying
+          implementation. Sections of code that have no bearing on the
+          implementation of this specification are exempt from this
+          requirement.
+        </dd>
+        <dt>
+          Interoperable
+        </dt>
+        <dd>
+          Passing the respective test case(s) in the official test suite.
+        </dd>
+        <dt>
+          Implementation
+        </dt>
+        <dd>
+          A user agent which:
+          <ol>
+            <li>implements the specification.
+            </li>
+            <li>is available to the general public. The implementation may be a
+            shipping product or other publicly available version (i.e., beta
+            version, preview release, or "nightly build"). Non-shipping product
+            releases must have implemented the feature(s) for a period of at
+            least one month in order to demonstrate stability.
+            </li>
+            <li>is not experimental (i.e. a version specifically designed to
+            pass the test suite and not intended for normal usage going
+            forward).
+            </li>
+          </ol>
+        </dd>
+      </dl>
     </section>
   </body>
 </html>
