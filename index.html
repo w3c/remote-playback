@@ -685,6 +685,21 @@
               <a>available</a> is called <dfn>availability</dfn> for the
               <a>media element</a>.
             </p>
+            <p>
+              If the user agent stops
+              <a data-lt="monitor the list of available remote playback devices">
+                monitoring the list of available remote playback devices</a>
+              (for example by a user control or for power saving), it SHOULD
+              invoke all callbacks in the <a>global set of availability
+              callbacks</a> with <code>false</code> so that pages can update
+              their user experience appropriately.  It SHOULD also set
+              the <a>availability</a> value for all <a data-lt="media element">
+              media elements</a> to <code>false</code> so that availability
+              information can be propagated correctly if the user agent later
+              resumes
+              <a data-lt="monitor the list of available remote playback devices">
+                monitoring the list of available remote playback devices</a>.
+            </p>
           </section>
           <section>
             <h5>
