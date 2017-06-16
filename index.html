@@ -620,10 +620,10 @@
               "https://github.com/w3c/remote-playback/blob/gh-pages/use-cases.md#power-saving-friendly">
               power saving non-functional requirement</a>. For example, the
               <a>user agent</a> MAY not run the monitoring algorithm when the
-              <a>global set of availability callbacks</a> is empty or each page
-              that has <a data-lt="media element">media elements</a> with
-              non-empty <a>set of availability callbacks</a> is not in the
-              foreground.
+              <a>global set of availability callbacks</a> is empty, when every
+              page that has <a data-lt="media element">media elements</a> with
+              non-empty <a>set of availability callbacks</a> is in the
+              background.
             </p>
             <p>
               Some <a>remote playback devices</a> may only be able to play a
@@ -759,6 +759,12 @@
                 </ol>
               </li>
             </ol>
+            <div class="note">
+              To avoid leaking information that could fingerprint the user, the
+              user agent SHOULD NOT assign a <var>callbackId</var> that uses any
+              persistent information from the browser profile or a <a>remote
+              playback device</a>.
+            </div>
           </section>
           <section>
             <h5>
@@ -1341,7 +1347,8 @@
           <p>
             When the <a data-link-for=
             'HTMLMediaElement'>disableRemotePlayback</a> attribute is added to
-            the <a>media element</a>, the user agent MUST run these steps:
+            the <a>media element</a>, the user agent MUST run the steps
+            to <dfn>disable remote playback</dfn>:
           </p>
           <ol>
             <li>Reject any pending promises returned by the
@@ -1377,7 +1384,8 @@
           area network. This could be used in conjunction with other
           information for fingerprinting the user. However, this information is
           also dependent on the user's local network context, so the risk is
-          minimized.
+          minimized.  Also, by design, the human readable name of a <a>remote
+          playback device</a> is not revealed to the page.
         </p>
         <p>
           The API enables <a href=
@@ -1390,6 +1398,11 @@
           type of device to determine its availability, this feature can be
           used to probe information about which <a>remote playback device</a>
           the user has without user consent.
+        </p>
+        <p>
+          The user agent SHOULD NOT <a>monitor the list of available remote
+          playback devices</a> if the user disables background monitoring
+          through a browser setting.
         </p>
       </section>
       <section>
