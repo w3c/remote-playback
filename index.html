@@ -147,6 +147,18 @@
         accessibility, internationalization, privacy, security and technical
         architecture principles.
       </p>
+      <p>
+        No feature has been identified as being <strong>at risk</strong>.
+      </p>
+      <p>
+        The Second Screen Working Group will develop a test suite for the
+        Remote Playback API during the Candidate Recommendation period and
+        prepare an implementation report. For this specification to advance to
+        Proposed Recommendation, two independent, interoperable implementations
+        of each feature must be demonstrated, as detailed in the <a href=
+        "#candidate-recommendation-exit-criteria">Candidate Recommendation exit
+        criteria</a> section.
+      </p>
     </section>
     <section id='conformance'>
       <p>
@@ -621,10 +633,10 @@
               "https://github.com/w3c/remote-playback/blob/gh-pages/use-cases.md#power-saving-friendly">
               power saving non-functional requirement</a>. For example, the
               <a>user agent</a> MAY not run the monitoring algorithm when the
-              <a>global set of availability callbacks</a> is empty or each page
-              that has <a data-lt="media element">media elements</a> with
-              non-empty <a>set of availability callbacks</a> is not in the
-              foreground.
+              <a>global set of availability callbacks</a> is empty, when every
+              page that has <a data-lt="media element">media elements</a> with
+              non-empty <a>set of availability callbacks</a> is in the
+              background.
             </p>
             <p>
               Some <a>remote playback devices</a> may only be able to play a
@@ -766,6 +778,12 @@
               to keep a counter for each <a>browsing context</a> and
               incrementing it in step 6.
             </p>
+            <div class="note">
+              To avoid leaking information that could fingerprint the user, the
+              user agent SHOULD NOT assign a <var>callbackId</var> that uses any
+              persistent information from the browser profile or a <a>remote
+              playback device</a>.
+            </div>
           </section>
           <section>
             <h5>
@@ -1348,7 +1366,8 @@
           <p>
             When the <a data-link-for=
             'HTMLMediaElement'>disableRemotePlayback</a> attribute is added to
-            the <a>media element</a>, the user agent MUST run these steps:
+            the <a>media element</a>, the user agent MUST run the steps
+            to <dfn>disable remote playback</dfn>:
           </p>
           <ol>
             <li>Reject any pending promises returned by the
@@ -1384,7 +1403,8 @@
           area network. This could be used in conjunction with other
           information for fingerprinting the user. However, this information is
           also dependent on the user's local network context, so the risk is
-          minimized.
+          minimized.  Also, by design, the human readable name of a <a>remote
+          playback device</a> is not revealed to the page.
         </p>
         <p>
           The API enables <a href=
@@ -1397,6 +1417,11 @@
           type of device to determine its availability, this feature can be
           used to probe information about which <a>remote playback device</a>
           the user has without user consent.
+        </p>
+        <p>
+          The user agent SHOULD NOT <a>monitor the list of available remote
+          playback devices</a> if the user disables background monitoring
+          through a browser setting.
         </p>
       </section>
       <section>
@@ -1455,6 +1480,61 @@
           authenticity between them.
         </p>
       </section>
+    </section>
+    <section class="appendix">
+      <h2>
+        Candidate Recommendation exit criteria
+      </h2>
+      <p>
+        For this specification to be advanced to Proposed Recommendation, there
+        must be at least two independent, interoperable implementations of each
+        feature. Each feature may be implemented by a different set of
+        products, there is no requirement that all features be implemented by a
+        single product. Additionally, implementations must demonstrate support
+        for the <a>media remoting</a> and <a>media flinging</a> cases, either
+        within the same product or within different products.
+      </p>
+      <p>
+        For the purposes of these criteria, we define the following terms:
+      </p>
+      <dl>
+        <dt>
+          Independent
+        </dt>
+        <dd>
+          Each implementation must be developed by a different party, and
+          cannot share, reuse, or derive from code used by another qualifying
+          implementation. Sections of code that have no bearing on the
+          implementation of this specification are exempt from this
+          requirement.
+        </dd>
+        <dt>
+          Interoperable
+        </dt>
+        <dd>
+          Passing the respective test case(s) in the official test suite.
+        </dd>
+        <dt>
+          Implementation
+        </dt>
+        <dd>
+          A user agent which:
+          <ol>
+            <li>implements the specification.
+            </li>
+            <li>is available to the general public. The implementation may be a
+            shipping product or other publicly available version (i.e., beta
+            version, preview release, or "nightly build"). Non-shipping product
+            releases must have implemented the feature(s) for a period of at
+            least one month in order to demonstrate stability.
+            </li>
+            <li>is not experimental (i.e. a version specifically designed to
+            pass the test suite and not intended for normal usage going
+            forward).
+            </li>
+          </ol>
+        </dd>
+      </dl>
     </section>
   </body>
 </html>
