@@ -263,9 +263,12 @@
           "https://html.spec.whatwg.org/multipage/embedded-content.html#concept-media-load-algorithm">
           selecting media resource</a></dfn>, <dfn data-lt=
           "currentSrc"><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#dom-media-currentsrc">
-          current source</a></dfn> and <dfn data-lt="media resources"><a href=
+          current source</a></dfn>,
+	  <dfn><a href="https://html.spec.whatwg.org/multipage/media.html#dom-media-fastseek">fastSeek</a></dfn>,
+	  <dfn><a href="https://html.spec.whatwg.org/multipage/media.html#dom-media-seeking">seeking</a></dfn>,
+          <dfn data-lt="media resources"><a href=
           "https://html.spec.whatwg.org/multipage/embedded-content.html#location-of-the-media-resource">
-          media resource</a></dfn> <dfn data-lt="exposing a user interface to the user"><a href=
+          media resource</a></dfn>, and <dfn data-lt="exposing a user interface to the user"><a href=
           "https://html.spec.whatwg.org/multipage/embedded-content.html#expose-a-user-interface-to-the-user">
           expose a user interface to the user</a></dfn>
         </li>
@@ -1232,6 +1235,24 @@
             If sending any command fails, the <a>user agent</a> MAY
             <a>disconnect from a remote playback device</a>.
           </p>
+          <div class="note">
+	    <p>
+	      The <a>remote playback device</a> may implement a subset
+	      of the capabilities of the playback engine of the user
+	      agent, and some <a>HTMLMediaElement</a> APIs may not make sense to use during
+              remote playback. In this case, the <a>local playback state</a> should
+	      reflect as closely as possible the actual <a>remote
+              playback state</a> after a media command that is not supported during
+	      remote playback.
+	    </p>
+	    <p>
+	      For example, after calling <code><a>fastSeek</a>()</code> while
+	      connected to a <a>remote playback device</a> that does not
+	      support it, the <code><a>seeking</a></code> attribute of the
+	      <a>HTMLMediaElement</a> should remain <code>false</code> and no
+	      <code>seeking</code> event should be fired.
+	    </p>
+          </div>
         </section>
         <section>
           <h4>
