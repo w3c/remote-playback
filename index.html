@@ -1232,22 +1232,22 @@
             <a>disconnect from a remote playback device</a>.
           </p>
           <div class="note">
-	    <p>
-	      The <a>remote playback device</a> may implement a subset
-	      of the capabilities of the playback engine of the user
-	      agent, and some <a>HTMLMediaElement</a> APIs may not make sense to use during
-              remote playback. In this case, the <a>local playback state</a> should
-	      reflect as closely as possible the actual <a>remote
-              playback state</a> after a media command that is not supported during
-	      remote playback.
-	    </p>
-	    <p>
-	      For example, after calling <code><a>fastSeek</a>()</code> while
-	      connected to a <a>remote playback device</a> that does not
-	      support it, the <code><a>seeking</a></code> attribute of the
-	      <a>HTMLMediaElement</a> should remain <code>false</code> and no
-	      <code>seeking</code> event should be fired.
-	    </p>
+            <p>
+              The <a>remote playback device</a> can implement a subset
+              of the capabilities of the playback engine of the user
+              agent, and some <a>HTMLMediaElement</a> APIs do not always
+              make sense to use during remote playback. In this case, the
+              <a>local playback state</a> is expected to reflect as closely
+              as possible the actual <a>remote playback state</a> after a
+              media command that is not supported during remote playback.
+            </p>
+            <p>
+              For example, after calling <code><a>fastSeek</a>()</code> while
+              connected to a <a>remote playback device</a> that does not
+              support it, the <code><a>seeking</a></code> attribute of the
+              <a>HTMLMediaElement</a> is expected to remain <code>false</code>
+              and no <code>seeking</code> event should be fired.
+            </p>
           </div>
         </section>
         <section>
