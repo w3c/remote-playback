@@ -275,9 +275,13 @@
 	  <dfn><a href="https://html.spec.whatwg.org/multipage/media.html#dom-media-seeking">seeking</a></dfn>,
           <dfn data-lt="media resources"><a href=
           "https://html.spec.whatwg.org/multipage/embedded-content.html#location-of-the-media-resource">
-          media resource</a></dfn>, and <dfn data-lt="exposing a user interface to the user"><a href=
+          media resource</a></dfn>, <dfn data-lt="exposing a user interface to the user"><a href=
           "https://html.spec.whatwg.org/multipage/embedded-content.html#expose-a-user-interface-to-the-user">
-          expose a user interface to the user</a></dfn>
+          expose a user interface to the user</a></dfn>,
+          <dfn><a href="https://html.spec.whatwg.org/multipage/media.html#the-track-element">
+          <code>track</code></a></dfn>, and
+          <dfn><a href="https://html.spec.whatwg.org/multipage/media.html#attr-track-srclang">
+          <code>srclang</code></a></dfn>.
         </li>
         <li>
           <dfn><a href=
@@ -659,6 +663,12 @@
               for a <a>media resource</a> if the <a>user agent</a> can
               reasonably guarantee that the remote playback of the media
               specified by the resource will succeed on that device.
+            </p>
+            <p class="note">
+              The <a>user agent</a> can use the <a><code>srclang</code></a>
+              attribute of the <a><code>track</code></a> element as a hint of
+              the language of the text track data to identify a <a>compatible
+              remote playback device</a>.
             </p>
             <p>
               The <a>media resources</a> of a <a>media element</a>, that were
