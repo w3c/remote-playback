@@ -639,15 +639,15 @@
               devices.
             </p>
             <p class="note">
-              User agents SHOULD NOT <a>monitor the list of available remote
-              playback devices</a> when possible, to satisfy the <a href=
+              The user agent is expected not to <a>monitor the list of available
+              remote playback devices</a> when possible, to satisfy the <a href=
               "https://github.com/w3c/remote-playback/blob/gh-pages/use-cases.md#power-saving-friendly">
               power saving non-functional requirement</a>. For example, the
-              <a>user agent</a> MAY not run the monitoring algorithm when the
-              <a>global set of availability callbacks</a> is empty, when every
-              page that has <a data-lt="media element">media elements</a> with
-              non-empty <a>set of availability callbacks</a> is in the
-              background.
+              <a>user agent</a> might choose not to run the monitoring
+              algorithm when the <a>global set of availability callbacks</a> is
+              empty, when every page that has <a data-lt="media element">media
+              elements</a> with non-empty <a>set of availability callbacks</a>
+              is in the background.
             </p>
             <p>
               Some <a>remote playback devices</a> may only be able to play a
