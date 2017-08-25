@@ -806,9 +806,9 @@
             </p>
             <div class="note">
               To avoid leaking information that could fingerprint the user, the
-              user agent should not assign a <var>callbackId</var> that uses any
-              persistent information from the browser profile or a <a>remote
-              playback device</a>.
+              user agent is expected not to assign a <var>callbackId</var> that
+              uses any persistent information from the browser profile or a
+              <a>remote playback device</a>.
             </div>
           </section>
           <section>
@@ -1052,7 +1052,7 @@
           </ol>
           <div class="note">
             The details of implementing the UI and device selection are left to
-            the user agent; for example it may show the user a dialog and allow
+            the user agent; for example it can show the user a dialog and allow
             the user to select an available device (<em>granting
             permission</em>), or cancel the selection (<em>denying
             permission</em>).
@@ -1319,8 +1319,8 @@
           <div class="note">
             If the remote playback device is abruptly disconnected during
             playback (for example, by power loss or a network disconnection),
-            the user agent should run the steps to <a>monitor the list of
-            available remote playback devices</a> before the steps
+            the user agent is expected to run the steps to <a>monitor the list
+            of available remote playback devices</a> before the steps
             to <a>disconnect from a remote playback device</a>.  This allows
             callbacks in the <a>set of availability callbacks</a> to be invoked
             before the <a>disconnect</a> event is fired, so the page can update
