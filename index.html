@@ -1055,7 +1055,9 @@
             the user agent; for example it MAY show the user a dialog and allow
             the user to select an available device (<em>granting
             permission</em>), or cancel the selection (<em>denying
-            permission</em>).
+            permission</em>). The user agent is encouraged to render user
+            friendly names of available devices, using their locale and text
+            direction when they are known.
           </div>
           <div class="note">
             The algorithm to select the <a>remote playback source</a> for a
@@ -1175,6 +1177,13 @@
             playback device and receiving media playback state in order to keep
             the <a>media element state</a> and <a>remote playback state</a> in
             sync (unless <a>media mirroring</a> is used).
+          </div>
+          <div class="note">
+            The user agent is encouraged to pass locale information to the
+            <a>remote playback device</a> when possible, so that the <a>remote
+            playback device</a> may adjust its user interface and operational
+            functions to locale-specific attributes that reflect the user's
+            preferences.
           </div>
           <div class="note">
             The user agent SHOULD pause local audio and video output of the
