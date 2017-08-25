@@ -806,7 +806,7 @@
             </p>
             <div class="note">
               To avoid leaking information that could fingerprint the user, the
-              user agent SHOULD NOT assign a <var>callbackId</var> that uses any
+              user agent should not assign a <var>callbackId</var> that uses any
               persistent information from the browser profile or a <a>remote
               playback device</a>.
             </div>
@@ -1052,7 +1052,7 @@
           </ol>
           <div class="note">
             The details of implementing the UI and device selection are left to
-            the user agent; for example it MAY show the user a dialog and allow
+            the user agent; for example it may show the user a dialog and allow
             the user to select an available device (<em>granting
             permission</em>), or cancel the selection (<em>denying
             permission</em>).
@@ -1166,6 +1166,18 @@
               </ol>
             </li>
           </ol>
+          <p>
+            The user agent SHOULD pause local audio and video output of the
+            media element while the <a>remote playback state</a>
+            is <a data-link-for="RemotePlaybackState">connected</a>.
+          </p>
+          <p>
+            If the user agent is <a>exposing a user interface to the user</a>
+            for the media element (i.e., using default controls), the user agent
+            SHOULD convey the fact that the <a>remote playback state</a>
+            is <a data-link-for="RemotePlaybackState">connected</a> through an
+            icon or other means.
+          </p>
           <div class="note">
             The mechanism that is used to connect the user agent with the
             <a>remote playback device</a> and play the <a>remote playback
@@ -1175,18 +1187,6 @@
             playback device and receiving media playback state in order to keep
             the <a>media element state</a> and <a>remote playback state</a> in
             sync (unless <a>media mirroring</a> is used).
-          </div>
-          <div class="note">
-            The user agent SHOULD pause local audio and video output of the
-            media element while the <a>remote playback state</a>
-            is <a data-link-for="RemotePlaybackState">connected</a>.
-          </div>
-          <div class="note">
-            If the user agent is <a>exposing a user interface to the user</a>
-            for the media element (i.e., using default controls), the user agent
-            SHOULD convey the fact that the <a>remote playback state</a>
-            is <a data-link-for="RemotePlaybackState">connected</a> through an
-            icon or other means.
           </div>
         </section>
         <section>
@@ -1319,7 +1319,7 @@
           <div class="note">
             If the remote playback device is abruptly disconnected during
             playback (for example, by power loss or a network disconnection),
-            the user agent SHOULD run the steps to <a>monitor the list of
+            the user agent should run the steps to <a>monitor the list of
             available remote playback devices</a> before the steps
             to <a>disconnect from a remote playback device</a>.  This allows
             callbacks in the <a>set of availability callbacks</a> to be invoked
