@@ -275,9 +275,13 @@
 	  <dfn><a href="https://html.spec.whatwg.org/multipage/media.html#dom-media-seeking">seeking</a></dfn>,
           <dfn data-lt="media resources"><a href=
           "https://html.spec.whatwg.org/multipage/embedded-content.html#location-of-the-media-resource">
-          media resource</a></dfn>, and <dfn data-lt="exposing a user interface to the user"><a href=
+          media resource</a></dfn>, <dfn data-lt="exposing a user interface to the user"><a href=
           "https://html.spec.whatwg.org/multipage/embedded-content.html#expose-a-user-interface-to-the-user">
-          expose a user interface to the user</a></dfn>
+          expose a user interface to the user</a></dfn>,
+          <dfn><a href="https://html.spec.whatwg.org/multipage/media.html#the-track-element">
+          <code>track</code></a></dfn>, and
+          <dfn><a href="https://html.spec.whatwg.org/multipage/media.html#attr-track-srclang">
+          <code>srclang</code></a></dfn>.
         </li>
         <li>
           <dfn><a href=
@@ -639,15 +643,15 @@
               devices.
             </p>
             <p class="note">
-              User agents SHOULD NOT <a>monitor the list of available remote
-              playback devices</a> when possible, to satisfy the <a href=
+              The user agent is expected not to <a>monitor the list of available
+              remote playback devices</a> when possible, to satisfy the <a href=
               "https://github.com/w3c/remote-playback/blob/gh-pages/use-cases.md#power-saving-friendly">
               power saving non-functional requirement</a>. For example, the
-              <a>user agent</a> MAY not run the monitoring algorithm when the
-              <a>global set of availability callbacks</a> is empty, when every
-              page that has <a data-lt="media element">media elements</a> with
-              non-empty <a>set of availability callbacks</a> is in the
-              background.
+              <a>user agent</a> might choose not to run the monitoring
+              algorithm when the <a>global set of availability callbacks</a> is
+              empty, when every page that has <a data-lt="media element">media
+              elements</a> with non-empty <a>set of availability callbacks</a>
+              is in the background.
             </p>
             <p>
               Some <a>remote playback devices</a> may only be able to play a
@@ -659,6 +663,12 @@
               for a <a>media resource</a> if the <a>user agent</a> can
               reasonably guarantee that the remote playback of the media
               specified by the resource will succeed on that device.
+            </p>
+            <p class="note">
+              The <a>user agent</a> can use the <a><code>srclang</code></a>
+              attribute of the <a><code>track</code></a> element as a hint of
+              the language of the text track data to help identify a
+              <a>compatible remote playback device</a>.
             </p>
             <p>
               The <a>media resources</a> of a <a>media element</a>, that were
@@ -806,9 +816,9 @@
             </p>
             <div class="note">
               To avoid leaking information that could fingerprint the user, the
-              user agent SHOULD NOT assign a <var>callbackId</var> that uses any
-              persistent information from the browser profile or a <a>remote
-              playback device</a>.
+              user agent is expected not to assign a <var>callbackId</var> that
+              uses any persistent information from the browser profile or a
+              <a>remote playback device</a>.
             </div>
           </section>
           <section>
@@ -1052,7 +1062,7 @@
           </ol>
           <div class="note">
             The details of implementing the UI and device selection are left to
-            the user agent; for example it MAY show the user a dialog and allow
+            the user agent; for example it can show the user a dialog and allow
             the user to select an available device (<em>granting
             permission</em>), or cancel the selection (<em>denying
             permission</em>). In most cases, available devices will advertise
@@ -1170,6 +1180,18 @@
               </ol>
             </li>
           </ol>
+          <p>
+            The user agent SHOULD pause local audio and video output of the
+            media element while the <a>remote playback state</a>
+            is <a data-link-for="RemotePlaybackState">connected</a>.
+          </p>
+          <p>
+            If the user agent is <a>exposing a user interface to the user</a>
+            for the media element (i.e., using default controls), the user agent
+            SHOULD convey the fact that the <a>remote playback state</a>
+            is <a data-link-for="RemotePlaybackState">connected</a> through an
+            icon or other means.
+          </p>
           <div class="note">
             The mechanism that is used to connect the user agent with the
             <a>remote playback device</a> and play the <a>remote playback
@@ -1190,18 +1212,6 @@
             default text track as the user agent, as well as to set the HTTP
             <code>Accept-Language</code> header it sends to fetch media
             resources.
-          </div>
-          <div class="note">
-            The user agent SHOULD pause local audio and video output of the
-            media element while the <a>remote playback state</a>
-            is <a data-link-for="RemotePlaybackState">connected</a>.
-          </div>
-          <div class="note">
-            If the user agent is <a>exposing a user interface to the user</a>
-            for the media element (i.e., using default controls), the user agent
-            SHOULD convey the fact that the <a>remote playback state</a>
-            is <a data-link-for="RemotePlaybackState">connected</a> through an
-            icon or other means.
           </div>
         </section>
         <section>
@@ -1323,6 +1333,16 @@
               </ol>
             </li>
           </ol>
+          <p>
+            If the remote playback device is abruptly disconnected during
+            playback (for example, by power loss or a network disconnection),
+            the user agent SHOULD run the steps to <a>monitor the list of
+            available remote playback devices</a> before the steps to
+            <a>disconnect from a remote playback device</a>.  This allows
+            callbacks in the <a>set of availability callbacks</a> to be invoked
+            before the <a>disconnect</a> event is fired, so the page can update
+            itself to show resumption of playback is not possible.
+          </p>
           <div class="note">
             The remote playback device might not actually stop playback of the
             media when requested by the user agent since it's implementation
@@ -1330,16 +1350,6 @@
             stopping remote playback merely means the user agent literally only
             disconnecting from the remote playback device and the <a>media
             element</a> switching to the <code>disconnected</code> state.
-          </div>
-          <div class="note">
-            If the remote playback device is abruptly disconnected during
-            playback (for example, by power loss or a network disconnection),
-            the user agent SHOULD run the steps to <a>monitor the list of
-            available remote playback devices</a> before the steps
-            to <a>disconnect from a remote playback device</a>.  This allows
-            callbacks in the <a>set of availability callbacks</a> to be invoked
-            before the <a>disconnect</a> event is fired, so the page can update
-            itself to show resumption of playback is not possible.
           </div>
         </section>
         <section>
