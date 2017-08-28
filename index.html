@@ -1055,9 +1055,11 @@
             the user agent; for example it MAY show the user a dialog and allow
             the user to select an available device (<em>granting
             permission</em>), or cancel the selection (<em>denying
-            permission</em>). The user agent is encouraged to render user
-            friendly names of available devices, using their locale and text
-            direction when they are known.
+            permission</em>). In most cases, available devices will advertise
+            a user friendly name along with locale and text direction
+            information for that name. The user agent is encouraged to render
+            this user friendly name, using its locale and text direction when
+            they are known.
           </div>
           <div class="note">
             The algorithm to select the <a>remote playback source</a> for a
@@ -1179,11 +1181,15 @@
             sync (unless <a>media mirroring</a> is used).
           </div>
           <div class="note">
-            The user agent is encouraged to pass locale information to the
-            <a>remote playback device</a> when possible, so that the <a>remote
-            playback device</a> may adjust its user interface and operational
-            functions to locale-specific attributes that reflect the user's
-            preferences.
+            The user agent is encouraged to pass locale and text direction
+            information to the <a>remote playback device</a> when possible, so
+            that the <a>remote playback device</a> can adjust its user
+            interface and operational functions to locale-specific attributes
+            that reflect the user's preferences. For example, the <a>remote
+            playback device</a> can use that information to choose the same
+            default text track as the user agent, as well as to set the HTTP
+            <code>Accept-Language</code> header it sends to fetch media
+            resources.
           </div>
           <div class="note">
             The user agent SHOULD pause local audio and video output of the
