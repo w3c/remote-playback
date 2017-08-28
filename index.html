@@ -1308,6 +1308,16 @@
               </ol>
             </li>
           </ol>
+          <p>
+            If the remote playback device is abruptly disconnected during
+            playback (for example, by power loss or a network disconnection),
+            the user agent SHOULD run the steps to <a>monitor the list of
+            available remote playback devices</a> before the steps to
+            <a>disconnect from a remote playback device</a>.  This allows
+            callbacks in the <a>set of availability callbacks</a> to be invoked
+            before the <a>disconnect</a> event is fired, so the page can update
+            itself to show resumption of playback is not possible.
+          </p>
           <div class="note">
             The remote playback device might not actually stop playback of the
             media when requested by the user agent since it's implementation
@@ -1315,16 +1325,6 @@
             stopping remote playback merely means the user agent literally only
             disconnecting from the remote playback device and the <a>media
             element</a> switching to the <code>disconnected</code> state.
-          </div>
-          <div class="note">
-            If the remote playback device is abruptly disconnected during
-            playback (for example, by power loss or a network disconnection),
-            the user agent is expected to run the steps to <a>monitor the list
-            of available remote playback devices</a> before the steps
-            to <a>disconnect from a remote playback device</a>.  This allows
-            callbacks in the <a>set of availability callbacks</a> to be invoked
-            before the <a>disconnect</a> event is fired, so the page can update
-            itself to show resumption of playback is not possible.
           </div>
         </section>
         <section>
