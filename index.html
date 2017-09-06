@@ -516,6 +516,7 @@
           <code><a>RemotePlayback</a></code> interface
         </h3>
         <pre class='idl'>
+          [Exposed=Window]
           interface RemotePlayback : EventTarget {
             Promise&lt;long&gt; watchAvailability(RemotePlaybackAvailabilityCallback callback);
             Promise&lt;void&gt; cancelWatchAvailability(optional long id);
