@@ -308,7 +308,8 @@
           'https://html.spec.whatwg.org/multipage/infrastructure.html#concept-event-fire'>
           firing an event</a></dfn> and <dfn><a href=
           'https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel'>
-          in parallel</a></dfn>,
+              in parallel</a></dfn>,
+          <dfn><a href="https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#reflecting-content-attributes-in-idl-attributes">reflect</a></dfn>,
         </li>
         <li>
           <dfn><a href=
@@ -323,6 +324,9 @@
       <p>
         The term <dfn>throw</dfn> in this specification is used as defined in
         [[!WEBIDL]].
+      </p>
+      <p>
+        The interface <dfn>PresentationRequest</dfn> is defined in [[PRESENTATION-API]].
       </p>
       <p>
         The term <dfn><a href=
@@ -1405,7 +1409,7 @@
       </section>
       <section>
         <h3>
-          Extension to the <code><a>HTMLMediaElement</a></code>
+          Extensions to <code><a>HTMLMediaElement</a></code>
         </h3>
         <pre class='idl'>
           partial interface HTMLMediaElement {
@@ -1419,10 +1423,27 @@
           return the <a>RemotePlayback</a> instance associated with the
           <a>media element</a>.
         </p>
-        <p>
-          The <dfn data-dfn-for='HTMLMediaElement'>disableRemotePlayback</dfn>
-          IDL attribute MUST reflect the content attribute of the same name.
-        </p>
+        <section>
+          <h4>
+            The <code><dfn data-dfn-for='HTMLMediaElement'>disableRemotePlayback</dfn></code> attribute
+          </h4>
+          <p>
+            Some pages may wish to disable remote playback of a media element;
+            for example, they may prefer to use a <a>PresentationRequest</a> to
+            present a complete document on a presentation screen.  To support
+            this use case, a new <code>disableRemotePlayback</code> is added to
+            the list of content attributes for <code>audio</code>
+            and <code>video</code> elements.
+          </p>
+          <p>
+            A corresponding <a data-link-for='HTMLMediaElement'>disableRemotePlayback</a>
+            IDL attribute which reflects the value each element’s
+            <code>disableRemotePlaback</code> content attribute is added to
+            the <code>HTMLMediaElement</code> interface.
+            The <a data-link-for='HTMLMediaElement'>disableRemotePlayback</a>
+            IDL attribute MUST <a>reflect</a> the content attribute of the same name.
+          </p>
+        </section>
         <section>
           <h4>
             Disabling remote playback
@@ -1431,7 +1452,7 @@
             If the <a data-link-for=
             'HTMLMediaElement'>disableRemotePlayback</a> attribute is present
             on the <a>media element</a>, the <a>user agent</a> MUST NOT play
-            the media remotely or present any UI to do so.
+            the media element remotely or present any UI to do so.
           </p>
           <p>
             When the <a data-link-for=
@@ -1452,7 +1473,6 @@
             the media element is connected or connecting to.
             </li>
           </ol>
-          <p></p>
         </section>
       </section>
     </section>
