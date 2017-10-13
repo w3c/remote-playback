@@ -1569,10 +1569,24 @@
           Messaging between the local and remote playback devices
         </h3>
         <p>
-          This spec will not mandate communication protocols between the
-          <a>local playback device</a> and the <a>remote playback device</a>,
-          but it should set some guarantees of message confidentiality and
-          authenticity between them.
+          This specification will not mandate communication protocols between
+          the <a>local playback device</a> and the <a>remote playback
+          device</a>, but the user agent should set some guarantees of message
+          confidentiality and authenticity between them.
+        </p>
+      </section>
+      <section>
+        <h3>
+          Secure Contexts
+        </h3>
+        <p>
+          The Remote Playback API is not limited to [[SECURE-CONTEXTS]] because
+          it exposes a feature to web applications that user agents usually
+          offer natively on all media regardless of the <a>browsing context</a>.
+          A user agent can limit the API to [[SECURE-CONTEXTS]] by always
+          returning an empty list as part of the <a>monitor the list of
+          available remote playback devices</a> algorithm in contexts that are
+	  not secure.
         </p>
       </section>
     </section>
