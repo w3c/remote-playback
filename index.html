@@ -1256,20 +1256,35 @@
             device</a> is established.
           </p>
           <p>
-            In particular, as soon as the <a data-link-for=
-            "RemotePlayback">state</a> of a <a>RemotePlayback</a> object has
-            changed to <a data-link-for="RemotePlaybackState">connected</a>,
-            the <a>user agent</a> MUST send all the media commands issued on
-            the <a>HTMLMediaElement</a> object with which the
-            <a>RemotePlayback</a> object is associated to the <a>remote
-            playback device</a> in order to change the <a>remote playback
-            state</a> vs the <a>local playback state</a>.
+            When the <a data-link-for="RemotePlayback">state</a> of
+            a <a>RemotePlayback</a> object
+            is <a data-link-for="RemotePlaybackState">connected</a>, the
+            following conditions relate the <a>local playback state</a>,
+            the <a>media element state</a>, and the <a>remote playback
+            state</a>:
           </p>
-          <p>
-            Similarly, the <a>user agent</a> MUST reflect all updates of the
-            <a>remote playback state</a> received from the <a>remote playback
-            device</a> on the <a>media element state</a>.
-          </p>
+          <dl>
+            <dd>
+              The <a>user agent</a> MUST send all media commands issued on the
+              associated <a>HTMLMediaElement</a> object to the <a>remote playback
+                device</a> in order to change its <a>remote playback state</a>;
+            </dd>
+            <dd>
+              The <a>remote playback device</a> SHOULD implement all media
+              commands sent by the <a>user agent</a>;
+            </dd>
+            <dd>
+              The <a>remote playback device</a> SHOULD send updates of
+              the <a>remote playback state</a> to the <a>user agent</a> that
+              affect any attribute exposed through the <a>media element
+              state</a>;
+            <dd>
+              The <a>user agent</a> MUST process all updates of the
+              <a>remote playback state</a> received from the <a>remote playback
+                device</a> and update the <a>local playback state</a> of the
+              media element accordingly.
+            </dd>
+          </dl>
           <p>
             If sending any command fails, the <a>user agent</a> MAY
             <a>disconnect from a remote playback device</a>.
