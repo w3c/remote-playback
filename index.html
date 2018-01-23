@@ -1234,22 +1234,32 @@
           <p>
             A user agent MAY support <a data-lt=
             "establish a connection with the remote playback device">connecting
-            to a remote playback device</a> from the browser, e.g. by including
-            appropriate controls to <a data-lt=
+              to a remote playback device</a> from the browser. This can be done by
+            adding appropriate media controls to <a data-lt=
             "expose a user interface to the user">the user interface that is
-            exposed to the user</a>. This feature is known as <dfn>browser
+              exposed to the user</a>, or when the user activates system-wide
+            mirroring of the display.  This feature is known as <dfn>browser
             initiated remote playback</dfn>. A <a>user agent</a> that supports
             <a>browser initiated remote playback</a> SHOULD initiate the remote
             playback only when the user has expressed an intention to do so via
             a user gesture, for example by clicking a button in the browser.
           </p>
           <p>
-            If the user agent supports <a>browser initiated remote
-            playback</a>, it MUST support the <a data-link-for=
-            "RemotePlayback">state</a> attribute and the corresponding events
-            by following the algorithms to <a>establish a connection with the
-            remote playback device</a> and <a>disconnect from a remote playback
-            device</a>.
+            If the user agent supports <a>browser initiated remote playback</a>,
+            the <a data-link-for="RemotePlayback">state</a> attribute MUST
+            reflect the current state of the connection to the <a>remote
+            playback device</a>.  When the browser initiates or terminates
+            remote playback, it MUST fire the corresponding events by following
+            the algorithms to <a>establish a connection with the remote playback
+            device</a> and <a>disconnect from a remote playback device</a>.
+          </p>
+          <p>
+            If the <a data-lt="browser initiated remote playback">browser will
+            initiate remote playback</a> on a newly created media element,
+            it SHOULD initialize the value of its <a data-link-for="RemotePlayback">
+            state</a> attribute to <a data-link-for="RemotePlaybackState">
+            connecting</a> and then follow the steps to <a>establish a connection
+            with the remote playback device</a>.
           </p>
         </section>
         <section>
