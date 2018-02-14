@@ -1014,13 +1014,20 @@
             reject <var>promise</var> with a <a>NotFoundError</a> exception and
             abort all remaining steps.
             </li>
-            <li>Request user a permission to <dfn>change remote playback
+            <li>Request user permission to <dfn>change remote playback
             state</dfn>.
               <div class="note">
-                An example would be showing UI that allows the user to pick a
-                <a>remote playback device</a> or switch between the local or
-                remote playback devices or has a button to <a>disconnect from
-                a remote playback device</a>.
+                An example UI to request permission would allow the user to
+                pick a new <a>remote playback device</a>, switch between local
+                or remote playback devices, or <a>disconnect from a remote
+                playback device</a>.
+              </div>
+              <div class="note">
+                The user may have already selected a <a>remote playback
+                device</a> for a related purpose, for example, to mirror the
+                contents of the display or the current page.  In that case, the
+                user agent may choose to skip the UI to select a device and
+                proceed immediately to the next step.
               </div>
             </li>
             <li>If the user picked a <a>remote playback device</a>
