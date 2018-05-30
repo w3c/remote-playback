@@ -288,7 +288,7 @@
           'https://html.spec.whatwg.org/multipage/browsers.html#browsing-context'>
           browsing context</a></dfn>, <dfn><a href=
           "https://www.w3.org/TR/html5/browsers.html#nested-browsing-contexts">nested
-          browsing context</a></dfn>and <dfn><a href=
+          browsing context</a></dfn>, and <dfn><a href=
           'https://html.spec.whatwg.org/multipage/browsers.html#allowed-to-show-a-popup'>
           allowed to show a popup</a></dfn>
         </li>
@@ -1071,7 +1071,7 @@
             <li>Otherwise, the user is considered to <em>deny permission</em>
             to use the device, so reject <var>promise</var> with
             <a>NotAllowedError</a> exception and hide the UI shown by the
-            <a>user agent</a>
+            <a>user agent</a>.
             </li>
           </ol>
           <div class="note">
@@ -1175,8 +1175,8 @@
                   <var>remote</var>.
                 </li>
                 <li>Synchronize the current <a>media element state</a> with the
-                <a>remote playback state</a>. Implementation is specific to <a>
-                  user agent</a>.
+                <a>remote playback state</a>. The implementation of this step
+                is specific to the <a>user agent</a>.
                 </li>
               </ol>
             </li>
@@ -1361,8 +1361,8 @@
               <a>Queue a task</a> to run the following steps:
               <ol>
                 <li>Request disconnection of <var>remote</var> from the
-                <var>device</var>. Implementation is <a>user agent</a>
-                specific.
+                <var>device</var>. The implementation of this step is
+                specific to the <a>user agent</a>.
                 </li>
                 <li>Change the <var>remote</var>'s <code>state</code> to <code>
                   disconnected</code>.
@@ -1372,8 +1372,8 @@
                   <a>disconnect</a> at <var>remote</var>.
                 </li>
                 <li>Synchronize the current <a>media element state</a> with the
-                <a>local playback state</a>. Implementation is specific to <a>
-                  user agent</a>.
+                <a>local playback state</a>. The implementation of this step is
+                specific to the <a>user agent</a>.
                 </li>
               </ol>
             </li>
@@ -1390,11 +1390,12 @@
           </p>
           <div class="note">
             The remote playback device might not actually stop playback of the
-            media when requested by the user agent since it's implementation
-            specific and depends on the device in question. In such case
-            stopping remote playback merely means the user agent literally only
-            disconnecting from the remote playback device and the <a>media
-            element</a> switching to the <code>disconnected</code> state.
+            media when requested by the user agent; it depends on the
+            implementation of the user agent and the remote playback device.
+            In this case, stopping remote playback means that the user agent
+            merely disconnects from the remote playback device and the
+            <a>media element</a> switches to the <code>disconnected</code>
+            state.
           </div>
         </section>
         <section>
