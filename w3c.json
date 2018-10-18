@@ -1,5 +1,10 @@
- {
-    "group":      ["74168"]
-,   "contacts":   ["tidoust"]
-,   "shortName":  "remote-playback"
+{
+  "group": [
+    "74168"
+  ],
+  "contacts": [
+    "tidoust"
+  ],
+  "shortName": "remote-playback",
+  "repo-type": "rec-track"
 }
