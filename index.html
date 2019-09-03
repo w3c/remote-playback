@@ -534,6 +534,9 @@
             attribute EventHandler onconnect;
             attribute EventHandler ondisconnect;
 
+            readonly attribute RemotingBufferState remotingBufferState;
+            attribute EventHandler onremotingbufferstatechanged;
+
             Promise&lt;void&gt; prompt();
           };
 
@@ -541,6 +544,13 @@
             "connecting",
             "connected",
             "disconnected"
+          };
+
+          enum RemotingBufferState {
+            "insufficient-data",
+            "enough-data",
+            "too-much-data",
+            "not-remoting"
           };
 
           callback RemotePlaybackAvailabilityCallback = void(boolean available);
@@ -553,6 +563,10 @@
         <p>
           A <dfn>RemotePlaybackState</dfn> enumeration represents the state of
           connection to some <a>remote playback device</a>.
+        </p>
+        <p>
+          A <dfn>RemotingBufferState</dfn> enumeration represents the buffer
+          state of the remote media in <a>media remoting</a> mode.
         </p>
         <p>
           A <dfn>RemotePlaybackAvailabilityCallback</dfn> represents the
@@ -1136,6 +1150,40 @@
         </section>
         <section>
           <h4>
+            The <code><a data-link-for="RemotePlayback">remotingBufferState</a>
+            </code> attribute
+          </h4>
+          <p>
+            The <dfn data-dfn-for="RemotePlayback"><code>remotingBufferState
+            </code></dfn> attribute represents the buffer state of the remote
+            media in <a>media remoting</a> mode. It can take one of the values
+            of <a>RemotingBufferState</a> depending on the connection state:
+          </p>
+          <ul data-dfn-for="RemotingBufferState">
+            <li>
+              <dfn>insufficient-data</dfn> means that the receiving user agent
+              has buffered media for such a short duration that it is likely to
+              need to pause playback to wait for more data soon. The logic to
+              determine this state is up to the user agent implementation.
+            </li>
+            <li>
+              <dfn>enough-data</dfn> means that the receiving user agent has
+              buffered an amount of data that is between insufficient and too
+              much.
+            </li>
+            <li>
+              <dfn>too-much-data</dfn> means that there is more media being sent
+              by the controlling user agent than what can be handled, either by
+              the receiving user agent's buffer, or the network.
+            </li>
+            <li>
+              <dfn>not-remoting</dfn> means that the remote playback is in
+              <a>media flinging</a> mode, or is disconnected or connecting.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4>
             Establishing a connection with a remote playback device
           </h4>
           <p>
@@ -1444,6 +1492,14 @@
                 </td>
                 <td>
                   <dfn><code>disconnect</code></dfn>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <dfn><code>onremotingbufferstatechanged</code></dfn>
+                </td>
+                <td>
+                  <dfn><code>remotingbufferstatechanged</code></dfn>
                 </td>
               </tr>
             </tbody>
