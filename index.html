@@ -280,7 +280,9 @@
           <dfn><a href="https://html.spec.whatwg.org/multipage/media.html#the-track-element">
           <code>track</code></a></dfn>, and
           <dfn><a href="https://html.spec.whatwg.org/multipage/media.html#attr-track-srclang">
-          <code>srclang</code></a></dfn>.
+          <code>srclang</code></a></dfn>,
+          <dfn><a href="https://html.spec.whatwg.org/multipage/media.html#allowed-to-play">
+          allowed to play</a></dfn>.
         </li>
         <li>
           <dfn><a href=
@@ -1283,6 +1285,12 @@
             connecting</a> and then follow the steps to <a>establish a connection
             with the remote playback device</a>.
           </p>
+          <div class="note">
+            A user agent that implements browser initiated remote playback
+            should consider how it interacts with other browser policies that
+            affect media playback, such as which media elements are <a>allowed
+            to play</a> and background media playback optimizations.
+          </div>
         </section>
         <section>
           <h4>
