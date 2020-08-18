@@ -423,7 +423,7 @@
           [Exposed=Window]
           interface RemotePlayback : EventTarget {
             Promise&lt;long&gt; watchAvailability(RemotePlaybackAvailabilityCallback callback);
-            Promise&lt;void&gt; cancelWatchAvailability(optional long id);
+            Promise&lt;undefined&gt; cancelWatchAvailability(optional long id);
 
             readonly attribute RemotePlaybackState state;
 
@@ -431,7 +431,7 @@
             attribute EventHandler onconnect;
             attribute EventHandler ondisconnect;
 
-            Promise&lt;void&gt; prompt();
+            Promise&lt;undefined&gt; prompt();
           };
 
           enum RemotePlaybackState {
@@ -440,7 +440,7 @@
             "disconnected"
           };
 
-          callback RemotePlaybackAvailabilityCallback = void(boolean available);
+          callback RemotePlaybackAvailabilityCallback = undefined(boolean available);
         </pre>
         <p>
           A <dfn>RemotePlayback</dfn> object is an interface allowing the page
