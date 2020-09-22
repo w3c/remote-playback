@@ -276,15 +276,15 @@
 &lt;button id="deviceBtn" style="display: none;"&gt;Pick device&lt;/button&gt;
 &lt;script&gt;
   // The "Pick device" button is visible if at least one remote playback device is available.
-  var deviceBtn = document.getElementById("deviceBtn");
-  var videoElem = document.getElementById("videoElement");
+  const deviceBtn = document.getElementById("deviceBtn");
+  const videoElem = document.getElementById("videoElement");
 
   function availabilityCallback(available) {
     // Show or hide the device picker button depending on device availability.
     deviceBtn.style.display = available ? "inline" : "none";
   }
 
-  videoElem.remote.watchAvailability(availabilityCallback).catch(function() {
+  videoElem.remote.watchAvailability(availabilityCallback).catch(() => {
     // Availability monitoring is not supported by the platform, so discovery of
     // remote playback devices will happen only after remote.prompt() is called.
     // Pretend the devices are available for simplicity; or, one could implement
@@ -301,7 +301,7 @@
         <pre class="example">
 &lt;!-- player.html --&gt;
 &lt;script&gt;
-  devicesBtn.onclick = function() {
+  devicesBtn.onclick = () => {
     // Request the user to select a remote playback device.
     videoElem.remote.prompt()
       // Update the UI and monitor the connected state.
@@ -370,7 +370,6 @@
           system level, the playback is considered to happen on a <a>local
           playback device</a> for the purpose of this spec.
         </div>
-        <p></p>
         <p>
           A <dfn data-lt="remote playback devices">remote playback device</dfn>
           is any other device but the <a>local playback device</a> that the
@@ -389,7 +388,6 @@
           button reflecting that state on the default controls of the media
           element would be a part of <a>media element state</a>.
         </div>
-        <p></p>
         <p>
           A <dfn>local playback state</dfn> is the user agent implementation of
           <a>media element state</a> for the particular <a>media element</a>
