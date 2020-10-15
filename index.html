@@ -586,9 +586,10 @@
                 playback source</a>.
             </p>
             <p class="note">
-              The user agent may send metadata about all resources in
-              the <a>availability sources set</a> to the <a>remote playback
-              device</a> so it can run its own
+              The user agent may send metadata (for example,
+              the <a data-cite="HTML#attr-source-type">extended MIME type</a>)
+              about all resources in the <a>availability sources set</a> to
+              the <a>remote playback device</a> so it can run its own
               <a data-cite="HTML#concept-media-load-algorithm">resource
               selection algorithm</a> and choose the <a>remote playback
               source</a>.
@@ -1136,8 +1137,8 @@
           <div class="note">
             The mechanisms that are used to connect the user agent with the
             <a>remote playback device</a>, select the <a>remote playback
-            source</a> and initiate playback are implementation choices of the
-            user agent. The connection will likely have to provide a two-way
+            source</a>, and initiate playback are all implementation choices of
+            the user agent. The connection will likely have to provide a two-way
             messaging abstraction capable of carrying media commands to the
             remote playback device and receiving media playback state in order
             to keep the <a>media element state</a> and <a>remote playback
@@ -1146,13 +1147,12 @@
           <div class="note">
             The user agent is encouraged to pass locale and text direction
             information to the <a>remote playback device</a> when possible, so
-            that the <a>remote playback device</a> can adjust its user
-            interface and operational functions to locale-specific attributes
-            that reflect the user's preferences. For example, the <a>remote
-            playback device</a> can use that information to choose the same
-            default text track as the user agent, as well as to set the HTTP
-            `Accept-Language` header it sends to fetch media
-            resources.
+            that the <a>remote playback device</a> can adjust its user interface
+            and operational functions to locale-specific attributes that reflect
+            the user's preferences. For example, the <a>remote playback
+            device</a> can use that information to choose the same default text
+            track as the user agent, as well as to set the HTTP
+            `Accept-Language` header it sends to fetch media resources.
           </div>
           <div class="note">
             The user agent should not render output from the media element while
