@@ -583,10 +583,23 @@
               the <a>availability sources set</a> is implementation-specific,
               but the user agent SHOULD consider every resource in
               the <a>availability sources set</a> as a potential <a>remote
-                playback source</a>.
+              playback source</a>.
             </p>
-            <p class="note">
-              The user agent may send metadata (for example,
+            <div class="note">
+              The algorithm to select the <a>remote playback source</a> for a
+              selected device depends on the user agent and supported <a>remote
+              playback device</a> types. For example, in case of <a>media
+              mirroring</a> the user agent can simply follow the
+              {{HTMLMediaElement}}'s <a data-cite="HTML#concept-media-load-algorithm">
+              resource selection algorithm</a>.  However, if <a>media
+              remoting</a> or <a>media flinging</a> is used, the best media
+              source can depend on the selected <a>remote playback device</a>
+              fetch and playback capabilities.
+            </div>
+            <p>
+              If the user agent cannot determine a <a>remote playback source</a>
+              appropriate for the <a>remote playback device</a>, it is
+              RECOMMENDED that the user agent send metadata (for example,
               the <a data-cite="HTML#attr-source-type">extended MIME type</a>)
               about all resources in the <a>availability sources set</a> to
               the <a>remote playback device</a> so it can run its own
@@ -1012,17 +1025,6 @@
             information for that name. The user agent is encouraged to render
             this user friendly name, using its locale and text direction when
             they are known.
-          </div>
-          <div class="note">
-            The algorithm to select the <a>remote playback source</a> for a
-            selected device depends on the user agent and supported <a>remote
-            playback device</a> types. For example, in case of <a>media
-            mirroring</a> the user agent can simply follow the
-            {{HTMLMediaElement}}'s <a data-cite="HTML#concept-media-load-algorithm">
-            resource selection algorithm</a>.
-            However, if <a>media remoting</a> or <a>media flinging</a> is used,
-            the best media source can depend on the selected <a>remote playback
-            device</a> fetch and playback capabilities.
           </div>
         </section>
         <section data-link-for="RemotePlayback">
