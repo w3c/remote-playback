@@ -571,30 +571,47 @@
               <dfn>availability sources set</dfn>.
             </p>
             <p>
-              The <a data-cite="HTML#media-resource">media resource</a>
-              of a <a>media element</a>, that is used to
-              <a>initiate remote playback</a> on the selected <a>remote
-              playback device</a> is called <dfn>remote playback source</dfn>.
-              Remote playback source MUST belong to <a>availability sources
+              The <a data-cite="HTML#media-resource">media resource</a> of
+              a <a>media element</a> that is used to <a>initiate remote
+              playback</a> on the selected <a>remote playback device</a> is
+              called the <dfn>remote playback source</dfn>.  A remote playback
+              source MUST belong to the media element's <a>availability sources
               set</a>.
             </p>
             <p>
-              The mechanism of picking the <a>availability sources set</a> and
-              the <a>remote playback source</a> is implementation-specific. For
-              example, the user agent MUST either use the
-              {{HTMLMediaElement/currentSrc}} of the <a>media element</a>
-              for both availability monitoring and remote playback or use all the
-              <a data-cite="HTML#media-resource">media resources</a>
-              associated with the <a>media element</a> as the
-              <a>availability sources set</a> and pick one of the resources as
-              the <a>remote playback source</a> after user selects the
-              <a>remote playback device</a>.
+              The mechanism to choose the <a>remote playback source</a> from
+              the <a>availability sources set</a> is implementation-specific,
+              but the user agent SHOULD consider every resource in
+              the <a>availability sources set</a> as a potential <a>remote
+              playback source</a>.
+            </p>
+            <div class="note">
+              The algorithm to select the <a>remote playback source</a> for a
+              selected device depends on the user agent and supported <a>remote
+              playback device</a> types. For example, in case of <a>media
+              mirroring</a> the user agent can simply follow the
+              {{HTMLMediaElement}}'s <a data-cite="HTML#concept-media-load-algorithm">
+              resource selection algorithm</a>.  However, if <a>media
+              remoting</a> or <a>media flinging</a> is used, the best media
+              source can depend on the selected <a>remote playback device</a>
+              fetch and playback capabilities.
+            </div>
+            <p>
+              If the user agent cannot determine a <a>remote playback source</a>
+              appropriate for the <a>remote playback device</a>, it is
+              RECOMMENDED that the user agent send metadata (for example,
+              the <a data-cite="HTML#attr-source-type">extended MIME type</a>)
+              about all resources in the <a>availability sources set</a> to
+              the <a>remote playback device</a> so it can run its own
+              <a data-cite="HTML#concept-media-load-algorithm">resource
+              selection algorithm</a> and choose the <a>remote playback
+              source</a>.
             </p>
             <p>
               Remote playback is said to be <dfn>unavailable</dfn> for the
               <a>media element</a> if the <a>list of available remote playback
-              devices</a> is empty or none of them is compatible with any
-              source from <a>availability sources set</a> for the <a>media
+              devices</a> is empty or none of them is compatible with any source
+              from <a>availability sources set</a> for the <a>media
               element</a>. The remote playback is said to be
               <dfn>available</dfn> otherwise. A `boolean` set to
               `false` if the remote playback is <a>unavailable</a>
@@ -1009,17 +1026,6 @@
             this user friendly name, using its locale and text direction when
             they are known.
           </div>
-          <div class="note">
-            The algorithm to select the <a>remote playback source</a> for a
-            selected device depends on the user agent and supported <a>remote
-            playback device</a> types. For example, in case of <a>media
-            mirroring</a> the user agent can simply follow the
-            {{HTMLMediaElement}}'s <a data-cite="HTML#concept-media-load-algorithm">
-            resource selection algorithm</a>.
-            However, if <a>media remoting</a> or <a>media flinging</a> is used,
-            the best media source can depend on the selected <a>remote playback
-            device</a> fetch and playback capabilities.
-          </div>
         </section>
         <section data-link-for="RemotePlayback">
           <h4>
@@ -1131,25 +1137,24 @@
             "RemotePlaybackState">connected</a> through an icon or other means.
           </p>
           <div class="note">
-            The mechanism that is used to connect the user agent with the
-            <a>remote playback device</a> and play the <a>remote playback
-            source</a> is an implementation choice of the user agent. The
-            connection will likely have to provide a two-way messaging
-            abstraction capable of carrying media commands to the remote
-            playback device and receiving media playback state in order to keep
-            the <a>media element state</a> and <a>remote playback state</a> in
-            sync (unless <a>media mirroring</a> is used).
+            The mechanisms that are used to connect the user agent with the
+            <a>remote playback device</a>, select the <a>remote playback
+            source</a>, and initiate playback are all implementation choices of
+            the user agent. The connection will likely have to provide a two-way
+            messaging abstraction capable of carrying media commands to the
+            remote playback device and receiving media playback state in order
+            to keep the <a>media element state</a> and <a>remote playback
+            state</a> in sync (unless <a>media mirroring</a> is used).
           </div>
           <div class="note">
             The user agent is encouraged to pass locale and text direction
             information to the <a>remote playback device</a> when possible, so
-            that the <a>remote playback device</a> can adjust its user
-            interface and operational functions to locale-specific attributes
-            that reflect the user's preferences. For example, the <a>remote
-            playback device</a> can use that information to choose the same
-            default text track as the user agent, as well as to set the HTTP
-            `Accept-Language` header it sends to fetch media
-            resources.
+            that the <a>remote playback device</a> can adjust its user interface
+            and operational functions to locale-specific attributes that reflect
+            the user's preferences. For example, the <a>remote playback
+            device</a> can use that information to choose the same default text
+            track as the user agent, as well as to set the HTTP
+            `Accept-Language` header it sends to fetch media resources.
           </div>
           <div class="note">
             The user agent should not render output from the media element while
