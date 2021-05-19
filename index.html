@@ -917,8 +917,8 @@
               </div>
             </li>
             <li>
-              If the algorithm isn't <a data-cite="HTML#allowed-to-show-a-popup">
-              allowed to show a popup</a>, reject |promise| with an
+              If the document's [=browsing context/active window=] does not have
+              [=transient activation=], reject |promise| with an
               {{InvalidAccessError}} exception and abort these steps.
             </li>
             <li>
