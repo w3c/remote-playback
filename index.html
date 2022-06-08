@@ -957,8 +957,8 @@
                   Fulfill |promise|.
                 </li>
                 <li>
-                  <a>Queue a task</a> to <a>fire an event</a> with the
-                  name <a>connecting</a> at the <a data-lt=
+                  <a>Queue a task</a> to <a>fire an event</a> named
+                  <a>connecting</a> at the <a data-lt=
                   "RemotePlayback">remote</a> property of the <a>media
                   element</a>. The event must not bubble, must not be
                   cancelable, and has no default action.
@@ -1097,7 +1097,7 @@
                   <a data-link-for="RemotePlaybackState">disconnected</a>.
                 </li>
                 <li>
-                  <a>Fire an event</a> named <a>disconnect</a> at |remote|.
+                  <a>Fire an event</a> named {{RemotePlayback/disconnect}} at |remote|.
                 </li>
               </ol>
             </li>
@@ -1283,7 +1283,7 @@
                   Change the |remote|'s `state` to `disconnected`.
                 </li>
                 <li>
-                  <a>Fire an event</a> with the name <a>disconnect</a> at |remote|.
+                  <a>Fire an event</a> named {{RemotePlayback/disconnect}} at |remote|.
                 </li>
                 <li>
                   Synchronize the current <a>media element state</a> with the
@@ -1300,7 +1300,7 @@
             available remote playback devices</a> before the steps to
             <a>disconnect from a remote playback device</a>.  This allows
             callbacks in the <a>set of availability callbacks</a> to be invoked
-            before the <a>disconnect</a> event is fired, so the page can update
+            before the {{RemotePlayback/disconnect}} event is fired, so the page can update
             itself to show resumption of playback is not possible.
           </p>
           <div class="note">
@@ -1339,7 +1339,7 @@
                   <dfn>`onconnecting`</dfn>
                 </td>
                 <td>
-                  <dfn>`connecting`</dfn>
+                  <dfn data-dfn-type="event">`connecting`</dfn>
                 </td>
               </tr>
               <tr>
@@ -1347,7 +1347,7 @@
                   <dfn>`onconnect`</dfn>
                 </td>
                 <td>
-                  <dfn>`connect`</dfn>
+                  <dfn data-dfn-type="event">`connect`</dfn>
                 </td>
               </tr>
               <tr>
@@ -1355,7 +1355,7 @@
                   <dfn>`ondisconnect`</dfn>
                 </td>
                 <td>
-                  <dfn>`disconnect`</dfn>
+                  <dfn data-dfn-type="event">`disconnect`</dfn>
                 </td>
               </tr>
             </tbody>
