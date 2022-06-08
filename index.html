@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en-US"><head>
 <meta charset="UTF-8">
-<meta name="generator" content="ReSpec 32.1.4">
+<meta name="generator" content="ReSpec 32.1.8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 span.example-title{text-transform:none}
@@ -53,7 +53,7 @@ a.idlEnumItem{color:#000;border-bottom:1px dotted #ccc;text-decoration:none}
 </style>
 <style>
 dfn{cursor:pointer}
-.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font:small Helvetica Neue,sans-serif,Droid Sans Fallback;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
+.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
 .dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
 .dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;top:0}
 .dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1}
@@ -235,15 +235,15 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "github": "https://github.com/w3c/remote-playback",
   "crEnd": "2017-11-30",
   "implementationReportURI": "https://www.w3.org/wiki/Second_Screen/Implementation_Status#Remote_Playback_API",
-  "publishISODate": "2022-04-22T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 22 April 2022"
+  "publishISODate": "2022-06-08T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 08 June 2022"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
   <body data-cite="WEBIDL HTML DOM URL SECURE-CONTEXTS" class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">Remote Playback API</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-04-22">22 April 2022</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-06-08">08 June 2022</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -1274,8 +1274,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
                   Fulfill <var data-type="Promise">promise</var>.
                 </li>
                 <li>
-                  <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">fire an event</a> with the
-                  name <a href="#dfn-connecting" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-connecting-1"><code>connecting</code></a> at the <a data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-8">remote</a> property of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media
+                  <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">fire an event</a> named
+                  <a href="#dfn-connecting" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-connecting-1"><code>connecting</code></a> at the <a data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-8">remote</a> property of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media
                   element</a>. The event must not bubble, must not be
                   cancelable, and has no default action.
                 </li>
@@ -1413,7 +1413,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
                   <a href="#dom-remoteplaybackstate-disconnected" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackstate-disconnected-2"><code>disconnected</code></a>.
                 </li>
                 <li>
-                  <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named <a href="#dfn-disconnect" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-disconnect-1"><code>disconnect</code></a> at <var data-type="RemotePlayback">remote</var>.
+                  <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named <a data-link-type="idl" href="#dfn-disconnect" class="internalDFN" id="ref-for-dfn-disconnect-1"><code><code>disconnect</code></code></a> at <var data-type="RemotePlayback">remote</var>.
                 </li>
               </ol>
             </li>
@@ -1596,7 +1596,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
                   Change the <var data-type="RemotePlayback">remote</var>'s <code>state</code> to <code>disconnected</code>.
                 </li>
                 <li>
-                  <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> with the name <a href="#dfn-disconnect" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-disconnect-2"><code>disconnect</code></a> at <var data-type="RemotePlayback">remote</var>.
+                  <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named <a data-link-type="idl" href="#dfn-disconnect" class="internalDFN" id="ref-for-dfn-disconnect-2"><code><code>disconnect</code></code></a> at <var data-type="RemotePlayback">remote</var>.
                 </li>
                 <li>
                   Synchronize the current <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-media-element-state-11">media element state</a> with the
@@ -1613,7 +1613,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             available remote playback devices</a> before the steps to
             <a href="#dfn-disconnect-from-a-remote-playback-device" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-disconnect-from-a-remote-playback-device-5">disconnect from a remote playback device</a>.  This allows
             callbacks in the <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-set-of-availability-callbacks-12">set of availability callbacks</a> to be invoked
-            before the <a href="#dfn-disconnect" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-disconnect-3"><code>disconnect</code></a> event is fired, so the page can update
+            before the <a data-link-type="idl" href="#dfn-disconnect" class="internalDFN" id="ref-for-dfn-disconnect-3"><code><code>disconnect</code></code></a> event is fired, so the page can update
             itself to show resumption of playback is not possible.
           </p>
           <div class="note" role="note" id="issue-container-generatedID-18"><div role="heading" class="note-title marker" id="h-note-18" aria-level="5"><span>Note</span></div><div class="">
@@ -1652,7 +1652,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
                   <dfn data-export="" data-dfn-type="attribute" id="dom-remoteplayback-onconnecting" data-idl="attribute" data-title="onconnecting" data-dfn-for="RemotePlayback" data-type="EventHandler" data-lt="onconnecting" data-local-lt="RemotePlayback.onconnecting" tabindex="0" aria-haspopup="dialog"><code>onconnecting</code></dfn>
                 </td>
                 <td>
-                  <dfn id="dfn-connecting" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn"><code>connecting</code></dfn>
+                  <dfn data-dfn-type="event" id="dfn-connecting" tabindex="0" aria-haspopup="dialog" data-export=""><code>connecting</code></dfn>
                 </td>
               </tr>
               <tr>
@@ -1660,7 +1660,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
                   <dfn data-export="" data-dfn-type="attribute" id="dom-remoteplayback-onconnect" data-idl="attribute" data-title="onconnect" data-dfn-for="RemotePlayback" data-type="EventHandler" data-lt="onconnect" data-local-lt="RemotePlayback.onconnect" tabindex="0" aria-haspopup="dialog"><code>onconnect</code></dfn>
                 </td>
                 <td>
-                  <dfn id="dfn-connect" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn"><code>connect</code></dfn>
+                  <dfn data-dfn-type="event" id="dfn-connect" tabindex="0" aria-haspopup="dialog" data-export=""><code>connect</code></dfn>
                 </td>
               </tr>
               <tr>
@@ -1668,7 +1668,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
                   <dfn data-export="" data-dfn-type="attribute" id="dom-remoteplayback-ondisconnect" data-idl="attribute" data-title="ondisconnect" data-dfn-for="RemotePlayback" data-type="EventHandler" data-lt="ondisconnect" data-local-lt="RemotePlayback.ondisconnect" tabindex="0" aria-haspopup="dialog"><code>ondisconnect</code></dfn>
                 </td>
                 <td>
-                  <dfn id="dfn-disconnect" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn"><code>disconnect</code></dfn>
+                  <dfn data-dfn-type="event" id="dfn-disconnect" tabindex="0" aria-haspopup="dialog" data-export=""><code>disconnect</code></dfn>
                 </td>
               </tr>
             </tbody>
@@ -1909,7 +1909,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
     </dd><dt id="bib-html">[HTML]</dt><dd>
       <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Ian Hickson; Philip Jägenstedt; Simon Pieters.  WHATWG. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
     </dd><dt id="bib-presentation-api">[PRESENTATION-API]</dt><dd>
-      <a href="https://www.w3.org/TR/presentation-api/"><cite>Presentation API</cite></a>. Mark Foltz; Dominik Röttsches.  W3C. 5 November 2020. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/presentation-api/">https://www.w3.org/TR/presentation-api/</a>
+      <a href="https://www.w3.org/TR/presentation-api/"><cite>Presentation API</cite></a>. Mark Foltz; Dominik Röttsches.  W3C. 2 June 2022. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/presentation-api/">https://www.w3.org/TR/presentation-api/</a>
     </dd><dt id="bib-rfc2119">[RFC2119]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>
     </dd><dt id="bib-rfc8174">[RFC8174]</dt><dd>
