@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en-US"><head>
 <meta charset="UTF-8">
-<meta name="generator" content="ReSpec 32.1.8">
+<meta name="generator" content="ReSpec 32.2.3">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 span.example-title{text-transform:none}
@@ -17,6 +17,7 @@ aside.example div.example{border-left-width:.1em;border-color:#999;background:#f
 .warning{padding:.5em;border-left-width:.5em;border-left-style:solid}
 span.warning{padding:.1em .5em .15em}
 .issue.closed span.issue-number{text-decoration:line-through}
+.issue.closed span.issue-number::after{content:" (Closed)";font-size:smaller}
 .warning{border-color:#f11;border-width:.2em;border-style:solid;background:#fbe9e9}
 .warning-title:before{content:"⚠";font-size:1.3em;float:left;padding-right:.3em;margin-top:-.3em}
 li.task-list-item{list-style:none}
@@ -126,8 +127,6 @@ a.bibref{text-decoration:none}
 }
 #references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
 cite .bibref{font-style:normal}
-code{color:#c63501}
-th code{color:inherit}
 a[href].orcid{padding-left:4px;padding-right:4px}
 a[href].orcid>svg{margin-bottom:-2px}
 .toc a,.tof a{text-decoration:none}
@@ -197,17 +196,17 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "shortName": "remote-playback",
   "editors": [
     {
-      "w3cid": 45389,
-      "name": "Mounir Lamouri",
-      "company": "Google"
-    },
-    {
       "w3cid": 68454,
       "name": "Mark Foltz",
       "company": "Google"
     }
   ],
   "formerEditors": [
+    {
+      "w3cid": 45389,
+      "name": "Mounir Lamouri",
+      "company": "Google"
+    },
     {
       "w3cid": 68811,
       "name": "Anton Vayvod",
@@ -235,15 +234,15 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "github": "https://github.com/w3c/remote-playback",
   "crEnd": "2017-11-30",
   "implementationReportURI": "https://www.w3.org/wiki/Second_Screen/Implementation_Status#Remote_Playback_API",
-  "publishISODate": "2022-06-08T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 08 June 2022"
+  "publishISODate": "2022-09-05T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 05 September 2022"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
   <body data-cite="WEBIDL HTML DOM URL SECURE-CONTEXTS" class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">Remote Playback API</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-06-08">08 June 2022</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-09-05">05 September 2022</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -266,14 +265,14 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         
         
         
-        <dt>Editors:</dt><dd class="editor p-author h-card vcard" data-editor-id="45389">
-    <span class="p-name fn">Mounir Lamouri</span> (<span class="p-org org h-org">Google</span>)
-  </dd><dd class="editor p-author h-card vcard" data-editor-id="68454">
+        <dt>Editor:</dt><dd class="editor p-author h-card vcard" data-editor-id="68454">
     <span class="p-name fn">Mark Foltz</span> (<span class="p-org org h-org">Google</span>)
   </dd>
         <dt>
-                Former editor:
-              </dt><dd class="editor p-author h-card vcard" data-editor-id="68811">
+                Former editors:
+              </dt><dd class="editor p-author h-card vcard" data-editor-id="45389">
+    <span class="p-name fn">Mounir Lamouri</span> (<span class="p-org org h-org">Google</span>)
+  </dd><dd class="editor p-author h-card vcard" data-editor-id="68811">
     <span class="p-name fn">Anton Vayvod</span> (<span class="p-org org h-org">Google</span>)
   </dd>
         
