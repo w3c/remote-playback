@@ -13,6 +13,7 @@
         specStatus: 'ED',
         edDraftURI: 'https://w3c.github.io/remote-playback/',
         shortName:  'remote-playback',
+        group: 'secondscreen',
         editors: [
           {
             w3cid: 45389,
@@ -171,7 +172,7 @@
     <section id='conformance'>
       <p>
         This specification defines conformance criteria that apply to a single
-        product: the <dfn>user agent</dfn> that implements the interfaces that
+        product: the user agent that implements the interfaces that
         it contains.
       </p>
       <p>
@@ -213,7 +214,7 @@
         playback device</a>. In such a case, both the <a>browsing context</a>
         and the media player run on the same UA and the operating system is
         used to route the player output to the <a>remote playback device</a>.
-        This is commonly referred to as the <dfn><b id="media-mirroring">media
+        This is commonly referred to as the <dfn><b>media
         mirroring</b></dfn> case. This specification imposes no requirements on
         the <a>remote playback devices</a> connected in such a manner.
       </p>
@@ -222,7 +223,7 @@
         communicate with the <a>browsing context</a> but is unable to fetch the
         media, the <a>browsing context</a> needs to fetch the media data and
         pass it on to the <a>remote playback device</a> for rendering. This is
-        commonly referred to as <dfn><b id="media-remoting">media
+        commonly referred to as <dfn><b>media
         remoting</b></dfn> case.
       </p>
       <p>
@@ -231,8 +232,7 @@
         context</a> does not need to fetch or render the remoted media. In this
         case, the UA acts as a proxy that requests the <a>remote playback
         device</a> to play the media itself by passing the necessary data like
-        the media source. This is commonly referred to as the <dfn><b id=
-        "media-flinging">media flinging</b></dfn> case. This way of attaching
+        the media source. This is commonly referred to as the <dfn><b>media flinging</b></dfn> case. This way of attaching
         to displays could be enhanced in the future by defining a standard
         protocol for delivering these types of messages that remote playback
         devices could choose to implement.
@@ -366,7 +366,7 @@
         <div class="note">
           A <a>local playback device</a> might have extra outputs, like an
           external display or speakers/headphones. As long as the switch of
-          what output to use happens outside of the <a>user agent</a> on the
+          what output to use happens outside of the user agent on the
           system level, the playback is considered to happen on a <a>local
           playback device</a> for the purpose of this spec.
         </div>
@@ -380,7 +380,7 @@
           A <dfn>media element state</dfn> is the set of all single
           <dfn data-cite="HTML#media-element">media element</dfn>
           properties observable by the page and/or the user via the
-          <a>user agent</a> implementation. The new properties introduced by
+          user agent implementation. The new properties introduced by
           this spec are not considered part of the <a>media element state</a>
           for convenience.
         </p>
@@ -423,7 +423,7 @@
           [Exposed=Window]
           interface RemotePlayback : EventTarget {
             Promise&lt;long&gt; watchAvailability(RemotePlaybackAvailabilityCallback callback);
-            Promise&lt;void&gt; cancelWatchAvailability(optional long id);
+            Promise&lt;undefined&gt; cancelWatchAvailability(optional long id);
 
             readonly attribute RemotePlaybackState state;
 
@@ -431,7 +431,7 @@
             attribute EventHandler onconnect;
             attribute EventHandler ondisconnect;
 
-            Promise&lt;void&gt; prompt();
+            Promise&lt;undefined&gt; prompt();
           };
 
           enum RemotePlaybackState {
@@ -440,20 +440,19 @@
             "disconnected"
           };
 
-          callback RemotePlaybackAvailabilityCallback = void(boolean available);
+          callback RemotePlaybackAvailabilityCallback = undefined(boolean available);
         </pre>
         <p>
-          A <dfn>RemotePlayback</dfn> object is an interface allowing the page
-          to detect availability of, connect to and control playback on
-          <a>remote playback devices</a>.
+          A <a>RemotePlayback</a> object allows the page to detect availability
+          of, connect to and control playback on <a>remote playback devices</a>.
         </p>
         <p>
-          A <dfn>RemotePlaybackState</dfn> enumeration represents the state of
-          connection to some <a>remote playback device</a>.
+          The <a>RemotePlaybackState</a> enum represents possible connection
+          states to a <a>remote playback device</a>.
         </p>
         <p>
-          A <dfn>RemotePlaybackAvailabilityCallback</dfn> represents the
-          <a>remote playback device availability</a> information.
+          The <a>RemotePlaybackAvailabilityCallback</a> returns the current 
+          <a>remote playback device availability</a>.
         </p>
         <section data-link-for="RemotePlayback">
           <h4>
@@ -475,7 +474,7 @@
               The set of availability callbacks
             </h5>
             <p>
-              The <a>user agent</a> MUST keep track of the <dfn>set of
+              The user agent MUST keep track of the <dfn>set of
               availability callbacks</dfn> registered with each <a>media
               element</a> through the <code><a>watchAvailability</a>()</code> method. The
               <a>set of availability callbacks</a> for each
@@ -515,7 +514,7 @@
               The list of available remote playback devices
             </h5>
             <p>
-              The <a>user agent</a> MUST keep a <dfn>list of available remote
+              The user agent MUST keep a <dfn>list of available remote
               playback devices</dfn>. This list contains <a>remote playback
               devices</a> and is populated based on an implementation specific
               discovery mechanism. It is set to the most recent result of the
@@ -524,7 +523,7 @@
               yet.
             </p>
             <p>
-              The <a>user agent</a> MAY not support running the algorithm to
+              The user agent MAY not support running the algorithm to
               <a>monitor the list of available remote playback devices</a>
               continuously, for example, because of platform or power
               consumption restrictions. In this case the promise returned by
@@ -536,7 +535,7 @@
             </p>
             <p>
               When the <a>global set of availability callbacks</a> is not
-              empty, the <a>user agent</a> MUST <a>monitor the list of
+              empty, the user agent MUST <a>monitor the list of
               available remote playback devices</a> continuously, so that pages
               can keep track of the last value received via the registered
               callbacks to offer remote playback only when there are available
@@ -547,7 +546,7 @@
               remote playback devices</a> when possible, to satisfy the <a href=
               "https://github.com/w3c/remote-playback/blob/gh-pages/use-cases.md#power-saving-friendly">
               power saving non-functional requirement</a>. For example, the
-              <a>user agent</a> might choose not to run the monitoring
+              user agent might choose not to run the monitoring
               algorithm when the <a>global set of availability callbacks</a> is
               empty, when every page that has <a>media elements</a> with non-empty
               <a>set of availability callbacks</a> is in the background.
@@ -560,12 +559,12 @@
               rendering only certain formats of video and/or audio. We say that
               such a device is a <dfn>compatible remote playback device</dfn>
               for a <a data-cite="HTML#media-resource">media resource</a>
-              if the <a>user agent</a> can reasonably guarantee that the
+              if the user agent can reasonably guarantee that the
               remote playback of the media specified by the resource will
               succeed on that device.
             </p>
             <p class="note">
-              The <a>user agent</a> can use the <code>{{HTMLTrackElement/srclang}}</code>
+              The user agent can use the <code>{{HTMLTrackElement/srclang}}</code>
               attribute of the <code>[^track^]</code> element as a hint of
               the language of the text track data to help identify a
               <a>compatible remote playback device</a>.
@@ -597,12 +596,12 @@
               <a>remote playback device</a>.
             </p>
             <p>
-              Remote playback is said to be <dfn>unavailable</dfn> for the
+              Remote playback is <dfn>unavailable</dfn> for the
               <a>media element</a> if the <a>list of available remote playback
-              devices</a> is empty or none of them is compatible with any
-              source from <a>availability sources set</a> for the <a>media
-              element</a>. The remote playback is said to be
-              <dfn>available</dfn> otherwise. A <code>boolean</code> set to
+              devices</a> is empty or none of them is compatible with any source
+              from <a>availability sources set</a> for the <a>media
+              element</a>. Otherwise, remote playback is
+              <dfn>available</dfn>. A <code>boolean</code> set to
               <code>false</code> if the remote playback is <a>unavailable</a>
               for the <a>media element</a> or <code>true</code> if it is
               <a>available</a> is called <dfn>availability</dfn> for the
@@ -629,7 +628,7 @@
               information
             </h5>
             <p>
-              When the <code><dfn>watchAvailability</dfn>()</code> method is
+              When the {{RemotePlayback/watchAvailability()}} method is
               called, the user agent MUST run the following steps:
             </p>
             <dl>
@@ -701,7 +700,7 @@
                     the current <a>availability</a> for the <a>media
                     element</a>.
                   </li>
-                  <li>If the <a>user agent</a> is not <a data-lt=
+                  <li>If the user agent is not <a data-lt=
                   "monitor the list of available remote playback devices">monitoring
                   the list of available remote playback devices</a>, run the
                   algorithm to <a>monitor the list of available remote playback
@@ -729,7 +728,7 @@
             <p>
               If the <a>set of availability callbacks</a> is non-empty, or
               there is a pending request to <a data-lt="prompt">
-              initiate remote playback</a>, the <a>user agent</a>
+              initiate remote playback</a>, the user agent
               MUST <dfn>monitor the list of available remote playback
               devices</dfn> by running the following steps:
             </p>
@@ -776,7 +775,7 @@
             <p>
               When a <code><dfn data-dfn-for=
               "RemotePlayback">cancelWatchAvailability</dfn>()</code> method is
-              called, the <a>user agent</a> MUST run the following steps:
+              called, the user agent MUST run the following steps:
             </p>
             <dl>
               <dt>
@@ -836,7 +835,7 @@
           <p>
             When the <code><dfn data-dfn-for=
             "RemotePlayback">prompt</dfn>()</code> method is called, the
-            <a>user agent</a> MUST run the following steps:
+            user agent MUST run the following steps:
           </p>
           <dl>
             <dt>
@@ -881,7 +880,7 @@
             allowed to show a popup</a>, reject <var>promise</var> with an
             {{InvalidAccessError}} exception and abort these steps.
             </li>
-            <li>OPTIONALLY, if the <a>user agent</a> knows a priori that remote
+            <li>OPTIONALLY, if the user agent knows a priori that remote
             playback of this particular <a>media element</a> is not feasible
             (independent of the current <code><a>state</a></code> or
             the <a>list of available remote playback devices</a>),
@@ -894,7 +893,7 @@
                 <a>remote playback device</a>.
               </div>
             </li>
-            <li>If the <a>user agent</a> needs to show the <a>list of available
+            <li>If the user agent needs to show the <a>list of available
             remote playback devices</a> and is not <a data-lt=
             "monitor the list of available remote playback devices">monitoring
             the list of available remote playback devices</a>, run the steps to
@@ -924,7 +923,7 @@
             </li>
             <li>If the user picked a <a>remote playback device</a>
             <var>device</var> to <dfn>initiate remote playback</dfn> with, the
-            <a>user agent</a> MUST run the following steps:
+            user agent MUST run the following steps:
               <ol>
                 <li>Set the <a>state</a> of the
                 <var>remote</var> object to <a data-link-for=
@@ -950,7 +949,7 @@
               </p>
             </li>
             <li>Otherwise, if the user chose to disconnect from the <a>remote
-            playback device</a> <var>device</var>, the <a>user agent</a> MUST
+            playback device</a> <var>device</var>, the user agent MUST
             run the following steps:
               <ol>
                 <li>Fulfill <var>promise</var>.
@@ -963,7 +962,7 @@
             <li>Otherwise, the user is considered to <em>deny permission</em>
             to use the device, so reject <var>promise</var> with
             {{NotAllowedError}} exception and hide the UI shown by the
-            <a>user agent</a>.
+            user agent.
             </li>
           </ol>
           <div class="note">
@@ -1029,7 +1028,7 @@
             Establishing a connection with a remote playback device
           </h4>
           <p>
-            When the <a>user agent</a> is to <dfn>establish a connection with
+            When the user agent is to <dfn>establish a connection with
             the remote playback device</dfn>, it MUST run the following steps:
           </p>
           <dl>
@@ -1051,8 +1050,8 @@
             the remaining steps.
             </li>
             <li>Request connection of <var>remote</var> to <var>device</var>.
-            The implementation of this step is specific to the <a>user
-            agent</a>.
+            The implementation of this step is specific to the user
+            agent.
             </li>
             <li>If connection completes successfully, <a>queue a task</a> to
             run the following steps:
@@ -1066,7 +1065,7 @@
                 </li>
                 <li>Synchronize the current <a>media element state</a> with the
                 <a>remote playback state</a>. The implementation of this step
-                is specific to the <a>user agent</a>.
+                is specific to the user agent.
                 </li>
               </ol>
             </li>
@@ -1136,7 +1135,7 @@
             "HTML#expose-a-user-interface-to-the-user">the user interface that is
             exposed to the user</a>, or when the user activates system-wide
             mirroring of the display.  This feature is known as <dfn>browser
-            initiated remote playback</dfn>. A <a>user agent</a> that supports
+            initiated remote playback</dfn>. A user agent that supports
             <a>browser initiated remote playback</a> SHOULD initiate the remote
             playback only when the user has expressed an intention to do so via
             a user gesture, for example by clicking a button in the browser.
@@ -1185,28 +1184,28 @@
           </p>
           <dl>
             <dd>
-              The <a>user agent</a> MUST send all media commands issued on the
+              The user agent MUST send all media commands issued on the
               associated {{HTMLMediaElement}} object to the <a>remote playback
               device</a> in order to change its <a>remote playback state</a>;
             </dd>
             <dd>
               The <a>remote playback device</a> SHOULD implement all media
-              commands sent by the <a>user agent</a>;
+              commands sent by the user agent;
             </dd>
             <dd>
               The <a>remote playback device</a> SHOULD send updates of
-              the <a>remote playback state</a> to the <a>user agent</a> that
+              the <a>remote playback state</a> to the user agent that
               affect any attribute exposed through the <a>media element
               state</a>;
             <dd>
-              The <a>user agent</a> MUST process all updates of the
+              The user agent MUST process all updates of the
               <a>remote playback state</a> received from the <a>remote playback
               device</a> and update the <a>local playback state</a> of the
               media element accordingly.
             </dd>
           </dl>
           <p>
-            If sending any command fails, the <a>user agent</a> MAY
+            If sending any command fails, the user agent MAY
             <a>disconnect from a remote playback device</a>.
           </p>
           <div class="note">
@@ -1233,7 +1232,7 @@
             Disconnecting from a remote playback device
           </h4>
           <p>
-            When the <a>user agent</a> is to <dfn>disconnect from a remote
+            When the user agent is to <dfn>disconnect from a remote
             playback device</dfn>, it MUST do the following:
           </p>
           <dl>
@@ -1259,7 +1258,7 @@
               <ol>
                 <li>Request disconnection of <var>remote</var> from the
                 <var>device</var>. The implementation of this step is
-                specific to the <a>user agent</a>.
+                specific to the user agent.
                 </li>
                 <li>Change the <var>remote</var>'s <code>state</code> to <code>
                   disconnected</code>.
@@ -1269,7 +1268,7 @@
                 </li>
                 <li>Synchronize the current <a>media element state</a> with the
                 <a>local playback state</a>. The implementation of this step is
-                specific to the <a>user agent</a>.
+                specific to the user agent.
                 </li>
               </ol>
             </li>
@@ -1365,7 +1364,7 @@
             The <dfn><code>disableRemotePlayback</code></dfn> attribute
           </h4>
           <p>
-            Some pages may wish to disable remote playback of a media element;
+            Some pages may wish to <a>disable remote playback</a> of a media element;
             for example, they may prefer to use a <code><a data-cite=
             "PRESENTATION-API#interface-presentationrequest">PresentationRequest</a></code>
             to present a complete document on a presentation screen. To support
@@ -1388,7 +1387,7 @@
           </h4>
           <p>
             If the <a>disableRemotePlayback</a> attribute is present
-            on the <a>media element</a>, the <a>user agent</a> MUST NOT play
+            on the <a>media element</a>, the user agent MUST NOT play
             the media element remotely or present any UI to do so.
           </p>
           <p>
@@ -1438,7 +1437,7 @@
           devices</a>. How the user agent determines the compatibility and
           availability of a <a>remote playback device</a> with a <a>media
           element</a>'s <a data-cite="HTML#media-resource">resource</a>
-          is an implementation detail. If a <a>user agent</a> matches a
+          is an implementation detail. If a user agent matches a
           <a data-cite="HTML#media-resource">media resource</a>
           to a particular type of device to determine its availability,
           this feature can be used to probe information about which
