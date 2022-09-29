@@ -16,6 +16,13 @@
         group: 'secondscreen',
         editors: [
           {
+            w3cid: 68454,
+            name: 'Mark Foltz',
+            company: 'Google',
+          },
+        ],
+        formerEditors: [
+          {
             w3cid: 45389,
             name: 'Mounir Lamouri',
             company: 'Google',
@@ -24,7 +31,6 @@
             w3cid: 68811,
             name: 'Anton Vayvod',
             company: 'Google',
-            note: 'Former Editor',
           },
         ],
         sotdAfterWGinfo: true,
@@ -32,15 +38,6 @@
         // previousMaturity: 'WD',
         // previousPublishDate: '2015-11-02',
         otherLinks: [
-          {
-            key: 'Version history',
-            data: [
-              {
-                value: 'GitHub w3c/remote-playback/commits',
-                href: 'https://github.com/w3c/remote-playback/commits/'
-              }
-            ]
-          },
           {
             key: 'Test suite',
             data: [
@@ -53,33 +50,11 @@
                 href: 'https://w3c-test.org/remote-playback/'
               }
             ]
-          },
-          {
-            key: 'Participate',
-            data: [
-              {
-                value: 'GitHub w3c/remote-playback',
-                href: 'https://github.com/w3c/remote-playback/'
-              },
-              {
-                value: 'File an issue',
-                href: 'https://github.com/w3c/remote-playback/issues/new'
-              },
-              {
-                value: 'Open issues',
-                href: 'https://github.com/w3c/remote-playback/issues/'
-              },
-              {
-                value: 'Mailing-list (public-secondscreen@w3.org)',
-                href: 'https://lists.w3.org/Archives/Public/public-secondscreen/'
-              }
-            ]
           }
         ],
-        wg: 'Second Screen Working Group',
-        wgURI: 'https://www.w3.org/2014/secondscreen/',
-        wgPublicList: 'public-secondscreen',
-        wgPatentURI: 'https://www.w3.org/2004/01/pp-impl/74168/status',
+        group: 'secondscreen',
+        github: 'https://github.com/w3c/remote-playback',
+        crEnd: '2017-11-30',
         implementationReportURI: 'https://www.w3.org/wiki/Second_Screen/Implementation_Status#Remote_Playback_API'
       };
     </script>
@@ -114,9 +89,8 @@
   <body data-cite="HTML DOM URL SECURE-CONTEXTS">
     <section id="abstract">
       <p>
-        This specification defines an API extending the
-        <code>{{HTMLMediaElement}}</code> that enables controlling remote
-        playback of media from a web page.
+        This specification defines an API extending the {{HTMLMediaElement}}
+        that enables controlling remote playback of media from a web page.
       </p>
     </section>
     <section id="sotd">
@@ -260,10 +234,10 @@
       <p>
         This section shows code examples that highlight the usage of the main
         features of the Remote Playback API. In these examples,
-        <code>player.html</code> implements the player page controlling the
-        remote playback and <code>media.ext</code> is the media file to be
+        `player.html` implements the player page controlling the
+        remote playback and `media.ext` is the media file to be
         played remotely. Both the page and the media are served from the domain
-        <code>https://example.org</code>. Please refer to the comments in the
+        `https://example.org`. Please refer to the comments in the
         code examples for further details.
       </p>
       <section>
@@ -277,15 +251,15 @@
 &lt;button id="deviceBtn" style="display: none;"&gt;Pick device&lt;/button&gt;
 &lt;script&gt;
   // The "Pick device" button is visible if at least one remote playback device is available.
-  var deviceBtn = document.getElementById("deviceBtn");
-  var videoElem = document.getElementById("videoElement");
+  const deviceBtn = document.getElementById("deviceBtn");
+  const videoElem = document.getElementById("videoElement");
 
   function availabilityCallback(available) {
     // Show or hide the device picker button depending on device availability.
     deviceBtn.style.display = available ? "inline" : "none";
   }
 
-  videoElem.remote.watchAvailability(availabilityCallback).catch(function() {
+  videoElem.remote.watchAvailability(availabilityCallback).catch(() => {
     // Availability monitoring is not supported by the platform, so discovery of
     // remote playback devices will happen only after remote.prompt() is called.
     // Pretend the devices are available for simplicity; or, one could implement
@@ -302,7 +276,7 @@
         <pre class="example">
 &lt;!-- player.html --&gt;
 &lt;script&gt;
-  devicesBtn.onclick = function() {
+  devicesBtn.onclick = () => {
     // Request the user to select a remote playback device.
     videoElem.remote.prompt()
       // Update the UI and monitor the connected state.
@@ -371,7 +345,6 @@
           system level, the playback is considered to happen on a <a>local
           playback device</a> for the purpose of this spec.
         </div>
-        <p></p>
         <p>
           A <dfn data-lt="remote playback devices">remote playback device</dfn>
           is any other device but the <a>local playback device</a> that the
@@ -386,11 +359,10 @@
           for convenience.
         </p>
         <div class="example">
-          For example, the <code>paused</code> attribute or the pause/resume
+          For example, the `paused` attribute or the pause/resume
           button reflecting that state on the default controls of the media
           element would be a part of <a>media element state</a>.
         </div>
-        <p></p>
         <p>
           A <dfn>local playback state</dfn> is the user agent implementation of
           <a>media element state</a> for the particular <a>media element</a>
@@ -404,7 +376,7 @@
         <p class="note">
           For a good user experience it is important that the <a>media element
           state</a> doesn't change unexpectedly when the
-          <code><a data-link-for="RemotePlayback">state</a></code> changes. It
+          <a data-link-for="RemotePlayback">`state`</a> changes. It
           is also important that <a>remote playback state</a> is in sync with
           the <a>media element state</a> so when the media is paused on the
           <a>remote playback device</a> it looks paused to both the user and
@@ -418,7 +390,7 @@
       </section>
       <section>
         <h3>
-          <code>{{RemotePlayback}}</code> interface
+          {{RemotePlayback}} interface
         </h3>
         <pre class='idl'>
           [Exposed=Window]
@@ -480,18 +452,17 @@
               the {{RemotePlayback/watchAvailability()}} method. The
               <a>set of availability callbacks</a> for each
               {{RemotePlayback}} object is represented as a set of tuples
-              <em>(<var>callbackId</var>, <var>callback</var>)</em>, initially
-              empty, where:
+              <em>(|callbackId:long|, |callback:RemotePlaybackAvailabilityCallback|)</em>,
+              initially empty, where:
             </p>
             <ol>
               <li>
-                <var>callbackId</var> is a positive integer unique among all ids
+                |callbackId| is a positive integer unique among all ids
                 returned by {{RemotePlayback/watchAvailability()}} in a
                 given <a>browsing context</a>;
               </li>
               <li>
-                <var>callback</var> is a
-                {{RemotePlaybackAvailabilityCallback}} object.
+                |callback| is a {{RemotePlaybackAvailabilityCallback}} object.
               </li>
             </ol>
             <p>
@@ -565,7 +536,7 @@
               succeed on that device.
             </p>
             <p class="note">
-              The user agent can use the <code>{{HTMLTrackElement/srclang}}</code>
+              The user agent can use the {{HTMLTrackElement/srclang}}
               attribute of the <code>[^track^]</code> element as a hint of
               the language of the text track data to help identify a
               <a>compatible remote playback device</a>.
@@ -577,24 +548,41 @@
               <dfn>availability sources set</dfn>.
             </p>
             <p>
-              The <a data-cite="HTML#media-resource">media resource</a>
-              of a <a>media element</a>, that is used to
-              <a>initiate remote playback</a> on the selected <a>remote
-              playback device</a> is called <dfn>remote playback source</dfn>.
-              Remote playback source MUST belong to <a>availability sources
+              The <a data-cite="HTML#media-resource">media resource</a> of
+              a <a>media element</a> that is used to <a>initiate remote
+              playback</a> on the selected <a>remote playback device</a> is
+              called the <dfn>remote playback source</dfn>.  A remote playback
+              source MUST belong to the media element's <a>availability sources
               set</a>.
             </p>
             <p>
-              The mechanism of picking the <a>availability sources set</a> and
-              the <a>remote playback source</a> is implementation-specific. For
-              example, the user agent MUST either use the
-              {{HTMLMediaElement/currentSrc}} of the <a>media element</a>
-              for both availability monitoring and remote playback or use all the
-              <a data-cite="HTML#media-resource">media resources</a>
-              associated with the <a>media element</a> as the
-              <a>availability sources set</a> and pick one of the resources as
-              the <a>remote playback source</a> after user selects the
-              <a>remote playback device</a>.
+              The mechanism to choose the <a>remote playback source</a> from
+              the <a>availability sources set</a> is implementation-specific,
+              but the user agent SHOULD consider every resource in
+              the <a>availability sources set</a> as a potential <a>remote
+              playback source</a>.
+            </p>
+            <div class="note">
+              The algorithm to select the <a>remote playback source</a> for a
+              selected device depends on the user agent and supported <a>remote
+              playback device</a> types. For example, in case of <a>media
+              mirroring</a> the user agent can simply follow the
+              {{HTMLMediaElement}}'s <a data-cite="HTML#concept-media-load-algorithm">
+              resource selection algorithm</a>.  However, if <a>media
+              remoting</a> or <a>media flinging</a> is used, the best media
+              source can depend on the selected <a>remote playback device</a>
+              fetch and playback capabilities.
+            </div>
+            <p>
+              If the user agent cannot determine a <a>remote playback source</a>
+              appropriate for the <a>remote playback device</a>, it is
+              RECOMMENDED that the user agent send metadata (for example,
+              the <a data-cite="HTML#attr-source-type">extended MIME type</a>)
+              about all resources in the <a>availability sources set</a> to
+              the <a>remote playback device</a> so it can run its own
+              <a data-cite="HTML#concept-media-load-algorithm">resource
+              selection algorithm</a> and choose the <a>remote playback
+              source</a>.
             </p>
             <p>
               Remote playback is <dfn>unavailable</dfn> for the
@@ -602,11 +590,10 @@
               devices</a> is empty or none of them is compatible with any source
               from <a>availability sources set</a> for the <a>media
               element</a>. Otherwise, remote playback is
-              <dfn>available</dfn>. A <code>boolean</code> set to
-              <code>false</code> if the remote playback is <a>unavailable</a>
-              for the <a>media element</a> or <code>true</code> if it is
-              <a>available</a> is called <dfn>availability</dfn> for the
-              <a>media element</a>.
+              <dfn>available</dfn>. A `boolean` set to `false` if the remote
+              playback is <a>unavailable</a> for the <a>media element</a> or
+              `true` if it is <a>available</a> is called
+              <dfn>availability</dfn> for the <a>media element</a>.
             </p>
             <p>
               If the user agent stops
@@ -614,10 +601,10 @@
               monitoring the list of available remote playback devices</a>
               (for example by a user control or for power saving), it SHOULD
               invoke all callbacks in the <a>global set of availability
-              callbacks</a> with <code>false</code> so that pages can update
+              callbacks</a> with `false` so that pages can update
               their user experience appropriately.  It SHOULD also set
               the <a>availability</a> value for all <a>media elements</a>
-              to <code>false</code> so that availability information can
+              to `false` so that availability information can
               be propagated correctly if the user agent later resumes
               <a data-lt="monitor the list of available remote playback devices">
               monitoring the list of available remote playback devices</a>.
@@ -637,67 +624,77 @@
                 Input
               </dt>
               <dd>
-                <var>callback</var>, the callback that will get fired with
-                availability information.
+                |callback:RemotePlaybackAvailabilityCallback|, the callback that
+                will get fired with availability information.
               </dd>
               <dt>
                 Output
               </dt>
               <dd>
-                <var>promise</var>, a promise.
+                |promise:Promise|, a {{Promise}}.
               </dd>
             </dl>
             <ol>
-              <li>Let <var>promise</var> be a new promise.
+              <li>
+                Let |promise| be a new {{Promise}}.
               </li>
-              <li>Return <var>promise</var>, and run the following steps below:
+              <li>
+                Return |promise|, and run the following steps below:
               </li>
-              <li>If the <a data-link-for=
-              "HTMLMediaElement">disableRemotePlayback</a> attribute is present
-              for the <a>media element</a>, reject the <var>promise</var> with
-              {{InvalidStateError}} and abort all the remaining steps.
+              <li>
+                If the <a data-link-for="HTMLMediaElement">disableRemotePlayback</a>
+                attribute is present for the <a>media element</a>, reject the |promise|
+                with {{InvalidStateError}} and abort all the remaining steps.
               </li>
-              <li>If the user agent is unable to <a>monitor the list of
-              available remote playback devices</a> for the entire lifetime of
-              the <a>browsing context</a> (for instance, because the user has
-              disabled this feature), then run the following steps <a>in parallel</a>:
+              <li>
+                If the user agent is unable to <a>monitor the list of
+                available remote playback devices</a> for the entire lifetime of
+                the <a>browsing context</a> (for instance, because the user has
+                disabled this feature), then run the following steps <a>in parallel</a>:
                 <ol>
-                  <li>Fulfill <var>promise</var>.
+                  <li>
+                    Fulfill |promise|.
                   </li>
                   <li>
-                    <a>Queue a task</a> to invoke the <var>callback</var> with
-                    <code>false</code> as its argument.
+                    <a>Queue a task</a> to invoke the |callback| with
+                    `false` as its argument.
                   </li>
-                  <li>Abort all remaining steps.
+                  <li>
+                    Abort all remaining steps.
                   </li>
                 </ol>
               </li>
-              <li>If the user agent is unable to continuously <a>monitor the
-              list of available remote playback devices</a> but can do it for a
-              short period of time when <a data-lt="initiate remote playback">
-              initiating remote playback</a>, then:
+              <li>
+                If the user agent is unable to continuously <a>monitor the
+                list of available remote playback devices</a> but can do it for a
+                short period of time when <a data-lt="initiate remote playback">
+                initiating remote playback</a>, then:
                 <ol>
-                  <li>Reject <var>promise</var> with a {{NotSupportedError}}
-                  exception.
+                  <li>
+                    Reject |promise| with a {{NotSupportedError}} exception.
                   </li>
-                  <li>Abort all remaining steps.
+                  <li>
+                    Abort all remaining steps.
                   </li>
                 </ol>
               </li>
-              <li>Let <var>callbackId</var> be a positive integer unique among
-                all the <var>callbackIds</var> previously returned by these
+              <li>
+                Let |callbackId:long| be a positive integer unique among
+                all the |callbackIds| previously returned by these
                 steps in the <a>browsing context</a> of the <a>media
                 element</a>.
               </li>
-              <li>Create a tuple <em>(<var>callbackId</var>,
-              <var>callback</var>)</em> and add it to the <a>set of
-              availability callbacks</a> for this <a>media element</a>.
+              <li>
+                Create a tuple <em>(|callbackId|, |callback|)</em> and
+                add it to the <a>set of availability callbacks</a>
+                for this <a>media element</a>.
               </li>
-              <li>Fulfill <var>promise</var> with the <var>callbackId</var> and
-              run the following steps <a>in parallel</a>:
+              <li>
+                Fulfill |promise| with the |callbackId| and
+                run the following steps <a>in parallel</a>:
                 <ol>
                   <li>
-                    <a>Queue a task</a> to invoke the <var>callback</var> with
+                    <a>Queue a task</a> to invoke the |callback| with
                     the current <a>availability</a> for the <a>media
                     element</a>.
                   </li>
@@ -711,13 +708,13 @@
               </li>
             </ol>
             <p class="note">
-              A simple algorithm for assigning <var>callbackId</var> values is
+              A simple algorithm for assigning |callbackId| values is
               to keep a counter for each <a>browsing context</a> and
               incrementing it in step 6.
             </p>
             <div class="note">
               To avoid leaking information that could fingerprint the user, the
-              user agent is expected not to assign a <var>callbackId</var> that
+              user agent is expected not to assign a |callbackId| that
               uses any persistent information from the browser profile or a
               <a>remote playback device</a>.
             </div>
@@ -734,38 +731,43 @@
               devices</dfn> by running the following steps:
             </p>
             <ol>
-              <li>Retrieve available remote playback devices (using an
-              implementation specific mechanism) and let <var>newDevices</var>
-              be this list.
+              <li>
+                Retrieve available remote playback devices (using an
+                implementation specific mechanism) and let |newDevices:list|
+                be this list.
               </li>
-              <li>For each <a>media element</a> known to the <a>browsing
-              context</a>:
+              <li>
+                For each <a>media element</a> known to the <a>browsing
+                context</a>:
                 <ol>
-                  <li>If the <a data-link-for=
-                  "HTMLMediaElement">disableRemotePlayback</a> attribute is
-                  present for <var>mediaElement</var>, abort all the remaining
-                  steps for this tuple and continue to the next one.
+                  <li>
+                    If the <a data-link-for="HTMLMediaElement">disableRemotePlayback</a>
+                    attribute is present for |mediaElement:HTMLMediaElement|, abort all
+                    the remaining steps for this tuple and continue to the next one.
                   </li>
-                  <li>Set <var>newAvailabilityValue</var> to the value of
-                  <a>availability</a> for the <a>media element</a> calculated
-                  using the <var>newDevices</var> list instead of the <a>list
-                  of available remote playback devices</a>.
+                  <li>
+                    Set |newAvailabilityValue:boolean| to the value of
+                    <a>availability</a> for the <a>media element</a> calculated
+                    using the |newDevices| list instead of the <a>list
+                    of available remote playback devices</a>.
                   </li>
-                  <li>If the current <a>availability</a> is not equal to <var>
-                    newAvailabilityValue</var>, then for each
-                    <em>(<var>callbackId</var>, <var>callback</var>)</em> of
-                    the element's <a>set of availability callbacks</a>:
+                  <li>
+                    If the current <a>availability</a> is not equal to
+                    |newAvailabilityValue|, then for each <em>(|callbackId:long|,
+                    |callback:RemotePlaybackAvailabilityCallback|)</em>
+                    of the element's <a>set of availability callbacks</a>:
                     <ol>
                       <li>
-                        <a>Queue a task</a> to invoke <var>callback</var> with
-                        <var>newAvailabilityValue</var> as its argument.
+                        <a>Queue a task</a> to invoke |callback| with
+                        |newAvailabilityValue| as its argument.
                       </li>
                     </ol>
                   </li>
                 </ol>
               </li>
-              <li>Set the <a>list of available remote playback devices</a> to
-              the value of <var>newDevices</var>.
+              <li>
+                Set the <a>list of available remote playback devices</a> to
+                the value of |newDevices|.
               </li>
             </ol>
           </section>
@@ -782,42 +784,50 @@
                 Input
               </dt>
               <dd>
-                <var>id</var>, the callback identifier.
+                |id:long|, the callback identifier.
               </dd>
               <dt>
                 Output
               </dt>
               <dd>
-                <var>promise</var>, a promise.
+                |promise:Promise|, a {{Promise}}.
               </dd>
             </dl>
             <ol>
-              <li>Let <var>promise</var> be a new promise.
+              <li>
+                Let |promise| be a new {{Promise}}.
               </li>
-              <li>Return <var>promise</var>, and run the following steps below:
+              <li>
+                Return |promise|, and run the following steps below:
               </li>
-              <li>If the <a data-link-for=
-              "HTMLMediaElement">disableRemotePlayback</a> attribute is present
-              for the <a>media element</a>, reject <var>promise</var> with
-              {{InvalidStateError}} and abort all the remaining steps.
+              <li>
+                If the <a data-link-for=
+                "HTMLMediaElement">disableRemotePlayback</a> attribute is present
+                for the <a>media element</a>, reject |promise| with
+                {{InvalidStateError}} and abort all the remaining steps.
               </li>
-              <li>If the parameter <var>id</var> is <code>undefined</code>,
-              clear the <a>set of availability callbacks</a>.
+              <li>
+                If the parameter |id| is `undefined`,
+                clear the <a>set of availability callbacks</a>.
               </li>
-              <li>Otherwise, if <var>id</var> matches the <var>callbackId</var>
-              for any entry in the <a>set of availability callbacks</a>, remove
-              the entry from the set.
+              <li>
+                Otherwise, if |id| matches the |callbackId:long|
+                for any entry in the <a>set of availability callbacks</a>, remove
+                the entry from the set.
               </li>
-              <li>Otherwise, reject <var>promise</var> with
-              {{NotFoundError}} and abort all the remaining steps.
+              <li>
+                Otherwise, reject |promise| with
+                {{NotFoundError}} and abort all the remaining steps.
               </li>
-              <li>If the <a>set of availability callbacks</a> is now empty and
-              there is no pending request to <a data-lt="prompt">
-              initiate remote playback</a>, cancel any pending task to
-              <a>monitor the list of available remote playback devices</a>
-              for power saving purposes.
+              <li>
+                If the <a>set of availability callbacks</a> is now empty and
+                there is no pending request to
+                <a data-lt="prompt">initiate remote playback</a>, cancel any
+                pending task to <a>monitor the list of available remote
+                playback devices</a> for power saving purposes.
               </li>
-              <li>Fulfill <var>promise</var>.
+              <li>
+                Fulfill |promise|.
               </li>
             </ol>
             <div class="note">
@@ -849,24 +859,27 @@
               Output
             </dt>
             <dd>
-              A promise.
+              A {{Promise}}.
             </dd>
           </dl>
           <ol>
-            <li>Let <var>promise</var> be a new promise.
+            <li>
+              Let |promise:Promise| be a new {{Promise}}.
             </li>
-            <li>Return <var>promise</var> and continue running these steps <a>
-              in parallel</a>.
+            <li>
+              Return |promise| and continue running these steps
+              <a>in parallel</a>.
             </li>
-            <li>If the <a data-link-for=
-            "HTMLMediaElement">disableRemotePlayback</a> attribute is present
-            for the <a>media element</a>, reject the <var>promise</var> with
-            {{InvalidStateError}} and abort all the remaining steps.
+            <li>
+              If the <a data-link-for=
+              "HTMLMediaElement">disableRemotePlayback</a> attribute is present
+              for the <a>media element</a>, reject the |promise| with
+              {{InvalidStateError}} and abort all the remaining steps.
             </li>
             <li>If there is already an unsettled promise from a previous call to
             {{RemotePlayback/prompt()}} for the same <a>media element</a> or
             even for the same <a>browsing context</a>, the user agent MAY reject
-            <var>promise</var> with an {{OperationError}} exception and abort all
+            |promise| with an {{OperationError}} exception and abort all
             remaining steps.
               <div class="note">
                 The rationale here is that the user agent might show a dialog
@@ -875,16 +888,17 @@
                 {{RemotePlayback/prompt()}} would not be able to show any UI.
               </div>
             </li>
-            <li>If the algorithm isn't <a data-cite="HTML#allowed-to-show-a-popup">
-            allowed to show a popup</a>, reject <var>promise</var> with an
-            {{InvalidAccessError}} exception and abort these steps.
+            <li>
+              If the document's [=browsing context/active window=] does not have
+              [=transient activation=], reject |promise| with an
+              {{InvalidAccessError}} exception and abort these steps.
             </li>
-            <li>OPTIONALLY, if the user agent knows a priori that remote
-            playback of this particular <a>media element</a> is not feasible
-            (independent of the current <code><a>state</a></code> or
-            the <a>list of available remote playback devices</a>),
-            reject <var>promise</var> with a {{NotSupportedError}} and abort
-            all remaining steps.
+            <li>
+              OPTIONALLY, if the user agent knows a priori that remote playback
+              of this particular <a>media element</a> is not feasible (independent
+              of the current <a>`state`</a> or the <a>list of available remote
+              playback devices</a>), reject |promise| with a {{NotSupportedError}}
+              and abort all remaining steps.
               <div class="note">
                 An example of this situation is when the user agent only
                 supports <a>media flinging</a>, and the media element's source
@@ -892,20 +906,23 @@
                 <a>remote playback device</a>.
               </div>
             </li>
-            <li>If the user agent needs to show the <a>list of available
-            remote playback devices</a> and is not <a data-lt=
-            "monitor the list of available remote playback devices">monitoring
-            the list of available remote playback devices</a>, run the steps to
-            <a>monitor the list of available remote playback devices</a> <a>in
-            parallel</a>.
+            <li>
+              If the user agent needs to show the <a>list of available remote
+              playback devices</a> and is not <a data-lt= "monitor the list of
+              available remote playback devices">monitoring the list of
+              available remote playback devices</a>, run the steps to
+              <a>monitor the list of available remote playback devices</a> <a>in
+              parallel</a>.
             </li>
-            <li>If remote playback is <a>unavailable</a> and will remain so
-            before the request for user permission is complete,
-            reject <var>promise</var> with a {{NotFoundError}} exception and
-            abort all remaining steps.
+            <li>
+              If remote playback is <a>unavailable</a> and will remain so
+              before the request for user permission is complete,
+              reject |promise| with a {{NotFoundError}} exception and
+              abort all remaining steps.
             </li>
-            <li>Request user permission to <dfn>change remote playback
-            state</dfn>.
+            <li>
+              Request user permission to <dfn>change remote playback
+              state</dfn>.
               <div class="note">
                 An example UI to request permission would allow the user to
                 pick a new <a>remote playback device</a>, switch between local
@@ -920,26 +937,28 @@
                 proceed immediately to the next step.
               </div>
             </li>
-            <li>If the user picked a <a>remote playback device</a>
-            <var>device</var> to <dfn>initiate remote playback</dfn> with, the
-            user agent MUST run the following steps:
+            <li>
+              If the user picked a <a>remote playback device</a> |device:remote
+              playback device| to <dfn>initiate remote playback</dfn> with, the
+              user agent MUST run the following steps:
               <ol>
-                <li>Set the <a>state</a> of the
-                <var>remote</var> object to <a data-link-for=
-                "RemotePlaybackState">connecting</a>.
-                </li>
-                <li>Fulfill <var>promise</var>.
+                <li>
+                  Set the <a>state</a> of the |remote:RemotePlayback| object
+                  to <a data-link-for="RemotePlaybackState">connecting</a>.
                 </li>
                 <li>
-                  <a>Queue a task</a> to <a>fire an event</a> with the
-                  name <a>connecting</a> at the <a data-lt=
+                  Fulfill |promise|.
+                </li>
+                <li>
+                  <a>Queue a task</a> to <a>fire an event</a> named
+                  <a>connecting</a> at the <a data-lt=
                   "RemotePlayback">remote</a> property of the <a>media
                   element</a>. The event must not bubble, must not be
                   cancelable, and has no default action.
                 </li>
                 <li>
                   <a>Establish a connection with the remote playback device</a>
-                  <var>device</var> for the <a>media element</a>.
+                  |device| for the <a>media element</a>.
                 </li>
               </ol>
               <p class="note">
@@ -947,21 +966,24 @@
                 permission</em> to use the device.
               </p>
             </li>
-            <li>Otherwise, if the user chose to disconnect from the <a>remote
-            playback device</a> <var>device</var>, the user agent MUST
-            run the following steps:
+            <li>
+              Otherwise, if the user chose to disconnect from the <a>remote
+              playback device</a> |device|, the user agent MUST run the
+              following steps:
               <ol>
-                <li>Fulfill <var>promise</var>.
+                <li>
+                  Fulfill |promise|.
                 </li>
-                <li>Run the <a>disconnect from a remote playback device</a>
-                algorithm for the <var>device</var>.
+                <li>
+                  Run the <a>disconnect from a remote playback device</a>
+                  algorithm for the |device|.
                 </li>
               </ol>
             </li>
-            <li>Otherwise, the user is considered to <em>deny permission</em>
-            to use the device, so reject <var>promise</var> with
-            {{NotAllowedError}} exception and hide the UI shown by the
-            user agent.
+            <li>
+              Otherwise, the user is considered to <em>deny permission</em> to
+              use the device, so reject |promise| with {{NotAllowedError}}
+              exception and hide the UI shown by the user agent.
             </li>
           </ol>
           <div class="note">
@@ -974,17 +996,6 @@
             information for that name. The user agent is encouraged to render
             this user friendly name, using its locale and text direction when
             they are known.
-          </div>
-          <div class="note">
-            The algorithm to select the <a>remote playback source</a> for a
-            selected device depends on the user agent and supported <a>remote
-            playback device</a> types. For example, in case of <a>media
-            mirroring</a> the user agent can simply follow the
-            {{HTMLMediaElement}}'s <a data-cite="HTML#concept-media-load-algorithm">
-            resource selection algorithm</a>.
-            However, if <a>media remoting</a> or <a>media flinging</a> is used,
-            the best media source can depend on the selected <a>remote playback
-            device</a> fetch and playback capabilities.
           </div>
         </section>
         <section>
@@ -1002,10 +1013,10 @@
               {{RemotePlaybackState/"connecting"}} means that the user agent is
               attempting to <a>initiate remote playback</a> with the
               selected <a>remote playback device</a>. This is the initial state
-              when the <code>promise</code> returned by
-              {{RemotePlayback/prompt()}} is fulfilled. The local playback of
-              the media element continues in this state and media commands still
-              take effect on the <a>local playback state</a>.
+              when the `promise` returned by {{RemotePlayback/prompt()}} is
+              fulfilled. The local playback of the media element continues in
+              this state and media commands still take effect on the <a>local
+              playback state</a>.
             </li>
             <li>
               {{RemotePlaybackState/"connected"}} means that the transition from
@@ -1035,49 +1046,52 @@
               Input
             </dt>
             <dd>
-              <var>remote</var>, the {{RemotePlayback}} object that is to be
+              |remote:RemotePlayback|, the {{RemotePlayback}} object that is to be
               connected.
             </dd>
             <dd>
-              <var>device</var>, the <a>remote playback device</a> to connect
-              to.
+              |device:remote playback device|, the <a>remote playback device</a> to
+              connect to.
             </dd>
           </dl>
           <ol>
-            <li>If the <code><a>state</a></code> of <var>remote</var> is not
-            equal to {{RemotePlaybackState/"connecting"}}, abort all the
-            remaining steps.
+            <li>
+              If the {{RemotePlayback/state}} of |remote| is not equal
+              to {{RemotePlaybackState/"connecting"}}, abort all the remaining
+              steps.
             </li>
-            <li>Request connection of <var>remote</var> to <var>device</var>.
-            The implementation of this step is specific to the user
-            agent.
+            <li>
+              Request connection of |remote| to |device|.  The implementation of
+              this step is specific to the user agent.
             </li>
-            <li>If connection completes successfully, <a>queue a task</a> to
-            run the following steps:
+            <li>
+              If connection completes successfully, <a>queue a task</a> to
+              run the following steps:
               <ol>
-                <li>Set the <a>state</a> of <var>remote</var> to
-                {{RemotePlaybackState/"connected"}}.
+               <li>
+                 Set the {{RemotePlayback/state}} of |remote| to
+                 {{RemotePlaybackState/"connected"}}.
                 </li>
                 <li>
-                  <a>Fire an event</a> named <a>connect</a> at
-                  <var>remote</var>.
+                  <a>Fire an event</a> named <a>connect</a> at |remote|.
                 </li>
-                <li>Synchronize the current <a>media element state</a> with the
-                <a>remote playback state</a>. The implementation of this step
-                is specific to the user agent.
+               <li>
+                 Synchronize the current <a>media element state</a> with the
+                 <a>remote playback state</a>. The implementation of this step
+                 is specific to the user agent.
                 </li>
               </ol>
             </li>
-            <li>If connection fails, <a>queue a task</a> to run the following
-            steps:
+            <li>
+              If connection fails, <a>queue a task</a> to run the following
+              steps:
               <ol>
-                <li>Set the <a data-lt="state"> remote playback state</a>
-                  of <var>remote</var> to
-                  {{RemotePlaybackState/"disconnected"}}.
+                <li>
+                  Set the <a data-lt="state">remote playback state</a> of
+                  |remote| to {{RemotePlaybackState/"disconnected"}}.
                 </li>
                 <li>
-                  <a>Fire an event</a> named <a>disconnect</a> at
-                  <var>remote</var>.
+                  <a>Fire an event</a> named {{RemotePlayback/disconnect}} at |remote|.
                 </li>
               </ol>
             </li>
@@ -1096,25 +1110,24 @@
             {{RemotePlaybackState/"connected"}} through an icon or other means.
           </p>
           <div class="note">
-            The mechanism that is used to connect the user agent with the
-            <a>remote playback device</a> and play the <a>remote playback
-            source</a> is an implementation choice of the user agent. The
-            connection will likely have to provide a two-way messaging
-            abstraction capable of carrying media commands to the remote
-            playback device and receiving media playback state in order to keep
-            the <a>media element state</a> and <a>remote playback state</a> in
-            sync (unless <a>media mirroring</a> is used).
+            The mechanisms that are used to connect the user agent with the
+            <a>remote playback device</a>, select the <a>remote playback
+            source</a>, and initiate playback are all implementation choices of
+            the user agent. The connection will likely have to provide a two-way
+            messaging abstraction capable of carrying media commands to the
+            remote playback device and receiving media playback state in order
+            to keep the <a>media element state</a> and <a>remote playback
+            state</a> in sync (unless <a>media mirroring</a> is used).
           </div>
           <div class="note">
             The user agent is encouraged to pass locale and text direction
             information to the <a>remote playback device</a> when possible, so
-            that the <a>remote playback device</a> can adjust its user
-            interface and operational functions to locale-specific attributes
-            that reflect the user's preferences. For example, the <a>remote
-            playback device</a> can use that information to choose the same
-            default text track as the user agent, as well as to set the HTTP
-            <code>Accept-Language</code> header it sends to fetch media
-            resources.
+            that the <a>remote playback device</a> can adjust its user interface
+            and operational functions to locale-specific attributes that reflect
+            the user's preferences. For example, the <a>remote playback
+            device</a> can use that information to choose the same default text
+            track as the user agent, as well as to set the HTTP
+            `Accept-Language` header it sends to fetch media resources.
           </div>
           <div class="note">
             The user agent should not render output from the media element while
@@ -1173,34 +1186,33 @@
             device</a> is established.
           </p>
           <p>
-            When the <a data-link-for="RemotePlayback">state</a> of a
-            {{RemotePlayback}} object is {{RemotePlaybackState/"connected"}},
-            the following conditions relate the <a>local playback state</a>,
-            the <a>media element state</a>, and the <a>remote playback
-            state</a>:
+            When the {{RemotePlayback/state}} of a {{RemotePlayback}} object is
+            {{RemotePlaybackState/"connected"}}, the following conditions relate
+            the <a>local playback state</a>, the <a>media element state</a>, and
+            the <a>remote playback state</a>:
           </p>
-          <dl>
-            <dd>
+          <ul>
+            <li>
               The user agent MUST send all media commands issued on the
               associated {{HTMLMediaElement}} object to the <a>remote playback
               device</a> in order to change its <a>remote playback state</a>;
-            </dd>
-            <dd>
+            </li>
+            <li>
               The <a>remote playback device</a> SHOULD implement all media
               commands sent by the user agent;
-            </dd>
-            <dd>
+            </li>
+            <li>
               The <a>remote playback device</a> SHOULD send updates of
               the <a>remote playback state</a> to the user agent that
               affect any attribute exposed through the <a>media element
               state</a>;
-            <dd>
+            <li>
               The user agent MUST process all updates of the
               <a>remote playback state</a> received from the <a>remote playback
               device</a> and update the <a>local playback state</a> of the
               media element accordingly.
-            </dd>
-          </dl>
+            </li>
+          </ul>
           <p>
             If sending any command fails, the user agent MAY
             <a>disconnect from a remote playback device</a>.
@@ -1216,11 +1228,11 @@
               media command that is not supported during remote playback.
             </p>
             <p>
-              For example, after calling <code>{{HTMLMediaElement/fastSeek()}}</code>
+              For example, after calling {{HTMLMediaElement/fastSeek()}}
               while connected to a <a>remote playback device</a> that does not
-              support it, the <code>{{HTMLMediaElement/seeking}}</code> attribute of the
-              {{HTMLMediaElement}} is expected to remain <code>false</code> and no
-              <code><a data-cite="HTML#event-media-seeking">seeking</a></code> event is to be fired.
+              support it, the {{HTMLMediaElement/seeking}} attribute of the
+              {{HTMLMediaElement}} is expected to remain `false` and no
+              <a data-cite="HTML#event-media-seeking">`seeking`</a> event is to be fired.
             </p>
           </div>
         </section>
@@ -1237,35 +1249,36 @@
               Input
             </dt>
             <dd>
-              <var>remote</var>, the {{RemotePlayback}} object representing
-              the playback to be stopped.
+              |remote:RemotePlayback|, the {{RemotePlayback}} object
+              representing the playback to be stopped.
             </dd>
             <dd>
-              <var>device</var>, the <a>remote playback device</a> to
-              disconnect from.
+              |device:remote playback device|, the <a>remote playback device</a>
+              to disconnect from.
             </dd>
           </dl>
           <ol>
-            <li>If the <a data-link-for="RemotePlayback"><code>state</code></a>
-            of <var>remote</var> is <code>disconnected</code>, abort all
-            remaining steps.
+            <li>
+              If the <a data-link-for="RemotePlayback">`state`</a>
+              of |remote| is `disconnected`, abort all remaining steps.
             </li>
             <li>
               <a>Queue a task</a> to run the following steps:
               <ol>
-                <li>Request disconnection of <var>remote</var> from the
-                <var>device</var>. The implementation of this step is
-                specific to the user agent.
-                </li>
-                <li>Change the <var>remote</var>'s <code>state</code> to <code>
-                  disconnected</code>.
+                <li>
+                  Request disconnection of |remote| from |device|. The
+                  implementation of this step is specific to the user agent.
                 </li>
                 <li>
-                  <a>Fire an event</a> with the name <a>disconnect</a> at <var>remote</var>.
+                  Change the |remote|'s `state` to `disconnected`.
                 </li>
-                <li>Synchronize the current <a>media element state</a> with the
-                <a>local playback state</a>. The implementation of this step is
-                specific to the user agent.
+                <li>
+                  <a>Fire an event</a> named {{RemotePlayback/disconnect}} at |remote|.
+                </li>
+                <li>
+                  Synchronize the current <a>media element state</a> with the
+                  <a>local playback state</a>. The implementation of this step
+                  is specific to the user agent.
                 </li>
               </ol>
             </li>
@@ -1277,7 +1290,7 @@
             available remote playback devices</a> before the steps to
             <a>disconnect from a remote playback device</a>.  This allows
             callbacks in the <a>set of availability callbacks</a> to be invoked
-            before the <a>disconnect</a> event is fired, so the page can update
+            before the {{RemotePlayback/disconnect}} event is fired, so the page can update
             itself to show resumption of playback is not possible.
           </p>
           <div class="note">
@@ -1286,8 +1299,7 @@
             implementation of the user agent and the remote playback device.
             In this case, stopping remote playback means that the user agent
             merely disconnects from the remote playback device and the
-            <a>media element</a> switches to the <code>disconnected</code>
-            state.
+            <a>media element</a> switches to the `disconnected` state.
           </div>
         </section>
         <section>
@@ -1314,26 +1326,26 @@
             <tbody>
               <tr>
                 <td>
-                  <dfn><code>onconnecting</code></dfn>
+                  <dfn>`onconnecting`</dfn>
                 </td>
                 <td>
-                  <dfn><code>connecting</code></dfn>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <dfn><code>onconnect</code></dfn>
-                </td>
-                <td>
-                  <dfn><code>connect</code></dfn>
+                  <dfn data-dfn-type="event">`connecting`</dfn>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <dfn><code>ondisconnect</code></dfn>
+                  <dfn>`onconnect`</dfn>
                 </td>
                 <td>
-                  <dfn><code>disconnect</code></dfn>
+                  <dfn data-dfn-type="event">`connect`</dfn>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <dfn>`ondisconnect`</dfn>
+                </td>
+                <td>
+                  <dfn data-dfn-type="event">`disconnect`</dfn>
                 </td>
               </tr>
             </tbody>
@@ -1342,7 +1354,7 @@
       </section>
       <section data-dfn-for="HTMLMediaElement">
         <h3>
-          Extensions to <code>{{HTMLMediaElement}}</code>
+          Extensions to {{HTMLMediaElement}}
         </h3>
         <pre class='idl'>
           partial interface HTMLMediaElement {
@@ -1358,21 +1370,20 @@
         </p>
         <section data-link-for="HTMLMediaElement">
           <h4>
-            The <dfn><code>disableRemotePlayback</code></dfn> attribute
+            The <dfn>`disableRemotePlayback`</dfn> attribute
           </h4>
           <p>
-            Some pages may wish to <a>disable remote playback</a> of a media element;
-            for example, they may prefer to use a <code><a data-cite=
-            "PRESENTATION-API#interface-presentationrequest">PresentationRequest</a></code>
+            Some pages may wish to <a>disable remote playback</a> of a media
+            element; for example, they may prefer to use a <a data-cite=
+            "PRESENTATION-API#interface-presentationrequest">`PresentationRequest`</a>
             to present a complete document on a presentation screen. To support
-            this use case, a new <code>disableRemotePlayback</code> attribute is
-            added to the list of content attributes for <code>audio</code>
-            and <code>video</code> elements.
+            this use case, a new `disableRemotePlayback` attribute is added to
+            the list of content attributes for `audio` and `video` elements.
           </p>
           <p>
             A corresponding <a>disableRemotePlayback</a> IDL attribute which
-            reflects the value of each element's <code>disableRemotePlayback</code>
-            content attribute is added to the <code>HTMLMediaElement</code> interface.
+            reflects the value of each element's `disableRemotePlayback`
+            content attribute is added to the `HTMLMediaElement` interface.
             The <a>disableRemotePlayback</a> IDL attribute MUST
             <a data-cite="HTML#reflecting-content-attributes-in-idl-attributes">
             reflect</a> the content attribute of the same name.
@@ -1400,7 +1411,7 @@
             element.
             </li>
             <li>If its <a data-link-for="RemotePlayback">state</a> is not
-            <code>disconnected</code>, run the <a>disconnect from a remote
+            `disconnected`, run the <a>disconnect from a remote
             playback device</a> algorithm for the <a>remote playback device</a>
             the media element is connected or connecting to.
             </li>
@@ -1417,7 +1428,7 @@
           Personally identifiable information
         </h3>
         <p>
-          Firing the <code>callback</code> provided via the
+          Firing the `callback` provided via the
           {{RemotePlayback/watchAvailability()}} method reveals one bit of
           information about the presence (or non-presence) of a
           <a>remote playback device</a> typically discovered through the local
@@ -1471,8 +1482,7 @@
             <p>
               Showing the origin that will be presented will help the user know
               if that content is from a <a>potentially trustworthy origin</a>
-              (e.g., <code>https:</code>), and corresponds to a known or
-              expected site.
+              (e.g., `https:`), and corresponds to a known or expected site.
             </p>
           </dd>
         </dl>
