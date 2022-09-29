@@ -375,9 +375,9 @@
         <p class="note">
           For a good user experience it is important that the <a>media element
           state</a> doesn't change unexpectedly when the
-          <a data-link-for="RemotePlayback">`state`</a> changes. It
-          is also important that <a>remote playback state</a> is in sync with
-          the <a>media element state</a> so when the media is paused on the
+          {{RemotePlayback/state}} changes. It is also important that <a>remote
+          playback state</a> is in sync with the <a>media element state</a> so
+          when the media is paused on the
           <a>remote playback device</a> it looks paused to both the user and
           the page.
         </p>
@@ -389,7 +389,7 @@
       </section>
       <section>
         <h3>
-          {{RemotePlayback}} interface
+          <dfn>RemotePlayback</dfn> interface
         </h3>
         <pre class='idl'>
           [Exposed=Window]
@@ -419,11 +419,11 @@
           of, connect to and control playback on <a>remote playback devices</a>.
         </p>
         <p>
-          The {{RemotePlaybackState}} enum represents possible connection
+          The <dfn>RemotePlaybackState</dfn> enum represents possible connection
           states to a <a>remote playback device</a>.
         </p>
         <p>
-          The {{RemotePlaybackAvailabilityCallback}} returns the current 
+          The <dfn>RemotePlaybackAvailabilityCallback</dfn> returns the current 
           <a>remote playback device availability</a>.
         </p>
         <section data-link-for="RemotePlayback">
@@ -435,7 +435,7 @@
             obtain the <dfn>remote playback device availability</dfn> for the
             corresponding <a>media element</a>. If the user agent can <a>monitor
             the list of available remote playback devices</a> in the background
-            (without a pending request to {{RemotePlayback/prompt()}}, the
+            (without a pending request to {{RemotePlayback/prompt()}}), the
             {{RemotePlaybackAvailabilityCallback}} behavior defined below MUST
             be implemented by the user agent. Otherwise, the promise returned by
             {{RemotePlayback/watchAvailability()}} MUST be rejected with
@@ -448,8 +448,8 @@
             <p>
               The user agent MUST keep track of the <dfn>set of availability
               callbacks</dfn> registered with each <a>media element</a> through
-              the {{RemotePlayback/watchAvailability()}} method. The
-              <a>set of availability callbacks</a> for each
+              the <dfn data-dfn-for="RemotePlayback">watchAvailability()</dfn>
+              method. The <a>set of availability callbacks</a> for each
               {{RemotePlayback}} object is represented as a set of tuples
               <em>(|callbackId:long|, |callback:RemotePlaybackAvailabilityCallback|)</em>,
               initially empty, where:
@@ -775,8 +775,8 @@
               Stop observing remote playback devices availability
             </h5>
             <p>
-              When a {{RemotePlayback/cancelWatchAvailability()}} method is
-              called, the user agent MUST run the following steps:
+              When a <dfn data-dfn-for="RemotePlayback">cancelWatchAvailability()</dfn>
+              method is called, the user agent MUST run the following steps:
             </p>
             <dl>
               <dt>
@@ -842,8 +842,8 @@
             Prompt user for changing remote playback state
           </h4>
           <p>
-            When the {{RemotePlayback/prompt()}} method is called, the user
-            agent MUST run the following steps:
+            When the <dfn data-dfn-for="RemotePlayback">prompt()</dfn> method is
+            called, the user agent MUST run the following steps:
           </p>
           <dl>
             <dt>
@@ -1000,7 +1000,7 @@
         </section>
         <section>
           <h4>
-            The {{RemotePlayback/state}} attribute
+            The <dfn data-dfn-for="RemotePlayback">state</dfn> attribute
           </h4>
           <p>
             The {{RemotePlayback/state}} attribute represents the
@@ -1010,22 +1010,23 @@
           </p>
           <ul>
             <li>
-              {{RemotePlaybackState/"connecting"}} means that the user agent is
-              attempting to <a>initiate remote playback</a> with the
-              selected <a>remote playback device</a>. This is the initial state
-              when the `promise` returned by {{RemotePlayback/prompt()}} is
-              fulfilled. The local playback of the media element continues in
-              this state and media commands still take effect on the <a>local
-              playback state</a>.
+              <dfn data-dfn-for="RemotePlaybackState">connecting</dfn> means
+              that the user agent is attempting to <a>initiate remote
+              playback</a> with the selected <a>remote playback device</a>. This
+              is the initial state when the `promise` returned by
+              {{RemotePlayback/prompt()}} is fulfilled. The local playback of
+              the media element continues in this state and media commands still
+              take effect on the <a>local playback state</a>.
             </li>
             <li>
-              {{RemotePlaybackState/"connected"}} means that the transition from
-              local to remote playback has finished and all media commands now
-              take effect on the <a>remote playback state</a>.
+              <dfn data-dfn-for="RemotePlaybackState">connected</dfn> means that
+              the transition from local to remote playback has finished and all
+              media commands now take effect on the <a>remote playback
+              state</a>.
             </li>
             <li>
-              {{RemotePlaybackState/"disconnected"}} means that the remote
-              playback has not been <a data-lt="initiate remote
+              <dfn data-dfn-for="RemotePlaybackState">disconnected</dfn> means
+              that the remote playback has not been <a data-lt="initiate remote
               playback">initiated</a>, has failed to initiate or has been
               stopped. All media commands will take effect on the <a>local
               playback state</a>. The remote playback can be initiated through a
