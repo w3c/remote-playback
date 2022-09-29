@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en-US"><head>
 <meta charset="UTF-8">
-<meta name="generator" content="ReSpec 32.2.3">
+<meta name="generator" content="ReSpec 32.2.4">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 span.example-title{text-transform:none}
@@ -166,9 +166,8 @@ dd{margin-left:0}
 .removeOnSave{display:none}
 }
 </style>
-<meta name="description" content="This specification defines an API extending the
-        HTMLMediaElement that enables controlling remote
-        playback of media from a web page.">
+<meta name="description" content="This specification defines an API extending the HTMLMediaElement
+        that enables controlling remote playback of media from a web page.">
 <style>
 .hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}
 .hljs-comment,.hljs-quote{color:#717277;font-style:italic}
@@ -194,6 +193,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "specStatus": "ED",
   "edDraftURI": "https://w3c.github.io/remote-playback/",
   "shortName": "remote-playback",
+  "group": "secondscreen",
   "editors": [
     {
       "w3cid": 68454,
@@ -230,19 +230,18 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       ]
     }
   ],
-  "group": "secondscreen",
   "github": "https://github.com/w3c/remote-playback",
   "crEnd": "2017-11-30",
   "implementationReportURI": "https://www.w3.org/wiki/Second_Screen/Implementation_Status#Remote_Playback_API",
-  "publishISODate": "2022-09-05T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 05 September 2022"
+  "publishISODate": "2022-09-29T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 29 September 2022"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
   <body data-cite="WEBIDL HTML DOM URL SECURE-CONTEXTS" class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">Remote Playback API</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-09-05">05 September 2022</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-09-29">29 September 2022</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -308,9 +307,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </div>
     <section id="abstract" class="introductory"><h2>Abstract</h2>
       <p>
-        This specification defines an API extending the
-        <code><a data-link-type="idl" data-lt="HTMLMediaElement" data-type="interface" href="https://html.spec.whatwg.org/multipage/media.html#htmlmediaelement"><code>HTMLMediaElement</code></a></code> that enables controlling remote
-        playback of media from a web page.
+        This specification defines an API extending the <a data-link-type="idl" data-lt="HTMLMediaElement" data-type="interface" href="https://html.spec.whatwg.org/multipage/media.html#htmlmediaelement"><code>HTMLMediaElement</code></a>
+        that enables controlling remote playback of media from a web page.
       </p>
     </section>
     <section id="sotd" class="introductory"><h2>Status of This Document</h2><p><em>This section describes the status of this
@@ -409,7 +407,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#common-idioms"><bdi class="secno">5.1 </bdi>
           Common idioms
         </a></li><li class="tocline"><a class="tocxref" href="#remoteplayback-interface"><bdi class="secno">5.2 </bdi>
-          <span class="formerLink" data-link-type="idl"><code>RemotePlayback</code></span> interface
+          <span data-export="" data-dfn-type="interface" data-idl="interface" data-title="RemotePlayback" data-dfn-for=""><code>RemotePlayback</code></span> interface
         </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#observing-remote-playback-device-availability"><bdi class="secno">5.2.1 </bdi>
             Observing remote playback device availability
           </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#the-set-of-availability-callbacks"><bdi class="secno">5.2.1.1 </bdi>
@@ -426,7 +424,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
             </a></li></ol></li><li class="tocline"><a class="tocxref" href="#prompt-user-for-changing-remote-playback-state"><bdi class="secno">5.2.2 </bdi>
             Prompt user for changing remote playback state
           </a></li><li class="tocline"><a class="tocxref" href="#the-state-attribute"><bdi class="secno">5.2.3 </bdi>
-            The <span class="formerLink" data-link-type="idl"><code>state</code></span> attribute
+            The <span data-dfn-for="RemotePlayback" data-export="" data-dfn-type="attribute" data-idl="attribute" data-title="state" data-type="RemotePlaybackState" data-lt="state" data-local-lt="RemotePlayback.state"><code>state</code></span> attribute
           </a></li><li class="tocline"><a class="tocxref" href="#establishing-a-connection-with-a-remote-playback-device"><bdi class="secno">5.2.4 </bdi>
             Establishing a connection with a remote playback device
           </a></li><li class="tocline"><a class="tocxref" href="#browser-initiated-remote-playback"><bdi class="secno">5.2.5 </bdi>
@@ -438,7 +436,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
           </a></li><li class="tocline"><a class="tocxref" href="#event-handlers"><bdi class="secno">5.2.8 </bdi>
             Event Handlers
           </a></li></ol></li><li class="tocline"><a class="tocxref" href="#extensions-to-htmlmediaelement"><bdi class="secno">5.3 </bdi>
-          Extensions to <code><span data-xref-type="_IDL_" data-link-type="idl" data-lt="HTMLMediaElement" data-cite="html" data-cite-path="/media.html" data-cite-frag="htmlmediaelement" data-type="interface" class="formerLink"><code>HTMLMediaElement</code></span></code>
+          Extensions to <span data-xref-type="_IDL_" data-link-type="idl" data-lt="HTMLMediaElement" data-cite="html" data-cite-path="/media.html" data-cite-frag="htmlmediaelement" data-type="interface" class="formerLink"><code>HTMLMediaElement</code></span>
         </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#the-disableremoteplayback-attribute"><bdi class="secno">5.3.1 </bdi>
             The <span data-export="" data-dfn-type="attribute" data-idl="attribute" data-title="disableRemotePlayback" data-dfn-for="HTMLMediaElement" data-type="boolean" data-lt="disableRemotePlayback" data-local-lt="HTMLMediaElement.disableRemotePlayback"><code>disableRemotePlayback</code></span> attribute
           </a></li><li class="tocline"><a class="tocxref" href="#disabling-remote-playback"><bdi class="secno">5.3.2 </bdi>
@@ -467,7 +465,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       </p>
       <p>
         This specification defines conformance criteria that apply to a single
-        product: the <dfn id="dfn-user-agent" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">user agent</dfn> that implements the interfaces that
+        product: the user agent that implements the interfaces that
         it contains.
       </p>
       <p>
@@ -509,8 +507,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         playback device</a>. In such a case, both the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>
         and the media player run on the same UA and the operating system is
         used to route the player output to the <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-7">remote playback device</a>.
-        This is commonly referred to as the <dfn id="dfn-media-mirroring" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn"><b id="media-mirroring">media
-        mirroring</b></dfn> case. This specification imposes no requirements on
+        This is commonly referred to as the <dfn id="dfn-media-mirroring" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">media
+        mirroring</dfn> case. This specification imposes no requirements on
         the <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-8">remote playback devices</a> connected in such a manner.
       </p>
       <p>
@@ -518,19 +516,19 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         communicate with the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> but is unable to fetch the
         media, the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> needs to fetch the media data and
         pass it on to the <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-10">remote playback device</a> for rendering. This is
-        commonly referred to as <dfn id="dfn-media-remoting" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn"><b id="media-remoting">media
-        remoting</b></dfn> case.
+        commonly referred to as <dfn id="dfn-media-remoting" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">media remoting</dfn> case.
       </p>
       <p>
-        If the <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-11">remote playback device</a> is able to fetch and play the
-        media and communicate with the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>, the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing
+        If the <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-11">remote playback device</a> is able to fetch and play the media
+        and communicate with the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>, the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing
         context</a> does not need to fetch or render the remoted media. In this
         case, the UA acts as a proxy that requests the <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-12">remote playback
         device</a> to play the media itself by passing the necessary data like
-        the media source. This is commonly referred to as the <dfn id="dfn-media-flinging" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn"><b id="media-flinging">media flinging</b></dfn> case. This way of attaching
-        to displays could be enhanced in the future by defining a standard
-        protocol for delivering these types of messages that remote playback
-        devices could choose to implement.
+        the media source. This is commonly referred to as the <dfn id="dfn-media-flinging" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">media
+        flinging</dfn> case. This way of attaching to displays could be
+        enhanced in the future by defining a standard protocol for delivering
+        these types of messages that remote playback devices could choose to
+        implement.
       </p>
       <p>
         The API defined here is intended to be used with UAs that attach to
@@ -666,7 +664,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         <div class="note" role="note" id="issue-container-generatedID"><div role="heading" class="note-title marker" id="h-note" aria-level="4"><span>Note</span></div><div class="">
           A <a href="#dfn-local-playback-device" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-local-playback-device-1">local playback device</a> might have extra outputs, like an
           external display or speakers/headphones. As long as the switch of
-          what output to use happens outside of the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-1">user agent</a> on the
+          what output to use happens outside of the user agent on the
           system level, the playback is considered to happen on a <a href="#dfn-local-playback-device" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-local-playback-device-2">local
           playback device</a> for the purpose of this spec.
         </div></div>
@@ -679,7 +677,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
           A <dfn id="dfn-media-element-state" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">media element state</dfn> is the set of all single
           <dfn data-plurals="media elements" id="dfn-media-element" class="externalDFN" data-no-export="" data-dfn-type="dfn"><a href="https://html.spec.whatwg.org/multipage/#media-element">media element</a></dfn>
           properties observable by the page and/or the user via the
-          <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-2">user agent</a> implementation. The new properties introduced by
+          user agent implementation. The new properties introduced by
           this spec are not considered part of the <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-media-element-state-1">media element state</a>
           for convenience.
         </p>
@@ -701,9 +699,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         <div class="note" role="note" id="issue-container-generatedID-0"><div role="heading" class="note-title marker" id="h-note-0" aria-level="4"><span>Note</span></div><p class="">
           For a good user experience it is important that the <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-media-element-state-5">media element
           state</a> doesn't change unexpectedly when the
-          <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-state-1"><code>state</code></a> changes. It
-          is also important that <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-1">remote playback state</a> is in sync with
-          the <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-media-element-state-6">media element state</a> so when the media is paused on the
+          <a data-link-type="idl" href="#dom-remoteplayback-state" class="internalDFN" id="ref-for-dom-remoteplayback-state-1"><code>state</code></a> changes. It is also important that <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-1">remote
+          playback state</a> is in sync with the <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-media-element-state-6">media element state</a> so
+          when the media is paused on the
           <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-15">remote playback device</a> it looks paused to both the user and
           the page.
         </p></div>
@@ -714,11 +712,11 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         </p>
       </section>
       <section id="remoteplayback-interface"><div class="header-wrapper"><h3 id="x5-2-remoteplayback-interface"><bdi class="secno">5.2 </bdi>
-          <a href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-1"><code>RemotePlayback</code></a> interface
+          <dfn data-export="" data-dfn-type="interface" id="dom-remoteplayback" data-idl="interface" data-title="RemotePlayback" data-dfn-for="" tabindex="0" aria-haspopup="dialog"><code>RemotePlayback</code></dfn> interface
         </h3><a class="self-link" href="#remoteplayback-interface" aria-label="Permalink for Section 5.2"></a></div>
         
         <pre class="idl def" id="webidl-1015675303"><span class="idlHeader"><a class="self-link" href="#webidl-1015675303">WebIDL</a></span><code><span data-idl="" class="idlInterface" id="idl-def-remoteplayback" data-title="RemotePlayback">[<span class="extAttr"><a data-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed">Exposed</a>=Window</span>]
-interface <a class="internalDFN idlID" data-link-type="interface" href="#dom-remoteplayback" id="ref-for-dom-remoteplayback-2"><code>RemotePlayback</code></a> : <span class="idlSuperclass"><a data-type="interface" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a></span> {<span data-idl="" class="idlMethod" id="idl-def-remoteplayback-watchavailability-callback" data-title="watchAvailability" data-dfn-for="RemotePlayback"><span class="idlType">
+interface <a class="internalDFN idlID" data-link-type="interface" href="#dom-remoteplayback" id="ref-for-dom-remoteplayback-1"><code>RemotePlayback</code></a> : <span class="idlSuperclass"><a data-type="interface" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a></span> {<span data-idl="" class="idlMethod" id="idl-def-remoteplayback-watchavailability-callback" data-title="watchAvailability" data-dfn-for="RemotePlayback"><span class="idlType">
   <a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-long">long</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dom-remoteplayback-watchavailability" id="ref-for-dom-remoteplayback-watchavailability-1"><code>watchAvailability</code></a>(<span class="idlType"><a href="#dom-remoteplaybackavailabilitycallback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackavailabilitycallback-1"><code>RemotePlaybackAvailabilityCallback</code></a></span> <span class="idlParamName">callback</span>);</span><span data-idl="" class="idlMethod" id="idl-def-remoteplayback-cancelwatchavailability-id" data-title="cancelWatchAvailability" data-dfn-for="RemotePlayback"><span class="idlType">
   <a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined">undefined</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dom-remoteplayback-cancelwatchavailability" id="ref-for-dom-remoteplayback-cancelwatchavailability-1"><code>cancelWatchAvailability</code></a>(optional<span class="idlType"> <a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-long">long</a></span> <span class="idlParamName">id</span>);</span><span data-idl="" class="idlAttribute" id="idl-def-remoteplayback-state" data-title="state" data-dfn-for="RemotePlayback">
 
@@ -739,66 +737,65 @@ enum <a class="internalDFN idlID" data-link-type="enum" href="#dom-remoteplaybac
 
 callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remoteplaybackavailabilitycallback" id="ref-for-dom-remoteplaybackavailabilitycallback-2"><code>RemotePlaybackAvailabilityCallback</code></a> =<span class="idlType"> <a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined">undefined</a></span>(<span class="idlType"><a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean">boolean</a></span> <span class="idlParamName">available</span>);</span></code></pre>
         <p>
-          A <dfn data-export="" data-dfn-type="interface" id="dom-remoteplayback" data-idl="interface" data-title="RemotePlayback" data-dfn-for="" tabindex="0" aria-haspopup="dialog"><code>RemotePlayback</code></dfn> object is an interface allowing the page
-          to detect availability of, connect to and control playback on
-          <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-16">remote playback devices</a>.
+          A <a data-link-type="idl" data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-2"><code>RemotePlayback</code></a> object allows the page to detect availability
+          of, connect to and control playback on <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-16">remote playback devices</a>.
         </p>
         <p>
-          A <dfn data-export="" data-dfn-type="enum" id="dom-remoteplaybackstate" data-idl="enum" data-title="RemotePlaybackState" data-dfn-for="" tabindex="0" aria-haspopup="dialog"><code>RemotePlaybackState</code></dfn> enumeration represents the state of
-          connection to some <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-17">remote playback device</a>.
+          The <dfn data-export="" data-dfn-type="enum" id="dom-remoteplaybackstate" data-idl="enum" data-title="RemotePlaybackState" data-dfn-for="" tabindex="0" aria-haspopup="dialog"><code>RemotePlaybackState</code></dfn> enum represents possible connection
+          states to a <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-17">remote playback device</a>.
         </p>
         <p>
-          A <dfn data-export="" data-dfn-type="callback" id="dom-remoteplaybackavailabilitycallback" data-idl="callback" data-title="RemotePlaybackAvailabilityCallback" data-dfn-for="" tabindex="0" aria-haspopup="dialog"><code>RemotePlaybackAvailabilityCallback</code></dfn> represents the
-          <a href="#dfn-remote-playback-device-availability" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-device-availability-1">remote playback device availability</a> information.
+          The <dfn data-export="" data-dfn-type="callback" id="dom-remoteplaybackavailabilitycallback" data-idl="callback" data-title="RemotePlaybackAvailabilityCallback" data-dfn-for="" tabindex="0" aria-haspopup="dialog"><code>RemotePlaybackAvailabilityCallback</code></dfn> returns the current 
+          <a href="#dfn-remote-playback-device-availability" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-device-availability-1">remote playback device availability</a>.
         </p>
         <section data-link-for="RemotePlayback" id="observing-remote-playback-device-availability"><div class="header-wrapper"><h4 id="x5-2-1-observing-remote-playback-device-availability"><bdi class="secno">5.2.1 </bdi>
             Observing remote playback device availability
           </h4><a class="self-link" href="#observing-remote-playback-device-availability" aria-label="Permalink for Section 5.2.1"></a></div>
           
           <p>
-            A <a href="#dom-remoteplaybackavailabilitycallback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackavailabilitycallback-3"><code>RemotePlaybackAvailabilityCallback</code></a> is the way
-            for the page to obtain the <dfn id="dfn-remote-playback-device-availability" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">remote playback device
-            availability</dfn> for the corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a>. If
-            the user agent can <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-1">monitor the list of available remote playback
-            devices</a> in the background (without a pending request to
-            <a href="#dom-remoteplayback-prompt" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-prompt-2"><code>prompt</code></a><code>()</code>), the <a href="#dom-remoteplaybackavailabilitycallback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackavailabilitycallback-4"><code>RemotePlaybackAvailabilityCallback</code></a> behavior
-            defined below <em class="rfc2119">MUST</em> be implemented by the user agent. Otherwise, the
-            promise returned by <a href="#dom-remoteplayback-watchavailability" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-watchavailability-2"><code>watchAvailability</code></a><code>()</code> <em class="rfc2119">MUST</em> be rejected
-            with <a data-link-type="idl" data-lt="NotSupportedError" data-type="exception" href="https://webidl.spec.whatwg.org/#notsupportederror"><code>NotSupportedError</code></a>.
+            A <a data-link-type="idl" data-lt="RemotePlaybackAvailabilityCallback" href="#dom-remoteplaybackavailabilitycallback" class="internalDFN" id="ref-for-dom-remoteplaybackavailabilitycallback-3"><code>RemotePlaybackAvailabilityCallback</code></a> is the way for the page to
+            obtain the <dfn id="dfn-remote-playback-device-availability" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">remote playback device availability</dfn> for the
+            corresponding <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a>. If the user agent can <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-1">monitor
+            the list of available remote playback devices</a> in the background
+            (without a pending request to <a data-link-type="idl" data-lt="prompt()" href="#dom-remoteplayback-prompt" class="internalDFN" id="ref-for-dom-remoteplayback-prompt-2"><code>prompt</code></a><code>()</code>), the
+            <a data-link-type="idl" data-lt="RemotePlaybackAvailabilityCallback" href="#dom-remoteplaybackavailabilitycallback" class="internalDFN" id="ref-for-dom-remoteplaybackavailabilitycallback-4"><code>RemotePlaybackAvailabilityCallback</code></a> behavior defined below <em class="rfc2119">MUST</em>
+            be implemented by the user agent. Otherwise, the promise returned by
+            <a data-link-type="idl" data-lt="watchAvailability()" href="#dom-remoteplayback-watchavailability" class="internalDFN" id="ref-for-dom-remoteplayback-watchavailability-2"><code>watchAvailability</code></a><code>()</code> <em class="rfc2119">MUST</em> be rejected with
+            <a data-link-type="idl" data-lt="NotSupportedError" data-type="exception" href="https://webidl.spec.whatwg.org/#notsupportederror"><code>NotSupportedError</code></a>.
           </p>
           <section id="the-set-of-availability-callbacks"><div class="header-wrapper"><h5 id="x5-2-1-1-the-set-of-availability-callbacks"><bdi class="secno">5.2.1.1 </bdi>
               The set of availability callbacks
             </h5><a class="self-link" href="#the-set-of-availability-callbacks" aria-label="Permalink for Section 5.2.1.1"></a></div>
             
             <p>
-              The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-3">user agent</a> <em class="rfc2119">MUST</em> keep track of the <dfn id="dfn-set-of-availability-callbacks" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">set of
-              availability callbacks</dfn> registered with each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media
-              element</a> through the <a href="#dom-remoteplayback-watchavailability" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-watchavailability-3"><code>watchAvailability</code></a><code>()</code> method. The
-              <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-set-of-availability-callbacks-1">set of availability callbacks</a> for each
-              <a href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-3"><code>RemotePlayback</code></a> object is represented as a set of tuples
+              The user agent <em class="rfc2119">MUST</em> keep track of the <dfn id="dfn-set-of-availability-callbacks" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">set of availability
+              callbacks</dfn> registered with each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a> through
+              the <dfn data-dfn-for="RemotePlayback" data-export="" data-dfn-type="method" id="dom-remoteplayback-watchavailability" data-idl="operation" data-title="watchAvailability()" data-type="Promise" data-lt="watchAvailability()|watchAvailability(callback)" data-local-lt="RemotePlayback.watchAvailability|RemotePlayback.watchAvailability()|watchAvailability" tabindex="0" aria-haspopup="dialog"><code>watchAvailability()</code></dfn>
+              method. The <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-set-of-availability-callbacks-1">set of availability callbacks</a> for each
+              <a data-link-type="idl" data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-3"><code>RemotePlayback</code></a> object is represented as a set of tuples
               <em>(<var data-type="long">callbackId</var>, <var data-type="RemotePlaybackAvailabilityCallback">callback</var>)</em>,
               initially empty, where:
             </p>
             <ol>
               <li>
                 <var data-type="long">callbackId</var> is a positive integer unique among all ids
-                returned by <a href="#dom-remoteplayback-watchavailability" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-watchavailability-4"><code>watchAvailability</code></a><code>()</code>
-                in a given <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>;
+                returned by <a data-link-type="idl" data-lt="watchAvailability()" href="#dom-remoteplayback-watchavailability" class="internalDFN" id="ref-for-dom-remoteplayback-watchavailability-3"><code>watchAvailability</code></a><code>()</code> in a
+                given <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>;
               </li>
               <li>
-                <var data-type="RemotePlaybackAvailabilityCallback">callback</var> is a <a href="#dom-remoteplaybackavailabilitycallback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackavailabilitycallback-5"><code>RemotePlaybackAvailabilityCallback</code></a> object.
+                <var data-type="RemotePlaybackAvailabilityCallback">callback</var> is a <a data-link-type="idl" data-lt="RemotePlaybackAvailabilityCallback" href="#dom-remoteplaybackavailabilitycallback" class="internalDFN" id="ref-for-dom-remoteplaybackavailabilitycallback-5"><code>RemotePlaybackAvailabilityCallback</code></a> object.
               </li>
             </ol>
             <p>
-              Since there's one and only one <a href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-4"><code>RemotePlayback</code></a> object per
+              Since there's one and only one <a data-link-type="idl" data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-4"><code>RemotePlayback</code></a> object per
               each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a>, <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-set-of-availability-callbacks-2">set of availability callbacks</a>
               of a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a> is the same set as the <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-set-of-availability-callbacks-3">set of
-              availability callbacks</a> of the <a href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-5"><code>RemotePlayback</code></a> object
+              availability callbacks</a> of the <a data-link-type="idl" data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-5"><code>RemotePlayback</code></a> object
               referred to by the element's <a href="#dom-htmlmediaelement-remote" class="internalDFN" data-link-type="idl" id="ref-for-dom-htmlmediaelement-remote-1"><code>remote</code></a> property.
             </p>
             <p>
               The combined set of all <a data-lt="set of availability callbacks" href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-set-of-availability-callbacks-4">sets of availability
-              callbacks</a> of all <a href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-6"><code>RemotePlayback</code></a> objects known to the
+              callbacks</a> of all <a data-link-type="idl" data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-6"><code>RemotePlayback</code></a> objects known to the
               <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> is referred to as <dfn id="dfn-global-set-of-availability-callbacks" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">global set of
               availability callbacks</dfn>.
             </p>
@@ -808,7 +805,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             </h5><a class="self-link" href="#the-list-of-available-remote-playback-devices" aria-label="Permalink for Section 5.2.1.2"></a></div>
             
             <p>
-              The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-4">user agent</a> <em class="rfc2119">MUST</em> keep a <dfn id="dfn-list-of-available-remote-playback-devices" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">list of available remote
+              The user agent <em class="rfc2119">MUST</em> keep a <dfn id="dfn-list-of-available-remote-playback-devices" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">list of available remote
               playback devices</dfn>. This list contains <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-18">remote playback
               devices</a> and is populated based on an implementation specific
               discovery mechanism. It is set to the most recent result of the
@@ -817,19 +814,19 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               yet.
             </p>
             <p>
-              The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-5">user agent</a> <em class="rfc2119">MAY</em> not support running the algorithm to
+              The user agent <em class="rfc2119">MAY</em> not support running the algorithm to
               <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-3">monitor the list of available remote playback devices</a>
               continuously, for example, because of platform or power
               consumption restrictions. In this case the promise returned by
-              <a href="#dom-remoteplayback-watchavailability" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-watchavailability-5"><code>watchAvailability</code></a><code>()</code> <em class="rfc2119">MUST</em> be rejected
-              with <a data-link-type="idl" data-lt="NotSupportedError" data-type="exception" href="https://webidl.spec.whatwg.org/#notsupportederror"><code>NotSupportedError</code></a>, the <a href="#dfn-global-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-global-set-of-availability-callbacks-1">global set of availability
+              <a data-link-type="idl" data-lt="watchAvailability()" href="#dom-remoteplayback-watchavailability" class="internalDFN" id="ref-for-dom-remoteplayback-watchavailability-4"><code>watchAvailability</code></a><code>()</code> <em class="rfc2119">MUST</em> be rejected with
+              <a data-link-type="idl" data-lt="NotSupportedError" data-type="exception" href="https://webidl.spec.whatwg.org/#notsupportederror"><code>NotSupportedError</code></a>, the <a href="#dfn-global-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-global-set-of-availability-callbacks-1">global set of availability
               callbacks</a> will be empty and the algorithm to <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-4">monitor the
               list of available remote playback devices</a> will only run as
               part of the <a href="#dfn-initiate-remote-playback" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-initiate-remote-playback-1">initiate remote playback</a> algorithm.
             </p>
             <p>
               When the <a href="#dfn-global-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-global-set-of-availability-callbacks-2">global set of availability callbacks</a> is not
-              empty, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-6">user agent</a> <em class="rfc2119">MUST</em> <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-5">monitor the list of
+              empty, the user agent <em class="rfc2119">MUST</em> <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-5">monitor the list of
               available remote playback devices</a> continuously, so that pages
               can keep track of the last value received via the registered
               callbacks to offer remote playback only when there are available
@@ -839,7 +836,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               The user agent is expected not to <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-6">monitor the list of available
               remote playback devices</a> when possible, to satisfy the <a href="https://github.com/w3c/remote-playback/blob/gh-pages/use-cases.md#power-saving-friendly">
               power saving non-functional requirement</a>. For example, the
-              <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-7">user agent</a> might choose not to run the monitoring
+              user agent might choose not to run the monitoring
               algorithm when the <a href="#dfn-global-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-global-set-of-availability-callbacks-3">global set of availability callbacks</a> is
               empty, when every page that has <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media elements</a> with non-empty
               <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-set-of-availability-callbacks-5">set of availability callbacks</a> is in the background.
@@ -852,12 +849,12 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               rendering only certain formats of video and/or audio. We say that
               such a device is a <dfn id="dfn-compatible-remote-playback-device" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">compatible remote playback device</dfn>
               for a <a href="https://html.spec.whatwg.org/multipage/#media-resource">media resource</a>
-              if the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-8">user agent</a> can reasonably guarantee that the
+              if the user agent can reasonably guarantee that the
               remote playback of the media specified by the resource will
               succeed on that device.
             </p>
             <div class="note" role="note" id="issue-container-generatedID-2"><div role="heading" class="note-title marker" id="h-note-2" aria-level="6"><span>Note</span></div><p class="">
-              The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-9">user agent</a> can use the <code><a data-link-type="idl" data-type="attribute" href="https://html.spec.whatwg.org/multipage/media.html#dom-track-srclang"><code>srclang</code></a></code>
+              The user agent can use the <a data-link-type="idl" data-type="attribute" href="https://html.spec.whatwg.org/multipage/media.html#dom-track-srclang"><code>srclang</code></a>
               attribute of the <code><code><a data-type="element" href="https://html.spec.whatwg.org/multipage/media.html#the-track-element">track</a></code></code> element as a hint of
               the language of the text track data to help identify a
               <a href="#dfn-compatible-remote-playback-device" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-compatible-remote-playback-device-1">compatible remote playback device</a>.
@@ -906,16 +903,15 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               source</a>.
             </p>
             <p>
-              Remote playback is said to be <dfn id="dfn-unavailable" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">unavailable</dfn> for the
+              Remote playback is <dfn id="dfn-unavailable" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">unavailable</dfn> for the
               <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a> if the <a href="#dfn-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-list-of-available-remote-playback-devices-1">list of available remote playback
               devices</a> is empty or none of them is compatible with any source
               from <a href="#dfn-availability-sources-set" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-availability-sources-set-5">availability sources set</a> for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media
-              element</a>. The remote playback is said to be
-              <dfn id="dfn-available" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">available</dfn> otherwise. A <code>boolean</code> set to
-              <code>false</code> if the remote playback is <a href="#dfn-unavailable" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-unavailable-1">unavailable</a>
-              for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a> or <code>true</code> if it is
-              <a href="#dfn-available" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-available-1">available</a> is called <dfn id="dfn-availability" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">availability</dfn> for the
-              <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a>.
+              element</a>. Otherwise, remote playback is
+              <dfn id="dfn-available" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">available</dfn>. A <code>boolean</code> set to <code>false</code> if the remote
+              playback is <a href="#dfn-unavailable" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-unavailable-1">unavailable</a> for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a> or
+              <code>true</code> if it is <a href="#dfn-available" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-available-1">available</a> is called
+              <dfn id="dfn-availability" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">availability</dfn> for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a>.
             </p>
             <p>
               If the user agent stops
@@ -938,8 +934,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             </h5><a class="self-link" href="#getting-the-remote-playback-devices-availability-information" aria-label="Permalink for Section 5.2.1.3"></a></div>
             
             <p>
-              When the <dfn data-dfn-for="RemotePlayback" data-export="" data-dfn-type="method" id="dom-remoteplayback-watchavailability" data-idl="operation" data-title="watchAvailability" data-type="Promise" data-lt="watchAvailability()|watchAvailability(callback)" data-local-lt="RemotePlayback.watchAvailability|RemotePlayback.watchAvailability()|watchAvailability" tabindex="0" aria-haspopup="dialog"><code>watchAvailability</code></dfn><code>()</code>
-              method is called, the user agent <em class="rfc2119">MUST</em> run the following steps:
+              When the <a data-link-type="idl" data-lt="watchAvailability()" href="#dom-remoteplayback-watchavailability" class="internalDFN" id="ref-for-dom-remoteplayback-watchavailability-5"><code>watchAvailability</code></a><code>()</code> method is
+              called, the user agent <em class="rfc2119">MUST</em> run the following steps:
             </p>
             <dl>
               <dt>
@@ -1020,11 +1016,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
                     the current <a href="#dfn-availability" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-availability-2">availability</a> for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media
                     element</a>.
                   </li>
-                  <li>
-                    If the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-10">user agent</a> is not <a data-lt="monitor the list of available remote playback devices" href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-11">
-                    monitoring the list of available remote playback devices</a>,
-                    run the algorithm to <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-12">monitor the list of available remote
-                    playback devices</a>.
+                  <li>If the user agent is not <a data-lt="monitor the list of available remote playback devices" href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-11">monitoring
+                  the list of available remote playback devices</a>, run the
+                  algorithm to <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-12">monitor the list of available remote playback
+                  devices</a>.
                   </li>
                 </ol>
               </li>
@@ -1048,7 +1043,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             <p>
               If the <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-set-of-availability-callbacks-7">set of availability callbacks</a> is non-empty, or
               there is a pending request to <a data-lt="prompt" href="#dom-remoteplayback-prompt" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-prompt-3">
-              initiate remote playback</a>, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-11">user agent</a>
+              initiate remote playback</a>, the user agent
               <em class="rfc2119">MUST</em> <dfn id="dfn-monitor-the-list-of-available-remote-playback-devices" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">monitor the list of available remote playback
               devices</dfn> by running the following steps:
             </p>
@@ -1098,10 +1093,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             </h5><a class="self-link" href="#stop-observing-remote-playback-devices-availability" aria-label="Permalink for Section 5.2.1.5"></a></div>
             
             <p>
-              When a <dfn data-dfn-for="RemotePlayback" data-export="" data-dfn-type="method" id="dom-remoteplayback-cancelwatchavailability" data-idl="operation" data-title="cancelWatchAvailability
-              " data-type="Promise" data-lt="cancelWatchAvailability()|cancelWatchAvailability(id)" data-local-lt="RemotePlayback.cancelWatchAvailability|RemotePlayback.cancelWatchAvailability()|cancelWatchAvailability" tabindex="0" aria-haspopup="dialog"><code>cancelWatchAvailability</code>
-              </dfn><code>()</code> method is called, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-12">user agent</a> <em class="rfc2119">MUST</em> run the
-              following steps:
+              When a <dfn data-dfn-for="RemotePlayback" data-export="" data-dfn-type="method" id="dom-remoteplayback-cancelwatchavailability" data-idl="operation" data-title="cancelWatchAvailability()" data-type="Promise" data-lt="cancelWatchAvailability()|cancelWatchAvailability(id)" data-local-lt="RemotePlayback.cancelWatchAvailability|RemotePlayback.cancelWatchAvailability()|cancelWatchAvailability" tabindex="0" aria-haspopup="dialog"><code>cancelWatchAvailability()</code></dfn>
+              method is called, the user agent <em class="rfc2119">MUST</em> run the following steps:
             </p>
             <dl>
               <dt>
@@ -1166,8 +1159,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
           </h4><a class="self-link" href="#prompt-user-for-changing-remote-playback-state" aria-label="Permalink for Section 5.2.2"></a></div>
           
           <p>
-            When the <dfn data-dfn-for="RemotePlayback" data-export="" data-dfn-type="method" id="dom-remoteplayback-prompt" data-idl="operation" data-title="prompt" data-type="Promise" data-lt="prompt()" data-local-lt="RemotePlayback.prompt|RemotePlayback.prompt()|prompt" tabindex="0" aria-haspopup="dialog"><code>prompt</code></dfn><code>()</code> method is called, the
-            <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-13">user agent</a> <em class="rfc2119">MUST</em> run the following steps:
+            When the <dfn data-dfn-for="RemotePlayback" data-export="" data-dfn-type="method" id="dom-remoteplayback-prompt" data-idl="operation" data-title="prompt()" data-type="Promise" data-lt="prompt()" data-local-lt="RemotePlayback.prompt|RemotePlayback.prompt()|prompt" tabindex="0" aria-haspopup="dialog"><code>prompt()</code></dfn> method is
+            called, the user agent <em class="rfc2119">MUST</em> run the following steps:
           </p>
           <dl>
             <dt>
@@ -1199,16 +1192,16 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               <a data-link-type="idl" data-lt="InvalidStateError" data-type="exception" href="https://webidl.spec.whatwg.org/#invalidstateerror"><code>InvalidStateError</code></a> and abort all the remaining steps.
             </li>
             <li>
-              If there is already an unsettled promise from a previous call
-              to <a href="#dom-remoteplayback-prompt" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-prompt-5"><code>prompt</code></a> for the same <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a> or even for
-              the same <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>, the user agent <em class="rfc2119">MAY</em> reject
+              If there is already an unsettled promise from a previous call to
+              <a data-link-type="idl" data-lt="prompt()" href="#dom-remoteplayback-prompt" class="internalDFN" id="ref-for-dom-remoteplayback-prompt-5"><code>prompt</code></a><code>()</code> for the same <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a> or
+              even for the same <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>, the user agent <em class="rfc2119">MAY</em> reject
               <var data-type="Promise">promise</var> with an <a data-link-type="idl" data-lt="OperationError" data-type="exception" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a> exception and abort all
               remaining steps.
               <div class="note" role="note" id="issue-container-generatedID-7"><div role="heading" class="note-title marker" id="h-note-7" aria-level="5"><span>Note</span></div><div class="">
                 The rationale here is that the user agent might show a dialog
                 that's modal to either the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a> or the
                 <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>. In such a case, the second call to
-                <a href="#dom-remoteplayback-prompt" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-prompt-6"><code>prompt</code></a><code>()</code> would not be able to show any UI.
+                <a data-link-type="idl" data-lt="prompt()" href="#dom-remoteplayback-prompt" class="internalDFN" id="ref-for-dom-remoteplayback-prompt-6"><code>prompt</code></a><code>()</code> would not be able to show any UI.
               </div></div>
             </li>
             <li>
@@ -1217,12 +1210,11 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               <a data-link-type="idl" data-lt="InvalidAccessError" data-type="exception" href="https://webidl.spec.whatwg.org/#invalidaccesserror"><code>InvalidAccessError</code></a> exception and abort these steps.
             </li>
             <li>
-              OPTIONALLY, if the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-14">user agent</a> knows a priori that remote
-              playback of this particular <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a> is not feasible
-              (independent of the current <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-state-3"><code>state</code></a> or the
-              <a href="#dfn-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-list-of-available-remote-playback-devices-4">list of available remote playback devices</a>),
-              reject <var data-type="Promise">promise</var> with a <a data-link-type="idl" data-lt="NotSupportedError" data-type="exception" href="https://webidl.spec.whatwg.org/#notsupportederror"><code>NotSupportedError</code></a> and abort
-              all remaining steps.
+              OPTIONALLY, if the user agent knows a priori that remote playback
+              of this particular <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a> is not feasible (independent
+              of the current <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-state-3"><code>state</code></a> or the <a href="#dfn-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-list-of-available-remote-playback-devices-4">list of available remote
+              playback devices</a>), reject <var data-type="Promise">promise</var> with a <a data-link-type="idl" data-lt="NotSupportedError" data-type="exception" href="https://webidl.spec.whatwg.org/#notsupportederror"><code>NotSupportedError</code></a>
+              and abort all remaining steps.
               <div class="note" role="note" id="issue-container-generatedID-8"><div role="heading" class="note-title marker" id="h-note-8" aria-level="5"><span>Note</span></div><div class="">
                 An example of this situation is when the user agent only
                 supports <a href="#dfn-media-flinging" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-media-flinging-2">media flinging</a>, and the media element's source
@@ -1231,9 +1223,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               </div></div>
             </li>
             <li>
-              If the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-15">user agent</a> needs to show the <a href="#dfn-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-list-of-available-remote-playback-devices-5">list of available
-              remote playback devices</a> and is not <a data-lt="monitor the list of available remote playback devices" href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-14">monitoring
-              the list of available remote playback devices</a>, run the steps to
+              If the user agent needs to show the <a href="#dfn-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-list-of-available-remote-playback-devices-5">list of available remote
+              playback devices</a> and is not <a data-lt="monitor the list of
+              available remote playback devices" href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-14">monitoring the list of
+              available remote playback devices</a>, run the steps to
               <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-15">monitor the list of available remote playback devices</a> <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in
               parallel</a>.
             </li>
@@ -1261,9 +1254,9 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               </div></div>
             </li>
             <li>
-              If the user picked a <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-32">remote playback device</a>
-              <var data-type="remote playback device">device</var> to <dfn id="dfn-initiate-remote-playback" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">initiate remote playback</dfn>
-              with, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-16">user agent</a> <em class="rfc2119">MUST</em> run the following steps:
+              If the user picked a <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-32">remote playback device</a> <var data-type="remote
+              playback device">device</var> to <dfn id="dfn-initiate-remote-playback" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">initiate remote playback</dfn> with, the
+              user agent <em class="rfc2119">MUST</em> run the following steps:
               <ol>
                 <li>
                   Set the <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-state-4"><code>state</code></a> of the <var data-type="RemotePlayback">remote</var> object
@@ -1280,7 +1273,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
                 </li>
                 <li>
                   <a href="#dfn-establish-a-connection-with-the-remote-playback-device" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-establish-a-connection-with-the-remote-playback-device-1">Establish a connection with the remote playback device</a>
-                  <var data-type="remote playback device">device</var> for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a>.
+                  <var data-type="remote
+              playback device">device</var> for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a>.
                 </li>
               </ol>
               <div class="note" role="note" id="issue-container-generatedID-11"><div role="heading" class="note-title marker" id="h-note-11" aria-level="5"><span>Note</span></div><p class="">
@@ -1290,22 +1284,24 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             </li>
             <li>
               Otherwise, if the user chose to disconnect from the <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-34">remote
-              playback device</a> <var data-type="remote playback device">device</var>, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-17">user agent</a> <em class="rfc2119">MUST</em>
-              run the following steps:
+              playback device</a> <var data-type="remote
+              playback device">device</var>, the user agent <em class="rfc2119">MUST</em> run the
+              following steps:
               <ol>
                 <li>
                   Fulfill <var data-type="Promise">promise</var>.
                 </li>
                 <li>
                   Run the <a href="#dfn-disconnect-from-a-remote-playback-device" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-disconnect-from-a-remote-playback-device-2">disconnect from a remote playback device</a>
-                  algorithm for the <var data-type="remote playback device">device</var>.
+                  algorithm for the <var data-type="remote
+              playback device">device</var>.
                 </li>
               </ol>
             </li>
             <li>
-              Otherwise, the user is considered to <em>deny permission</em>
-              to use the device, so reject <var data-type="Promise">promise</var> with <a data-link-type="idl" data-lt="NotAllowedError" data-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror"><code>NotAllowedError</code></a>
-              exception and hide the UI shown by the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-18">user agent</a>.
+              Otherwise, the user is considered to <em>deny permission</em> to
+              use the device, so reject <var data-type="Promise">promise</var> with <a data-link-type="idl" data-lt="NotAllowedError" data-type="exception" href="https://webidl.spec.whatwg.org/#notallowederror"><code>NotAllowedError</code></a>
+              exception and hide the UI shown by the user agent.
             </li>
           </ol>
           <div class="note" role="note" id="issue-container-generatedID-12"><div role="heading" class="note-title marker" id="h-note-12" aria-level="5"><span>Note</span></div><div class="">
@@ -1320,36 +1316,39 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             they are known.
           </div></div>
         </section>
-        <section data-link-for="RemotePlayback" id="the-state-attribute"><div class="header-wrapper"><h4 id="x5-2-3-the-state-attribute"><bdi class="secno">5.2.3 </bdi>
-            The <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-state-5"><code>state</code></a> attribute
+        <section id="the-state-attribute"><div class="header-wrapper"><h4 id="x5-2-3-the-state-attribute"><bdi class="secno">5.2.3 </bdi>
+            The <dfn data-dfn-for="RemotePlayback" data-export="" data-dfn-type="attribute" id="dom-remoteplayback-state" data-idl="attribute" data-title="state" data-type="RemotePlaybackState" data-lt="state" data-local-lt="RemotePlayback.state" tabindex="0" aria-haspopup="dialog"><code>state</code></dfn> attribute
           </h4><a class="self-link" href="#the-state-attribute" aria-label="Permalink for Section 5.2.3"></a></div>
           
           <p>
-            The <dfn data-dfn-for="RemotePlayback" data-export="" data-dfn-type="attribute" id="dom-remoteplayback-state" data-idl="attribute" data-title="state" data-type="RemotePlaybackState" data-lt="state" data-local-lt="RemotePlayback.state" tabindex="0" aria-haspopup="dialog"><code>state</code></dfn>
-            attribute represents the <a href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-9"><code>RemotePlayback</code></a> connection's current
-            state. It can take one of the values of <a href="#dom-remoteplaybackstate" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackstate-3"><code>RemotePlaybackState</code></a>
-            depending on the connection state:
+            The <a data-link-type="idl" href="#dom-remoteplayback-state" class="internalDFN" id="ref-for-dom-remoteplayback-state-5"><code>state</code></a> attribute represents the
+            <a data-link-type="idl" data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-9"><code>RemotePlayback</code></a> connection's current state. It can take one of
+            the values of <a data-link-type="idl" data-lt="RemotePlaybackState" href="#dom-remoteplaybackstate" class="internalDFN" id="ref-for-dom-remoteplaybackstate-3"><code>RemotePlaybackState</code></a> depending on the connection
+            state:
           </p>
-          <ul data-dfn-for="RemotePlaybackState">
+          <ul>
             <li>
-              <dfn data-export="" data-dfn-type="enum-value" id="dom-remoteplaybackstate-connecting" data-idl="enum-value" data-title="connecting" data-dfn-for="RemotePlaybackState" tabindex="0" aria-haspopup="dialog"><code>connecting</code></dfn> means that the user agent is attempting to
-              <a href="#dfn-initiate-remote-playback" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-initiate-remote-playback-4">initiate remote playback</a> with the selected <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-35">remote
-              playback device</a>. This is the initial state when the
-              <code>promise</code> returned by <a href="#dom-remoteplayback-prompt" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-prompt-7"><code>prompt</code></a><code>()</code> is fulfilled. The local
-              playback of the media element continues in this state and media
-              commands still take effect on the <a href="#dfn-local-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-local-playback-state-1">local playback state</a>.
+              <dfn data-dfn-for="RemotePlaybackState" data-export="" data-dfn-type="enum-value" id="dom-remoteplaybackstate-connecting" data-idl="enum-value" data-title="connecting" tabindex="0" aria-haspopup="dialog"><code>connecting</code></dfn> means
+              that the user agent is attempting to <a href="#dfn-initiate-remote-playback" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-initiate-remote-playback-4">initiate remote
+              playback</a> with the selected <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-35">remote playback device</a>. This
+              is the initial state when the <code>promise</code> returned by
+              <a data-link-type="idl" data-lt="prompt()" href="#dom-remoteplayback-prompt" class="internalDFN" id="ref-for-dom-remoteplayback-prompt-7"><code>prompt</code></a><code>()</code> is fulfilled. The local playback of
+              the media element continues in this state and media commands still
+              take effect on the <a href="#dfn-local-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-local-playback-state-1">local playback state</a>.
             </li>
             <li>
-              <dfn data-export="" data-dfn-type="enum-value" id="dom-remoteplaybackstate-connected" data-idl="enum-value" data-title="connected" data-dfn-for="RemotePlaybackState" tabindex="0" aria-haspopup="dialog"><code>connected</code></dfn> means that the transition from local to
-              remote playback has finished and all media commands now take
-              effect on the <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-2">remote playback state</a>.
+              <dfn data-dfn-for="RemotePlaybackState" data-export="" data-dfn-type="enum-value" id="dom-remoteplaybackstate-connected" data-idl="enum-value" data-title="connected" tabindex="0" aria-haspopup="dialog"><code>connected</code></dfn> means that
+              the transition from local to remote playback has finished and all
+              media commands now take effect on the <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-2">remote playback
+              state</a>.
             </li>
             <li>
-              <dfn data-export="" data-dfn-type="enum-value" id="dom-remoteplaybackstate-disconnected" data-idl="enum-value" data-title="disconnected" data-dfn-for="RemotePlaybackState" tabindex="0" aria-haspopup="dialog"><code>disconnected</code></dfn> means that the remote playback has not
-              been <a data-lt="initiate remote playback" href="#dfn-initiate-remote-playback" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-initiate-remote-playback-5">initiated</a>, has
-              failed to initiate or has been stopped. All media commands will
-              take effect on the <a href="#dfn-local-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-local-playback-state-2">local playback state</a>. The remote
-              playback can be initiated through a call to <a href="#dom-remoteplayback-prompt" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-prompt-8"><code>prompt</code></a><code>()</code>.
+              <dfn data-dfn-for="RemotePlaybackState" data-export="" data-dfn-type="enum-value" id="dom-remoteplaybackstate-disconnected" data-idl="enum-value" data-title="disconnected" tabindex="0" aria-haspopup="dialog"><code>disconnected</code></dfn> means
+              that the remote playback has not been <a data-lt="initiate remote
+              playback" href="#dfn-initiate-remote-playback" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-initiate-remote-playback-5">initiated</a>, has failed to initiate or has been
+              stopped. All media commands will take effect on the <a href="#dfn-local-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-local-playback-state-2">local
+              playback state</a>. The remote playback can be initiated through a
+              call to <a data-link-type="idl" data-lt="prompt()" href="#dom-remoteplayback-prompt" class="internalDFN" id="ref-for-dom-remoteplayback-prompt-8"><code>prompt</code></a><code>()</code>.
             </li>
           </ul>
         </section>
@@ -1358,7 +1357,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
           </h4><a class="self-link" href="#establishing-a-connection-with-a-remote-playback-device" aria-label="Permalink for Section 5.2.4"></a></div>
           
           <p>
-            When the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-19">user agent</a> is to <dfn id="dfn-establish-a-connection-with-the-remote-playback-device" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">establish a connection with
+            When the user agent is to <dfn id="dfn-establish-a-connection-with-the-remote-playback-device" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">establish a connection with
             the remote playback device</dfn>, it <em class="rfc2119">MUST</em> run the following steps:
           </p>
           <dl>
@@ -1366,7 +1365,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               Input
             </dt>
             <dd>
-              <var data-type="RemotePlayback">remote</var>, the <a href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-10"><code>RemotePlayback</code></a> object that is to be
+              <var data-type="RemotePlayback">remote</var>, the <a data-link-type="idl" data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-10"><code>RemotePlayback</code></a> object that is to be
               connected.
             </dd>
             <dd>
@@ -1376,29 +1375,29 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
           </dl>
           <ol>
             <li>
-              If the <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-state-6"><code>state</code></a> of <var data-type="RemotePlayback">remote</var> is not equal to
-              <a href="#dom-remoteplaybackstate-connecting" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackstate-connecting-3"><code>connecting</code></a>,
-              abort all the remaining steps.
+              If the <a data-link-type="idl" href="#dom-remoteplayback-state" class="internalDFN" id="ref-for-dom-remoteplayback-state-6"><code>state</code></a> of <var data-type="RemotePlayback">remote</var> is not equal
+              to "<a data-link-type="idl" href="#dom-remoteplaybackstate-connecting" class="internalDFN" id="ref-for-dom-remoteplaybackstate-connecting-3"><code>connecting</code></a>", abort all the remaining
+              steps.
             </li>
             <li>
-              Request connection of <var data-type="RemotePlayback">remote</var> to <var data-type="remote playback device">device</var>. The implementation
-              of this step is specific to the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-20">user agent</a>.
+              Request connection of <var data-type="RemotePlayback">remote</var> to <var data-type="remote playback device">device</var>.  The implementation of
+              this step is specific to the user agent.
             </li>
             <li>
               If connection completes successfully, <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">queue a task</a> to
               run the following steps:
               <ol>
-                <li>
-                  Set the <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-state-7"><code>state</code></a> of <var data-type="RemotePlayback">remote</var> to
-                  <a href="#dom-remoteplaybackstate-connected" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackstate-connected-2"><code>connected</code></a>.
+               <li>
+                 Set the <a data-link-type="idl" href="#dom-remoteplayback-state" class="internalDFN" id="ref-for-dom-remoteplayback-state-7"><code>state</code></a> of <var data-type="RemotePlayback">remote</var> to
+                 "<a data-link-type="idl" href="#dom-remoteplaybackstate-connected" class="internalDFN" id="ref-for-dom-remoteplaybackstate-connected-2"><code>connected</code></a>".
                 </li>
                 <li>
                   <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named <a href="#dfn-connect" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-connect-1"><code>connect</code></a> at <var data-type="RemotePlayback">remote</var>.
                 </li>
-                <li>
-                  Synchronize the current <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-media-element-state-7">media element state</a> with the
-                  <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-3">remote playback state</a>. The implementation of this step
-                  is specific to the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-21">user agent</a>.
+               <li>
+                 Synchronize the current <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-media-element-state-7">media element state</a> with the
+                 <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-3">remote playback state</a>. The implementation of this step
+                 is specific to the user agent.
                 </li>
               </ol>
             </li>
@@ -1407,9 +1406,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               steps:
               <ol>
                 <li>
-                  Set the <a data-lt="state" href="#dom-remoteplayback-state" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-state-8">
-                  remote playback state</a> of <var data-type="RemotePlayback">remote</var> to
-                  <a href="#dom-remoteplaybackstate-disconnected" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackstate-disconnected-2"><code>disconnected</code></a>.
+                  Set the <a data-lt="state" href="#dom-remoteplayback-state" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-state-8">remote playback state</a> of
+                  <var data-type="RemotePlayback">remote</var> to "<a data-link-type="idl" href="#dom-remoteplaybackstate-disconnected" class="internalDFN" id="ref-for-dom-remoteplaybackstate-disconnected-2"><code>disconnected</code></a>".
                 </li>
                 <li>
                   <a data-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named <a data-link-type="idl" href="#dfn-disconnect" class="internalDFN" id="ref-for-dfn-disconnect-1"><code><code>disconnect</code></code></a> at <var data-type="RemotePlayback">remote</var>.
@@ -1419,14 +1417,16 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
           </ol>
           <p>
             The user agent <em class="rfc2119">SHOULD</em> pause local audio and video output of the
-            media element while the <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-4">remote playback state</a>
-            is <a href="#dom-remoteplaybackstate-connected" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackstate-connected-3"><code>connected</code></a>.
+            media element while the <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-4">remote playback state</a> is
+            "<a data-link-type="idl" href="#dom-remoteplaybackstate-connected" class="internalDFN" id="ref-for-dom-remoteplaybackstate-connected-3"><code>connected</code></a>".
           </p>
           <p>
-            If the user agent is <a href="https://html.spec.whatwg.org/multipage/#expose-a-user-interface-to-the-user">
-            exposing a user interface to the user</a> for the media element
-            (i.e., using default controls), the user agent <em class="rfc2119">SHOULD</em> convey the
-            fact that the <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-5">remote playback state</a> is <a href="#dom-remoteplaybackstate-connected" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackstate-connected-4"><code>connected</code></a> through an icon or other means.
+            If the user agent
+            is <a href="https://html.spec.whatwg.org/multipage/#expose-a-user-interface-to-the-user"> exposing
+            a user interface to the user</a> for the media element (i.e., using
+            default controls), the user agent <em class="rfc2119">SHOULD</em> convey the fact that
+            the <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-5">remote playback state</a> is
+            "<a data-link-type="idl" href="#dom-remoteplaybackstate-connected" class="internalDFN" id="ref-for-dom-remoteplaybackstate-connected-4"><code>connected</code></a>" through an icon or other means.
           </p>
           <div class="note" role="note" id="issue-container-generatedID-13"><div role="heading" class="note-title marker" id="h-note-13" aria-level="5"><span>Note</span></div><div class="">
             The mechanisms that are used to connect the user agent with the
@@ -1450,9 +1450,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
           </div></div>
           <div class="note" role="note" id="issue-container-generatedID-15"><div role="heading" class="note-title marker" id="h-note-15" aria-level="5"><span>Note</span></div><div class="">
             The user agent should not render output from the media element while
-            it is in a <a href="#dom-remoteplaybackstate-connected" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackstate-connected-5"><code>connected</code></a>
-            state and its content is being rendered on a <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-41">remote playback
-              device</a>.
+            it is in a "<a data-link-type="idl" href="#dom-remoteplaybackstate-connected" class="internalDFN" id="ref-for-dom-remoteplaybackstate-connected-5"><code>connected</code></a>" state and its content
+            is being rendered on a <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-41">remote playback device</a>.
           </div></div>
         </section>
         <section data-link-for="RemotePlayback" id="browser-initiated-remote-playback"><div class="header-wrapper"><h4 id="x5-2-5-browser-initiated-remote-playback"><bdi class="secno">5.2.5 </bdi>
@@ -1465,7 +1464,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             adding appropriate media controls to <a href="https://html.spec.whatwg.org/multipage/#expose-a-user-interface-to-the-user">the user interface that is
             exposed to the user</a>, or when the user activates system-wide
             mirroring of the display.  This feature is known as <dfn id="dfn-browser-initiated-remote-playback" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">browser
-            initiated remote playback</dfn>. A <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-22">user agent</a> that supports
+            initiated remote playback</dfn>. A user agent that supports
             <a href="#dfn-browser-initiated-remote-playback" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-browser-initiated-remote-playback-1">browser initiated remote playback</a> <em class="rfc2119">SHOULD</em> initiate the remote
             playback only when the user has expressed an intention to do so via
             a user gesture, for example by clicking a button in the browser.
@@ -1481,11 +1480,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
           </p>
           <p>
             If the <a data-lt="browser initiated remote playback" href="#dfn-browser-initiated-remote-playback" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-browser-initiated-remote-playback-3">browser will
-            initiate remote playback</a> on a newly created media element,
-            it <em class="rfc2119">SHOULD</em> initialize the value of its <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-state-10"><code>state</code></a> attribute to
-            <a href="#dom-remoteplaybackstate-connecting" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackstate-connecting-4"><code>connecting</code></a>
-            and then follow the steps to <a href="#dfn-establish-a-connection-with-the-remote-playback-device" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-establish-a-connection-with-the-remote-playback-device-4">establish a connection
-            with the remote playback device</a>.
+            initiate remote playback</a> on a newly created media element, it
+            <em class="rfc2119">SHOULD</em> initialize the value of its <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-state-10"><code>state</code></a> attribute to
+            "<a data-link-type="idl" href="#dom-remoteplaybackstate-connecting" class="internalDFN" id="ref-for-dom-remoteplaybackstate-connecting-4"><code>connecting</code></a>" and then follow the steps
+            to <a href="#dfn-establish-a-connection-with-the-remote-playback-device" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-establish-a-connection-with-the-remote-playback-device-4">establish a connection with the remote playback device</a>.
           </p>
           <div class="note" role="note" id="issue-container-generatedID-16"><div role="heading" class="note-title marker" id="h-note-16" aria-level="5"><span>Note</span></div><div class="">
             A user agent that implements browser initiated remote playback
@@ -1505,37 +1503,35 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             device</a> is established.
           </p>
           <p>
-            When the <a href="#dom-remoteplayback-state" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-state-11"><code>state</code></a> of
-            a <a href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-11"><code>RemotePlayback</code></a> object
-            is <a href="#dom-remoteplaybackstate-connected" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackstate-connected-6"><code>connected</code></a>, the
-            following conditions relate the <a href="#dfn-local-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-local-playback-state-3">local playback state</a>,
-            the <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-media-element-state-9">media element state</a>, and the <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-7">remote playback
-            state</a>:
+            When the <a data-link-type="idl" href="#dom-remoteplayback-state" class="internalDFN" id="ref-for-dom-remoteplayback-state-11"><code>state</code></a> of a <a data-link-type="idl" data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-11"><code>RemotePlayback</code></a> object is
+            "<a data-link-type="idl" href="#dom-remoteplaybackstate-connected" class="internalDFN" id="ref-for-dom-remoteplaybackstate-connected-6"><code>connected</code></a>", the following conditions relate
+            the <a href="#dfn-local-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-local-playback-state-3">local playback state</a>, the <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-media-element-state-9">media element state</a>, and
+            the <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-7">remote playback state</a>:
           </p>
           <ul>
             <li>
-              The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-23">user agent</a> <em class="rfc2119">MUST</em> send all media commands issued on the
+              The user agent <em class="rfc2119">MUST</em> send all media commands issued on the
               associated <a data-link-type="idl" data-lt="HTMLMediaElement" data-type="interface" href="https://html.spec.whatwg.org/multipage/media.html#htmlmediaelement"><code>HTMLMediaElement</code></a> object to the <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-44">remote playback
               device</a> in order to change its <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-8">remote playback state</a>;
             </li>
             <li>
               The <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-45">remote playback device</a> <em class="rfc2119">SHOULD</em> implement all media
-              commands sent by the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-24">user agent</a>;
+              commands sent by the user agent;
             </li>
             <li>
               The <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-46">remote playback device</a> <em class="rfc2119">SHOULD</em> send updates of
-              the <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-9">remote playback state</a> to the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-25">user agent</a> that
+              the <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-9">remote playback state</a> to the user agent that
               affect any attribute exposed through the <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-media-element-state-10">media element
               state</a>;
             </li><li>
-              The <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-26">user agent</a> <em class="rfc2119">MUST</em> process all updates of the
+              The user agent <em class="rfc2119">MUST</em> process all updates of the
               <a href="#dfn-remote-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-state-10">remote playback state</a> received from the <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-47">remote playback
               device</a> and update the <a href="#dfn-local-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-local-playback-state-4">local playback state</a> of the
               media element accordingly.
             </li>
           </ul>
           <p>
-            If sending any command fails, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-27">user agent</a> <em class="rfc2119">MAY</em>
+            If sending any command fails, the user agent <em class="rfc2119">MAY</em>
             <a href="#dfn-disconnect-from-a-remote-playback-device" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-disconnect-from-a-remote-playback-device-4">disconnect from a remote playback device</a>.
           </p>
           <div class="note" role="note" id="issue-container-generatedID-17"><div role="heading" class="note-title marker" id="h-note-17" aria-level="5"><span>Note</span></div><div class="">
@@ -1549,9 +1545,9 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               media command that is not supported during remote playback.
             </p>
             <p>
-              For example, after calling <code><a data-link-type="idl" data-lt="fastSeek()" data-type="method" href="https://html.spec.whatwg.org/multipage/media.html#dom-media-fastseek"><code>fastSeek</code></a><code>()</code></code>
+              For example, after calling <a data-link-type="idl" data-lt="fastSeek()" data-type="method" href="https://html.spec.whatwg.org/multipage/media.html#dom-media-fastseek"><code>fastSeek</code></a><code>()</code>
               while connected to a <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-49">remote playback device</a> that does not
-              support it, the <code><a data-link-type="idl" data-type="attribute" href="https://html.spec.whatwg.org/multipage/media.html#dom-media-seeking"><code>seeking</code></a></code> attribute of the
+              support it, the <a data-link-type="idl" data-type="attribute" href="https://html.spec.whatwg.org/multipage/media.html#dom-media-seeking"><code>seeking</code></a> attribute of the
               <a data-link-type="idl" data-lt="HTMLMediaElement" data-type="interface" href="https://html.spec.whatwg.org/multipage/media.html#htmlmediaelement"><code>HTMLMediaElement</code></a> is expected to remain <code>false</code> and no
               <a href="https://html.spec.whatwg.org/multipage/#event-media-seeking"><code>seeking</code></a> event is to be fired.
             </p>
@@ -1562,7 +1558,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
           </h4><a class="self-link" href="#disconnecting-from-a-remote-playback-device" aria-label="Permalink for Section 5.2.7"></a></div>
           
           <p>
-            When the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-28">user agent</a> is to <dfn id="dfn-disconnect-from-a-remote-playback-device" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">disconnect from a remote
+            When the user agent is to <dfn id="dfn-disconnect-from-a-remote-playback-device" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">disconnect from a remote
             playback device</dfn>, it <em class="rfc2119">MUST</em> do the following:
           </p>
           <dl>
@@ -1570,7 +1566,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               Input
             </dt>
             <dd>
-              <var data-type="RemotePlayback">remote</var>, the <a href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-12"><code>RemotePlayback</code></a> object
+              <var data-type="RemotePlayback">remote</var>, the <a data-link-type="idl" data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-12"><code>RemotePlayback</code></a> object
               representing the playback to be stopped.
             </dd>
             <dd>
@@ -1587,9 +1583,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to run the following steps:
               <ol>
                 <li>
-                  Request disconnection of <var data-type="RemotePlayback">remote</var> from the
-                  <var data-type="remote playback device">device</var>. The implementation of this step is
-                  specific to the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-29">user agent</a>.
+                  Request disconnection of <var data-type="RemotePlayback">remote</var> from <var data-type="remote playback device">device</var>. The
+                  implementation of this step is specific to the user agent.
                 </li>
                 <li>
                   Change the <var data-type="RemotePlayback">remote</var>'s <code>state</code> to <code>disconnected</code>.
@@ -1599,8 +1594,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
                 </li>
                 <li>
                   Synchronize the current <a href="#dfn-media-element-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-media-element-state-11">media element state</a> with the
-                  <a href="#dfn-local-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-local-playback-state-6">local playback state</a>. The implementation of this step is
-                  specific to the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-30">user agent</a>.
+                  <a href="#dfn-local-playback-state" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-local-playback-state-6">local playback state</a>. The implementation of this step
+                  is specific to the user agent.
                 </li>
               </ol>
             </li>
@@ -1632,7 +1627,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             The following are the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handlers</a> (and their corresponding
             <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">event handler event types</a>) that must be supported, as
             <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a> IDL attributes, by objects implementing the
-            <a href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-13"><code>RemotePlayback</code></a> interface:
+            <a data-link-type="idl" data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-13"><code>RemotePlayback</code></a> interface:
           </p>
           <table data-dfn-for="RemotePlayback">
             <thead>
@@ -1675,7 +1670,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
         </section>
       </section>
       <section data-dfn-for="HTMLMediaElement" id="extensions-to-htmlmediaelement"><div class="header-wrapper"><h3 id="x5-3-extensions-to-htmlmediaelement"><bdi class="secno">5.3 </bdi>
-          Extensions to <code><a data-link-type="idl" data-lt="HTMLMediaElement" data-type="interface" href="https://html.spec.whatwg.org/multipage/media.html#htmlmediaelement"><code>HTMLMediaElement</code></a></code>
+          Extensions to <a data-link-type="idl" data-lt="HTMLMediaElement" data-type="interface" href="https://html.spec.whatwg.org/multipage/media.html#htmlmediaelement"><code>HTMLMediaElement</code></a>
         </h3><a class="self-link" href="#extensions-to-htmlmediaelement" aria-label="Permalink for Section 5.3"></a></div>
         
         <pre class="idl def" id="webidl-1396475025"><span class="idlHeader"><a class="self-link" href="#webidl-1396475025">WebIDL</a></span><code><span data-idl="" class="idlInterface" id="idl-def-htmlmediaelement-partial-1" data-title="HTMLMediaElement">partial interface <a data-idl="partial" data-link-type="interface" data-title="HTMLMediaElement" class="idlID" data-dfn-for="HTMLMediaElement" data-type="interface" href="https://html.spec.whatwg.org/multipage/media.html#htmlmediaelement">HTMLMediaElement</a> {<span data-idl="" class="idlAttribute" id="idl-def-htmlmediaelement-remote" data-title="remote" data-dfn-for="HTMLMediaElement">
@@ -1685,7 +1680,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
 };</span></code></pre>
         <p>
           The <dfn data-export="" data-dfn-type="attribute" id="dom-htmlmediaelement-remote" data-idl="attribute" data-title="remote" data-dfn-for="HTMLMediaElement" data-type="RemotePlayback" data-lt="remote" data-local-lt="HTMLMediaElement.remote" tabindex="0" aria-haspopup="dialog"><code>remote</code></dfn> attribute <em class="rfc2119">MUST</em>
-          return the <a href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-15"><code>RemotePlayback</code></a> instance associated with the
+          return the <a data-link-type="idl" data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-15"><code>RemotePlayback</code></a> instance associated with the
           <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a>.
         </p>
         <section data-link-for="HTMLMediaElement" id="the-disableremoteplayback-attribute"><div class="header-wrapper"><h4 id="x5-3-1-the-disableremoteplayback-attribute"><bdi class="secno">5.3.1 </bdi>
@@ -1693,8 +1688,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
           </h4><a class="self-link" href="#the-disableremoteplayback-attribute" aria-label="Permalink for Section 5.3.1"></a></div>
           
           <p>
-            Some pages may wish to disable remote playback of a media element;
-            for example, they may prefer to use a <a href="https://www.w3.org/TR/presentation-api/#interface-presentationrequest"><code>PresentationRequest</code></a>
+            Some pages may wish to <a href="#dfn-disable-remote-playback" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-disable-remote-playback-1">disable remote playback</a> of a media
+            element; for example, they may prefer to use a <a href="https://www.w3.org/TR/presentation-api/#interface-presentationrequest"><code>PresentationRequest</code></a>
             to present a complete document on a presentation screen. To support
             this use case, a new <code>disableRemotePlayback</code> attribute is added to
             the list of content attributes for <code>audio</code> and <code>video</code> elements.
@@ -1714,17 +1709,17 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
           
           <p>
             If the <a href="#dom-htmlmediaelement-disableremoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-htmlmediaelement-disableremoteplayback-8"><code>disableRemotePlayback</code></a> attribute is present
-            on the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a>, the <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-31">user agent</a> <em class="rfc2119">MUST NOT</em> play
+            on the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a>, the user agent <em class="rfc2119">MUST NOT</em> play
             the media element remotely or present any UI to do so.
           </p>
           <p>
             When the <a href="#dom-htmlmediaelement-disableremoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-htmlmediaelement-disableremoteplayback-9"><code>disableRemotePlayback</code></a> attribute is added to
             the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a>, the user agent <em class="rfc2119">MUST</em> run the steps
-            to <dfn id="dfn-disable-remote-playback" tabindex="0" aria-haspopup="dialog" class="respec-offending-element" title="Found definition for &quot;disable remote playback&quot;, but nothing links to it. This is usually a spec bug!" data-dfn-type="dfn">disable remote playback</dfn>:
+            to <dfn id="dfn-disable-remote-playback" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">disable remote playback</dfn>:
           </p>
           <ol>
             <li>Reject any pending promises returned by the
-            <a href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-16"><code>RemotePlayback</code></a> methods with <a data-link-type="idl" data-lt="InvalidStateError" data-type="exception" href="https://webidl.spec.whatwg.org/#invalidstateerror"><code>InvalidStateError</code></a>.
+            <a data-link-type="idl" data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-16"><code>RemotePlayback</code></a> methods with <a data-link-type="idl" data-lt="InvalidStateError" data-type="exception" href="https://webidl.spec.whatwg.org/#invalidstateerror"><code>InvalidStateError</code></a>.
             </li>
             <li>Clear the <a href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-set-of-availability-callbacks-13">set of availability callbacks</a> for the media
             element.
@@ -1747,8 +1742,9 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
         </h3><a class="self-link" href="#personally-identifiable-information" aria-label="Permalink for Section 6.1"></a></div>
         
         <p>
-          Firing the <code>callback</code> provided via the <a href="#dom-remoteplayback-watchavailability" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-watchavailability-6"><code>watchAvailability</code></a><code>()</code> method reveals one
-          bit of information about the presence (or non-presence) of a
+          Firing the <code>callback</code> provided via the
+          <a data-link-type="idl" data-lt="watchAvailability()" href="#dom-remoteplayback-watchavailability" class="internalDFN" id="ref-for-dom-remoteplayback-watchavailability-6"><code>watchAvailability</code></a><code>()</code> method reveals one bit of
+          information about the presence (or non-presence) of a
           <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-52">remote playback device</a> typically discovered through the local
           area network. This could be used in conjunction with other
           information for fingerprinting the user. However, this information is
@@ -1762,7 +1758,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
           devices</a>. How the user agent determines the compatibility and
           availability of a <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-54">remote playback device</a> with a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media
           element</a>'s <a href="https://html.spec.whatwg.org/multipage/#media-resource">resource</a>
-          is an implementation detail. If a <a href="#dfn-user-agent" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-user-agent-32">user agent</a> matches a
+          is an implementation detail. If a user agent matches a
           <a href="https://html.spec.whatwg.org/multipage/#media-resource">media resource</a>
           to a particular type of device to determine its availability,
           this feature can be used to probe information about which
@@ -1925,43 +1921,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
     </dd></dl>
   </section></section><p role="navigation" id="back-to-top">
     <a href="#title"><abbr title="Back to Top">↑</abbr></a>
-  </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-user-agent" aria-label="Links in this document to definition: user agent">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="#dfn-user-agent" aria-label="Permalink for definition: user agent. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-dfn-user-agent-1" title="§ 5.1 Common idioms">§ 5.1 Common idioms</a> <a href="#ref-for-dfn-user-agent-2" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-user-agent-3" title="§ 5.2.1.1 The set of availability callbacks">§ 5.2.1.1 The set of availability callbacks</a> 
-  </li><li>
-    <a href="#ref-for-dfn-user-agent-4" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-user-agent-5" title="Reference 2">(2)</a> <a href="#ref-for-dfn-user-agent-6" title="Reference 3">(3)</a> <a href="#ref-for-dfn-user-agent-7" title="Reference 4">(4)</a> <a href="#ref-for-dfn-user-agent-8" title="Reference 5">(5)</a> <a href="#ref-for-dfn-user-agent-9" title="Reference 6">(6)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-user-agent-10" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> 
-  </li><li>
-    <a href="#ref-for-dfn-user-agent-11" title="§ 5.2.1.4 Monitoring the list of available remote playback devices">§ 5.2.1.4 Monitoring the list of available remote playback devices</a> 
-  </li><li>
-    <a href="#ref-for-dfn-user-agent-12" title="§ 5.2.1.5 Stop observing remote playback devices availability">§ 5.2.1.5 Stop observing remote playback devices availability</a> 
-  </li><li>
-    <a href="#ref-for-dfn-user-agent-13" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dfn-user-agent-14" title="Reference 2">(2)</a> <a href="#ref-for-dfn-user-agent-15" title="Reference 3">(3)</a> <a href="#ref-for-dfn-user-agent-16" title="Reference 4">(4)</a> <a href="#ref-for-dfn-user-agent-17" title="Reference 5">(5)</a> <a href="#ref-for-dfn-user-agent-18" title="Reference 6">(6)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-user-agent-19" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> <a href="#ref-for-dfn-user-agent-20" title="Reference 2">(2)</a> <a href="#ref-for-dfn-user-agent-21" title="Reference 3">(3)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-user-agent-22" title="§ 5.2.5 Browser initiated remote playback">§ 5.2.5 Browser initiated remote playback</a> 
-  </li><li>
-    <a href="#ref-for-dfn-user-agent-23" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> <a href="#ref-for-dfn-user-agent-24" title="Reference 2">(2)</a> <a href="#ref-for-dfn-user-agent-25" title="Reference 3">(3)</a> <a href="#ref-for-dfn-user-agent-26" title="Reference 4">(4)</a> <a href="#ref-for-dfn-user-agent-27" title="Reference 5">(5)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-user-agent-28" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> <a href="#ref-for-dfn-user-agent-29" title="Reference 2">(2)</a> <a href="#ref-for-dfn-user-agent-30" title="Reference 3">(3)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-user-agent-31" title="§ 5.3.2 Disabling remote playback">§ 5.3.2 Disabling remote playback</a> 
-  </li><li>
-    <a href="#ref-for-dfn-user-agent-32" title="§ 6.1 Personally identifiable information">§ 6.1 Personally identifiable information</a> 
-  </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-media-mirroring" aria-label="Links in this document to definition: media mirroring">
+  </p><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-media-mirroring" aria-label="Links in this document to definition: media mirroring">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-media-mirroring" aria-label="Permalink for definition: media mirroring. Activate to close this dialog.">Permalink</a>
@@ -2209,6 +2169,28 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
     <a href="#ref-for-dfn-set-of-availability-callbacks-13" title="§ 5.3.2 Disabling remote playback">§ 5.3.2 Disabling remote playback</a> 
   </li>
   </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplayback-watchavailability" aria-label="Links in this document to definition: watchAvailability()">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-remoteplayback-watchavailability" aria-label="Permalink for definition: watchAvailability(). Activate to close this dialog.">Permalink</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-1015675303">IDL</a>
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+    <a href="#ref-for-dom-remoteplayback-watchavailability-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
+  </li><li>
+    <a href="#ref-for-dom-remoteplayback-watchavailability-2" title="§ 5.2.1 Observing remote playback device availability">§ 5.2.1 Observing remote playback device availability</a> 
+  </li><li>
+    <a href="#ref-for-dom-remoteplayback-watchavailability-3" title="§ 5.2.1.1 The set of availability callbacks">§ 5.2.1.1 The set of availability callbacks</a> 
+  </li><li>
+    <a href="#ref-for-dom-remoteplayback-watchavailability-4" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
+  </li><li>
+    <a href="#ref-for-dom-remoteplayback-watchavailability-5" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> 
+  </li><li>
+    <a href="#ref-for-dom-remoteplayback-watchavailability-6" title="§ 6.1 Personally identifiable information">§ 6.1 Personally identifiable information</a> 
+  </li>
+  </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-global-set-of-availability-callbacks" aria-label="Links in this document to definition: global set of availability callbacks">
       <span class="caret"></span>
       <div>
@@ -2321,26 +2303,6 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
     <a href="#ref-for-dfn-availability-3" title="§ 5.2.1.4 Monitoring the list of available remote playback devices">§ 5.2.1.4 Monitoring the list of available remote playback devices</a> <a href="#ref-for-dfn-availability-4" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplayback-watchavailability" aria-label="Links in this document to definition: watchAvailability">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="#dom-remoteplayback-watchavailability" aria-label="Permalink for definition: watchAvailability. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-1015675303">IDL</a>
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-    <a href="#ref-for-dom-remoteplayback-watchavailability-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-watchavailability-2" title="§ 5.2.1 Observing remote playback device availability">§ 5.2.1 Observing remote playback device availability</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-watchavailability-3" title="§ 5.2.1.1 The set of availability callbacks">§ 5.2.1.1 The set of availability callbacks</a> <a href="#ref-for-dom-remoteplayback-watchavailability-4" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-watchavailability-5" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-watchavailability-6" title="§ 6.1 Personally identifiable information">§ 6.1 Personally identifiable information</a> 
-  </li>
-  </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-monitor-the-list-of-available-remote-playback-devices" aria-label="Links in this document to definition: monitor the list of available remote playback devices">
       <span class="caret"></span>
       <div>
@@ -2367,10 +2329,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
     <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-19" title="§ 6.5 Secure Contexts">§ 6.5 Secure Contexts</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplayback-cancelwatchavailability" aria-label="Links in this document to definition: cancelWatchAvailability">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplayback-cancelwatchavailability" aria-label="Links in this document to definition: cancelWatchAvailability()">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="#dom-remoteplayback-cancelwatchavailability" aria-label="Permalink for definition: cancelWatchAvailability. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="#dom-remoteplayback-cancelwatchavailability" aria-label="Permalink for definition: cancelWatchAvailability(). Activate to close this dialog.">Permalink</a>
         <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-1015675303">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
@@ -2379,10 +2341,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
     <a href="#ref-for-dom-remoteplayback-cancelwatchavailability-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
   </li>
   </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplayback-prompt" aria-label="Links in this document to definition: prompt">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplayback-prompt" aria-label="Links in this document to definition: prompt()">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="#dom-remoteplayback-prompt" aria-label="Permalink for definition: prompt. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="#dom-remoteplayback-prompt" aria-label="Permalink for definition: prompt(). Activate to close this dialog.">Permalink</a>
         <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-1015675303">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
@@ -2671,8 +2633,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
-      <li>Not referenced in this document.</li>
-    </ul>
+    <li>
+    <a href="#ref-for-dfn-disable-remote-playback-1" title="§ 5.3.1 The disableRemotePlayback attribute">§ 5.3.1 The disableRemotePlayback attribute</a> 
+  </li>
+  </ul>
     </div><script id="respec-dfn-panel">(() => {
 // @ts-check
 if (document.respec) {
