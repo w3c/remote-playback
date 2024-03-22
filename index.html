@@ -889,7 +889,7 @@
               </div>
             </li>
             <li>
-              If the document's [=browsing context/active window=] does not have
+              If the document's [=navigable/active window=] does not have
               [=transient activation=], reject |promise| with an
               {{InvalidAccessError}} exception and abort these steps.
             </li>
@@ -1475,10 +1475,9 @@
             <p>
               Display of the origin requesting remote playback will help the
               user understand what content is making the request, especially
-              when the request is initiated from a <a>nested browsing
-              context</a>. For example, embedded content may try to convince
-              the user to click to trigger a request to start an unwanted
-              remote playback.
+              when the request is initiated from a [=child navigable=]. For
+              example, embedded content may try to convince the user to click to
+              trigger a request to start an unwanted remote playback.
             </p>
             <p>
               Showing the origin that will be presented will help the user know
