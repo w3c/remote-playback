@@ -1,15 +1,13 @@
 <!DOCTYPE html><html lang="en-US"><head>
 <meta charset="UTF-8">
-<meta name="generator" content="ReSpec 32.2.4">
+<meta name="generator" content="ReSpec 34.5.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 span.example-title{text-transform:none}
 :is(aside,div).example,div.illegal-example{padding:.5em;margin:1em 0;position:relative;clear:both}
 div.illegal-example{color:red}
 div.illegal-example p{color:#000}
-:is(aside,div).example{border-left-width:.5em;border-left-style:solid;border-color:#e0cb52;background:#fcfaee}
 aside.example div.example{border-left-width:.1em;border-color:#999;background:#fff}
-.example pre{background-color:rgba(0,0,0,.03)}
 </style>
 <style>
 .issue-label{text-transform:initial}
@@ -18,7 +16,7 @@ aside.example div.example{border-left-width:.1em;border-color:#999;background:#f
 span.warning{padding:.1em .5em .15em}
 .issue.closed span.issue-number{text-decoration:line-through}
 .issue.closed span.issue-number::after{content:" (Closed)";font-size:smaller}
-.warning{border-color:#f11;border-width:.2em;border-style:solid;background:#fbe9e9}
+.warning{border-color:#f11;border-color:var(--warning-border,#f11);border-width:.2em;border-style:solid;background:#fbe9e9;background:var(--warning-bg,#fbe9e9);color:#000;color:var(--text,#000)}
 .warning-title:before{content:"⚠";font-size:1.3em;float:left;padding-right:.3em;margin-top:-.3em}
 li.task-list-item{list-style:none}
 input.task-list-item-checkbox{margin:0 .35em .25em -1.6em;vertical-align:middle}
@@ -26,12 +24,12 @@ input.task-list-item-checkbox{margin:0 .35em .25em -1.6em;vertical-align:middle}
 </style>
 <style>
 pre.idl{padding:1em;position:relative}
-pre.idl>code{color:#000}
+pre.idl>code{color:#000;color:var(--text,#000)}
 @media print{
 pre.idl{white-space:pre-wrap}
 }
-.idlHeader{display:block;width:150px;background:#8ccbf2;color:#fff;font-family:sans-serif;font-weight:700;margin:-1em 0 1em -1em;height:28px;line-height:28px}
-.idlHeader a.self-link{margin-left:.3cm;text-decoration:none;border-bottom:none}
+.idlHeader{display:block;width:150px;background:#8ccbf2;background:var(--def-border,#8ccbf2);color:#fff;color:var(--defrow-border,#fff);font-family:sans-serif;font-weight:700;margin:-1em 0 1em -1em;height:28px;line-height:28px}
+.idlHeader a.self-link{margin-left:.3cm;text-decoration:none;border-bottom:none;color:inherit}
 .idlID{font-weight:700;color:#005a9c}
 .idlType{color:#005a9c}
 .idlName{color:#ff4500}
@@ -54,13 +52,13 @@ a.idlEnumItem{color:#000;border-bottom:1px dotted #ccc;text-decoration:none}
 </style>
 <style>
 dfn{cursor:pointer}
-.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
+.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;background:var(--indextable-hover-bg,#fff);color:#000;color:var(--text,#000);box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);box-shadow:0 1em 3em -.4em var(--tocsidebar-shadow,rgba(0,0,0,.3)),0 0 1px 1px var(--tocsidebar-shadow,rgba(0,0,0,.05));border-radius:2px}
 .dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
-.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;top:0}
-.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1}
+.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;border-bottom-color:var(--indextable-hover-bg,#fff);top:0}
+.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1;border-bottom-color:var(--indextable-hover-bg,#a2a9b1)}
 .dfn-panel *{margin:0}
-.dfn-panel b{display:block;color:#000;margin-top:.25em}
-.dfn-panel ul a[href]{color:#333}
+.dfn-panel b{display:block;color:#000;color:var(--text,#000);margin-top:.25em}
+.dfn-panel ul a[href]{color:#333;color:var(--text,#333)}
 .dfn-panel>div{display:flex}
 .dfn-panel a.self-link{font-weight:700;margin-right:auto}
 .dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
@@ -130,7 +128,6 @@ cite .bibref{font-style:normal}
 a[href].orcid{padding-left:4px;padding-right:4px}
 a[href].orcid>svg{margin-bottom:-2px}
 .toc a,.tof a{text-decoration:none}
-a .figno,a .secno{color:#000}
 ol.tof,ul.tof{list-style:none outside none}
 .caption{margin-top:.5em;font-style:italic}
 table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}
@@ -166,18 +163,23 @@ dd{margin-left:0}
 .removeOnSave{display:none}
 }
 </style>
+<meta name="revision" content="ac9a2bb01bf3f76d074dc46c899ef0e44a532ff6">
 <meta name="description" content="This specification defines an API extending the HTMLMediaElement
         that enables controlling remote playback of media from a web page.">
 <style>
-.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}
-.hljs-comment,.hljs-quote{color:#717277;font-style:italic}
-.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}
-.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;font-weight:700}
-.hljs-literal{color:#0b76c5}
-.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c}
-.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01}
-.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}
-.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3}
+.hljs{--base:#fafafa;--mono-1:#383a42;--mono-2:#686b77;--mono-3:#717277;--hue-1:#0b76c5;--hue-2:#336ae3;--hue-3:#a626a4;--hue-4:#42803c;--hue-5:#ca4706;--hue-5-2:#c91243;--hue-6:#986801;--hue-6-2:#9a6a01}
+@media (prefers-color-scheme:dark){
+.hljs{--base:#282c34;--mono-1:#abb2bf;--mono-2:#818896;--mono-3:#5c6370;--hue-1:#56b6c2;--hue-2:#61aeee;--hue-3:#c678dd;--hue-4:#98c379;--hue-5:#e06c75;--hue-5-2:#be5046;--hue-6:#d19a66;--hue-6-2:#e6c07b}
+}
+.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;color:var(--mono-1,#383a42);background:#fafafa;background:var(--base,#fafafa)}
+.hljs-comment,.hljs-quote{color:#717277;color:var(--mono-3,#717277);font-style:italic}
+.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4;color:var(--hue-3,#a626a4)}
+.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;color:var(--hue-5,#ca4706);font-weight:700}
+.hljs-literal{color:#0b76c5;color:var(--hue-1,#0b76c5)}
+.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c;color:var(--hue-4,#42803c)}
+.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01;color:var(--hue-6-2,#9a6a01)}
+.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801;color:var(--hue-6,#986801)}
+.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3;color:var(--hue-2,#336ae3)}
 .hljs-emphasis{font-style:italic}
 .hljs-strong{font-weight:700}
 .hljs-link{text-decoration:underline}
@@ -185,8 +187,8 @@ dd{margin-left:0}
 <style>
 var{position:relative;cursor:pointer}
 var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
-var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#000}
-var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#000;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
+var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#222}
+var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#222;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
 var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 </style>
 <script id="initialUserConfig" type="application/json">{
@@ -233,15 +235,16 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "github": "https://github.com/w3c/remote-playback",
   "crEnd": "2017-11-30",
   "implementationReportURI": "https://www.w3.org/wiki/Second_Screen/Implementation_Status#Remote_Playback_API",
-  "publishISODate": "2022-09-29T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 29 September 2022"
+  "gitRevision": "ac9a2bb01bf3f76d074dc46c899ef0e44a532ff6",
+  "publishISODate": "2024-03-22T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 22 March 2024"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
   <body data-cite="WEBIDL HTML DOM URL SECURE-CONTEXTS" class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">Remote Playback API</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2022-09-29">29 September 2022</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2024-03-22">22 March 2024</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -253,7 +256,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
               </dd>
         <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/remote-playback/">https://w3c.github.io/remote-playback/</a></dd>
         <dt>History:</dt><dd>
-                    <a href="https://www.w3.org/standards/history/remote-playback">https://www.w3.org/standards/history/remote-playback</a>
+                    <a href="https://www.w3.org/standards/history/remote-playback/">https://www.w3.org/standards/history/remote-playback/</a>
                   </dd><dd>
                     <a href="https://github.com/w3c/remote-playback/commits/">Commit history</a>
                   </dd>
@@ -292,16 +295,15 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     
     
     <p class="copyright">
-    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+    <a href="https://www.w3.org/policies/#copyright">Copyright</a>
     ©
-    2022
+    2024
     
-    <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
-    <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>,
-    <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C
-    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-    <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
-    <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" title="W3C Software and Document Notice and License">permissive document license</a> rules apply.
+    <a href="https://www.w3.org/">World Wide Web Consortium</a>.
+    <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup>
+    <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>,
+    <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and
+    <a rel="license" href="https://www.w3.org/copyright/software-license-2023/" title="W3C Software and Document Notice and License">permissive document license</a> rules apply.
   </p>
     <hr title="Separator for header">
   </div>
@@ -388,9 +390,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
           <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
         
   </p><p>
-                  This document is governed by the
-                  <a id="w3c_process_revision" href="https://www.w3.org/2021/Process-20211102/">2 November 2021 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
-                </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">1. </bdi>Conformance</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>
+                      This document is governed by the
+                      <a id="w3c_process_revision" href="https://www.w3.org/2023/Process-20231103/">03 November 2023 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+                    </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#abstract">Abstract</a></li><li class="tocline"><a class="tocxref" href="#sotd">Status of This Document</a></li><li class="tocline"><a class="tocxref" href="#conformance"><bdi class="secno">1. </bdi>Conformance</a></li><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">2. </bdi>
         Introduction
       </a></li><li class="tocline"><a class="tocxref" href="#use-cases-and-requirements"><bdi class="secno">3. </bdi>
         Use cases and requirements
@@ -495,16 +497,16 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       </p>
       <p>
         At its core, this specification enables a page that acts as the
-        <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> to initiate and control remote playback of a
+        <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a> to initiate and control remote playback of a
         particular media element on a selected <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-3">remote playback device</a>.
         How the remoting is initiated and controlled is left to the UA in order
         to allow the use of <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-4">remote playback devices</a> that can be attached
         in a wide variety of ways. For example, when a <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-5">remote playback
         device</a> is attached using HDMI or Miracast, the same UA that acts as
-        the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> renders the remote media. Instead of
+        the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a> renders the remote media. Instead of
         playing the media on the same device, however, it can use whatever
         means the operating system provides for using the external <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-6">remote
-        playback device</a>. In such a case, both the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>
+        playback device</a>. In such a case, both the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a>
         and the media player run on the same UA and the operating system is
         used to route the player output to the <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-7">remote playback device</a>.
         This is commonly referred to as the <dfn id="dfn-media-mirroring" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">media
@@ -513,14 +515,14 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       </p>
       <p>
         If the <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-9">remote playback device</a> is able to play the media and
-        communicate with the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> but is unable to fetch the
-        media, the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> needs to fetch the media data and
+        communicate with the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a> but is unable to fetch the
+        media, the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a> needs to fetch the media data and
         pass it on to the <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-10">remote playback device</a> for rendering. This is
         commonly referred to as <dfn id="dfn-media-remoting" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">media remoting</dfn> case.
       </p>
       <p>
         If the <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-11">remote playback device</a> is able to fetch and play the media
-        and communicate with the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>, the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing
+        and communicate with the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a>, the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing
         context</a> does not need to fetch or render the remoted media. In this
         case, the UA acts as a proxy that requests the <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-12">remote playback
         device</a> to play the media itself by passing the necessary data like
@@ -657,7 +659,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         </h3><a class="self-link" href="#common-idioms" aria-label="Permalink for Section 5.1"></a></div>
         
         <p>
-          A <dfn id="dfn-local-playback-device" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">local playback device</dfn> is the device the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing
+          A <dfn id="dfn-local-playback-device" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">local playback device</dfn> is the device the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing
           context</a> is running on along with the default video/audio outputs
           the device has.
         </p>
@@ -671,7 +673,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         <p>
           A <dfn data-lt="remote playback devices|remote playback device" id="dfn-remote-playback-devices" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">remote playback device</dfn>
           is any other device but the <a href="#dfn-local-playback-device" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-local-playback-device-3">local playback device</a> that the
-          <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> can use to play media on.
+          <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a> can use to play media on.
         </p>
         <p>
           A <dfn id="dfn-media-element-state" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">media element state</dfn> is the set of all single
@@ -716,17 +718,17 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         </h3><a class="self-link" href="#remoteplayback-interface" aria-label="Permalink for Section 5.2"></a></div>
         
         <pre class="idl def" id="webidl-1015675303"><span class="idlHeader"><a class="self-link" href="#webidl-1015675303">WebIDL</a></span><code><span data-idl="" class="idlInterface" id="idl-def-remoteplayback" data-title="RemotePlayback">[<span class="extAttr"><a data-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed">Exposed</a>=Window</span>]
-interface <a class="internalDFN idlID" data-link-type="interface" href="#dom-remoteplayback" id="ref-for-dom-remoteplayback-1"><code>RemotePlayback</code></a> : <span class="idlSuperclass"><a data-type="interface" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a></span> {<span data-idl="" class="idlMethod" id="idl-def-remoteplayback-watchavailability-callback" data-title="watchAvailability" data-dfn-for="RemotePlayback"><span class="idlType">
-  <a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-long">long</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dom-remoteplayback-watchavailability" id="ref-for-dom-remoteplayback-watchavailability-1"><code>watchAvailability</code></a>(<span class="idlType"><a href="#dom-remoteplaybackavailabilitycallback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackavailabilitycallback-1"><code>RemotePlaybackAvailabilityCallback</code></a></span> <span class="idlParamName">callback</span>);</span><span data-idl="" class="idlMethod" id="idl-def-remoteplayback-cancelwatchavailability-id" data-title="cancelWatchAvailability" data-dfn-for="RemotePlayback"><span class="idlType">
-  <a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined">undefined</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dom-remoteplayback-cancelwatchavailability" id="ref-for-dom-remoteplayback-cancelwatchavailability-1"><code>cancelWatchAvailability</code></a>(optional<span class="idlType"> <a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-long">long</a></span> <span class="idlParamName">id</span>);</span><span data-idl="" class="idlAttribute" id="idl-def-remoteplayback-state" data-title="state" data-dfn-for="RemotePlayback">
+interface <a class="internalDFN idlID" data-link-type="interface" href="#dom-remoteplayback" id="ref-for-dom-remoteplayback-1"><code>RemotePlayback</code></a> : <span class="idlSuperclass"><a data-link-type="idl" data-type="interface" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a></span> {<span data-idl="" class="idlMethod" id="idl-def-remoteplayback-watchavailability-callback" data-title="watchAvailability" data-dfn-for="RemotePlayback"><span class="idlType">
+  <a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="idl" data-type="interface" href="https://webidl.spec.whatwg.org/#idl-long">long</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dom-remoteplayback-watchavailability" id="ref-for-dom-remoteplayback-watchavailability-1"><code>watchAvailability</code></a>(<span class="idlType"><a data-link-type="idl" href="#dom-remoteplaybackavailabilitycallback" class="internalDFN" id="ref-for-dom-remoteplaybackavailabilitycallback-1"><code>RemotePlaybackAvailabilityCallback</code></a></span> <span class="idlParamName">callback</span>);</span><span data-idl="" class="idlMethod" id="idl-def-remoteplayback-cancelwatchavailability-id" data-title="cancelWatchAvailability" data-dfn-for="RemotePlayback"><span class="idlType">
+  <a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="idl" data-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined">undefined</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dom-remoteplayback-cancelwatchavailability" id="ref-for-dom-remoteplayback-cancelwatchavailability-1"><code>cancelWatchAvailability</code></a>(optional<span class="idlType"> <a data-link-type="idl" data-type="interface" href="https://webidl.spec.whatwg.org/#idl-long">long</a></span> <span class="idlParamName">id</span>);</span><span data-idl="" class="idlAttribute" id="idl-def-remoteplayback-state" data-title="state" data-dfn-for="RemotePlayback">
 
-  readonly attribute<span class="idlType"> <a href="#dom-remoteplaybackstate" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplaybackstate-1"><code>RemotePlaybackState</code></a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-remoteplayback-state" id="ref-for-dom-remoteplayback-state-2"><code>state</code></a>;</span><span data-idl="" class="idlAttribute" id="idl-def-remoteplayback-onconnecting" data-title="onconnecting" data-dfn-for="RemotePlayback">
+  readonly attribute<span class="idlType"> <a data-link-type="idl" href="#dom-remoteplaybackstate" class="internalDFN" id="ref-for-dom-remoteplaybackstate-1"><code>RemotePlaybackState</code></a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-remoteplayback-state" id="ref-for-dom-remoteplayback-state-2"><code>state</code></a>;</span><span data-idl="" class="idlAttribute" id="idl-def-remoteplayback-onconnecting" data-title="onconnecting" data-dfn-for="RemotePlayback">
 
-  attribute<span class="idlType"> <a data-type="typedef" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-remoteplayback-onconnecting" id="ref-for-dom-remoteplayback-onconnecting-1"><code>onconnecting</code></a>;</span><span data-idl="" class="idlAttribute" id="idl-def-remoteplayback-onconnect" data-title="onconnect" data-dfn-for="RemotePlayback">
-  attribute<span class="idlType"> <a data-type="typedef" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-remoteplayback-onconnect" id="ref-for-dom-remoteplayback-onconnect-1"><code>onconnect</code></a>;</span><span data-idl="" class="idlAttribute" id="idl-def-remoteplayback-ondisconnect" data-title="ondisconnect" data-dfn-for="RemotePlayback">
-  attribute<span class="idlType"> <a data-type="typedef" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-remoteplayback-ondisconnect" id="ref-for-dom-remoteplayback-ondisconnect-1"><code>ondisconnect</code></a>;</span><span data-idl="" class="idlMethod" id="idl-def-remoteplayback-prompt" data-title="prompt" data-dfn-for="RemotePlayback"><span class="idlType">
+  attribute<span class="idlType"> <a data-link-type="idl" data-type="typedef" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-remoteplayback-onconnecting" id="ref-for-dom-remoteplayback-onconnecting-1"><code>onconnecting</code></a>;</span><span data-idl="" class="idlAttribute" id="idl-def-remoteplayback-onconnect" data-title="onconnect" data-dfn-for="RemotePlayback">
+  attribute<span class="idlType"> <a data-link-type="idl" data-type="typedef" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-remoteplayback-onconnect" id="ref-for-dom-remoteplayback-onconnect-1"><code>onconnect</code></a>;</span><span data-idl="" class="idlAttribute" id="idl-def-remoteplayback-ondisconnect" data-title="ondisconnect" data-dfn-for="RemotePlayback">
+  attribute<span class="idlType"> <a data-link-type="idl" data-type="typedef" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-remoteplayback-ondisconnect" id="ref-for-dom-remoteplayback-ondisconnect-1"><code>ondisconnect</code></a>;</span><span data-idl="" class="idlMethod" id="idl-def-remoteplayback-prompt" data-title="prompt" data-dfn-for="RemotePlayback"><span class="idlType">
 
-  <a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined">undefined</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dom-remoteplayback-prompt" id="ref-for-dom-remoteplayback-prompt-1"><code>prompt</code></a>();</span>
+  <a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="idl" data-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined">undefined</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dom-remoteplayback-prompt" id="ref-for-dom-remoteplayback-prompt-1"><code>prompt</code></a>();</span>
 };</span><span data-idl="" class="idlEnum" id="idl-def-remoteplaybackstate" data-title="RemotePlaybackState">
 
 enum <a class="internalDFN idlID" data-link-type="enum" href="#dom-remoteplaybackstate" id="ref-for-dom-remoteplaybackstate-2"><code>RemotePlaybackState</code></a> {
@@ -735,7 +737,7 @@ enum <a class="internalDFN idlID" data-link-type="enum" href="#dom-remoteplaybac
   <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-remoteplaybackstate-disconnected" id="ref-for-dom-remoteplaybackstate-disconnected-1"><code>disconnected</code></a>"</span>
 };</span><span data-idl="" class="idlCallback" id="idl-def-remoteplaybackavailabilitycallback" data-title="RemotePlaybackAvailabilityCallback">
 
-callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remoteplaybackavailabilitycallback" id="ref-for-dom-remoteplaybackavailabilitycallback-2"><code>RemotePlaybackAvailabilityCallback</code></a> =<span class="idlType"> <a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined">undefined</a></span>(<span class="idlType"><a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean">boolean</a></span> <span class="idlParamName">available</span>);</span></code></pre>
+callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remoteplaybackavailabilitycallback" id="ref-for-dom-remoteplaybackavailabilitycallback-2"><code>RemotePlaybackAvailabilityCallback</code></a> =<span class="idlType"> <a data-link-type="idl" data-type="interface" href="https://webidl.spec.whatwg.org/#idl-undefined">undefined</a></span>(<span class="idlType"><a data-link-type="idl" data-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean">boolean</a></span> <span class="idlParamName">available</span>);</span></code></pre>
         <p>
           A <a data-link-type="idl" data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-2"><code>RemotePlayback</code></a> object allows the page to detect availability
           of, connect to and control playback on <a href="#dfn-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-remote-playback-devices-16">remote playback devices</a>.
@@ -780,7 +782,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               <li>
                 <var data-type="long">callbackId</var> is a positive integer unique among all ids
                 returned by <a data-link-type="idl" data-lt="watchAvailability()" href="#dom-remoteplayback-watchavailability" class="internalDFN" id="ref-for-dom-remoteplayback-watchavailability-3"><code>watchAvailability</code></a><code>()</code> in a
-                given <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>;
+                given <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a>;
               </li>
               <li>
                 <var data-type="RemotePlaybackAvailabilityCallback">callback</var> is a <a data-link-type="idl" data-lt="RemotePlaybackAvailabilityCallback" href="#dom-remoteplaybackavailabilitycallback" class="internalDFN" id="ref-for-dom-remoteplaybackavailabilitycallback-5"><code>RemotePlaybackAvailabilityCallback</code></a> object.
@@ -796,7 +798,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             <p>
               The combined set of all <a data-lt="set of availability callbacks" href="#dfn-set-of-availability-callbacks" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-set-of-availability-callbacks-4">sets of availability
               callbacks</a> of all <a data-link-type="idl" data-lt="RemotePlayback" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-6"><code>RemotePlayback</code></a> objects known to the
-              <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> is referred to as <dfn id="dfn-global-set-of-availability-callbacks" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">global set of
+              <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a> is referred to as <dfn id="dfn-global-set-of-availability-callbacks" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">global set of
               availability callbacks</dfn>.
             </p>
           </section>
@@ -855,7 +857,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             </p>
             <div class="note" role="note" id="issue-container-generatedID-2"><div role="heading" class="note-title marker" id="h-note-2" aria-level="6"><span>Note</span></div><p class="">
               The user agent can use the <a data-link-type="idl" data-type="attribute" href="https://html.spec.whatwg.org/multipage/media.html#dom-track-srclang"><code>srclang</code></a>
-              attribute of the <code><code><a data-type="element" href="https://html.spec.whatwg.org/multipage/media.html#the-track-element">track</a></code></code> element as a hint of
+              attribute of the <code><code><a data-link-type="element" data-type="element" href="https://html.spec.whatwg.org/multipage/media.html#the-track-element">track</a></code></code> element as a hint of
               the language of the text track data to help identify a
               <a href="#dfn-compatible-remote-playback-device" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-compatible-remote-playback-device-1">compatible remote playback device</a>.
             </p></div>
@@ -967,7 +969,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               <li>
                 If the user agent is unable to <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-9">monitor the list of
                 available remote playback devices</a> for the entire lifetime of
-                the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> (for instance, because the user has
+                the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a> (for instance, because the user has
                 disabled this feature), then run the following steps <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:
                 <ol>
                   <li>
@@ -999,7 +1001,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
               <li>
                 Let <var data-type="long">callbackId</var> be a positive integer unique among
                 all the <var>callbackIds</var> previously returned by these
-                steps in the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media
+                steps in the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a> of the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media
                 element</a>.
               </li>
               <li>
@@ -1026,7 +1028,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             </ol>
             <div class="note" role="note" id="issue-container-generatedID-4"><div role="heading" class="note-title marker" id="h-note-4" aria-level="6"><span>Note</span></div><p class="">
               A simple algorithm for assigning <var data-type="long">callbackId</var> values is
-              to keep a counter for each <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> and
+              to keep a counter for each <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a> and
               incrementing it in step 6.
             </p></div>
             <div class="note" role="note" id="issue-container-generatedID-5"><div role="heading" class="note-title marker" id="h-note-5" aria-level="6"><span>Note</span></div><div class="">
@@ -1054,7 +1056,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
                 be this list.
               </li>
               <li>
-                For each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a> known to the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing
+                For each <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a> known to the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing
                 context</a>:
                 <ol>
                   <li>
@@ -1194,19 +1196,19 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             <li>
               If there is already an unsettled promise from a previous call to
               <a data-link-type="idl" data-lt="prompt()" href="#dom-remoteplayback-prompt" class="internalDFN" id="ref-for-dom-remoteplayback-prompt-5"><code>prompt</code></a><code>()</code> for the same <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a> or
-              even for the same <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>, the user agent <em class="rfc2119">MAY</em> reject
+              even for the same <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a>, the user agent <em class="rfc2119">MAY</em> reject
               <var data-type="Promise">promise</var> with an <a data-link-type="idl" data-lt="OperationError" data-type="exception" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a> exception and abort all
               remaining steps.
               <div class="note" role="note" id="issue-container-generatedID-7"><div role="heading" class="note-title marker" id="h-note-7" aria-level="5"><span>Note</span></div><div class="">
                 The rationale here is that the user agent might show a dialog
                 that's modal to either the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/#media-element">media element</a> or the
-                <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>. In such a case, the second call to
+                <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a>. In such a case, the second call to
                 <a data-link-type="idl" data-lt="prompt()" href="#dom-remoteplayback-prompt" class="internalDFN" id="ref-for-dom-remoteplayback-prompt-6"><code>prompt</code></a><code>()</code> would not be able to show any UI.
               </div></div>
             </li>
             <li>
-              If the document's <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#active-window">active window</a> does not have
-              <a data-link-type="dfn" data-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation">transient activation</a>, reject <var data-type="Promise">promise</var> with an
+              If the document's <a data-link-type="dfn|abstract-op" data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#nav-window">active window</a> does not have
+              <a data-link-type="dfn|abstract-op" data-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#transient-activation">transient activation</a>, reject <var data-type="Promise">promise</var> with an
               <a data-link-type="idl" data-lt="InvalidAccessError" data-type="exception" href="https://webidl.spec.whatwg.org/#invalidaccesserror"><code>InvalidAccessError</code></a> exception and abort these steps.
             </li>
             <li>
@@ -1674,9 +1676,9 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
         </h3><a class="self-link" href="#extensions-to-htmlmediaelement" aria-label="Permalink for Section 5.3"></a></div>
         
         <pre class="idl def" id="webidl-1396475025"><span class="idlHeader"><a class="self-link" href="#webidl-1396475025">WebIDL</a></span><code><span data-idl="" class="idlInterface" id="idl-def-htmlmediaelement-partial-1" data-title="HTMLMediaElement">partial interface <a data-idl="partial" data-link-type="interface" data-title="HTMLMediaElement" class="idlID" data-dfn-for="HTMLMediaElement" data-type="interface" href="https://html.spec.whatwg.org/multipage/media.html#htmlmediaelement">HTMLMediaElement</a> {<span data-idl="" class="idlAttribute" id="idl-def-htmlmediaelement-remote" data-title="remote" data-dfn-for="HTMLMediaElement">
-  [<span class="extAttr"><a data-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject">SameObject</a></span>] readonly attribute<span class="idlType"> <a href="#dom-remoteplayback" class="internalDFN" data-link-type="idl" id="ref-for-dom-remoteplayback-14"><code>RemotePlayback</code></a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-htmlmediaelement-remote" id="ref-for-dom-htmlmediaelement-remote-2"><code>remote</code></a>;</span><span data-idl="" class="idlAttribute" id="idl-def-htmlmediaelement-disableremoteplayback" data-title="disableRemotePlayback" data-dfn-for="HTMLMediaElement">
+  [<span class="extAttr"><a data-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject">SameObject</a></span>] readonly attribute<span class="idlType"> <a data-link-type="idl" href="#dom-remoteplayback" class="internalDFN" id="ref-for-dom-remoteplayback-14"><code>RemotePlayback</code></a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-htmlmediaelement-remote" id="ref-for-dom-htmlmediaelement-remote-2"><code>remote</code></a>;</span><span data-idl="" class="idlAttribute" id="idl-def-htmlmediaelement-disableremoteplayback" data-title="disableRemotePlayback" data-dfn-for="HTMLMediaElement">
 
-  [<span class="extAttr"><a data-type="extended-attribute" href="https://html.spec.whatwg.org/multipage/custom-elements.html#cereactions">CEReactions</a></span>] attribute<span class="idlType"> <a data-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean">boolean</a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-htmlmediaelement-disableremoteplayback" id="ref-for-dom-htmlmediaelement-disableremoteplayback-5"><code>disableRemotePlayback</code></a>;</span>
+  [<span class="extAttr"><a data-type="extended-attribute" href="https://html.spec.whatwg.org/multipage/custom-elements.html#cereactions">CEReactions</a></span>] attribute<span class="idlType"> <a data-link-type="idl" data-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean">boolean</a></span> <a class="internalDFN idlName" data-link-type="attribute" href="#dom-htmlmediaelement-disableremoteplayback" id="ref-for-dom-htmlmediaelement-disableremoteplayback-5"><code>disableRemotePlayback</code></a>;</span>
 };</span></code></pre>
         <p>
           The <dfn data-export="" data-dfn-type="attribute" id="dom-htmlmediaelement-remote" data-idl="attribute" data-title="remote" data-dfn-for="HTMLMediaElement" data-type="RemotePlayback" data-lt="remote" data-local-lt="HTMLMediaElement.remote" tabindex="0" aria-haspopup="dialog"><code>remote</code></dfn> attribute <em class="rfc2119">MUST</em>
@@ -1788,10 +1790,9 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
             <p>
               Display of the origin requesting remote playback will help the
               user understand what content is making the request, especially
-              when the request is initiated from a <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#nested-browsing-context">nested browsing
-              context</a>. For example, embedded content may try to convince
-              the user to click to trigger a request to start an unwanted
-              remote playback.
+              when the request is initiated from a <a data-link-type="dfn|abstract-op" data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#child-navigable">child navigable</a>. For
+              example, embedded content may try to convince the user to click to
+              trigger a request to start an unwanted remote playback.
             </p>
             <p>
               Showing the origin that will be presented will help the user know
@@ -1832,7 +1833,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
         <p>
           The Remote Playback API is not limited to [<cite><a class="bibref" data-link-type="biblio" href="#bib-secure-contexts" title="Secure Contexts">SECURE-CONTEXTS</a></cite>] because
           it exposes a feature to web applications that user agents usually
-          offer natively on all media regardless of the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>.
+          offer natively on all media regardless of the <a data-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#browsing-context">browsing context</a>.
           A user agent can limit the API to [<cite><a class="bibref" data-link-type="biblio" href="#bib-secure-contexts" title="Secure Contexts">SECURE-CONTEXTS</a></cite>] by always
           returning an empty list as part of the <a href="#dfn-monitor-the-list-of-available-remote-playback-devices" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-19">monitor the list of
           available remote playback devices</a> algorithm in contexts that are
@@ -1904,7 +1905,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
     </dd><dt id="bib-html">[HTML]</dt><dd>
       <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Ian Hickson; Philip Jägenstedt; Simon Pieters.  WHATWG. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
     </dd><dt id="bib-presentation-api">[PRESENTATION-API]</dt><dd>
-      <a href="https://www.w3.org/TR/presentation-api/"><cite>Presentation API</cite></a>. Mark Foltz; Dominik Röttsches.  W3C. 2 June 2022. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/presentation-api/">https://www.w3.org/TR/presentation-api/</a>
+      <a href="https://www.w3.org/TR/presentation-api/"><cite>Presentation API</cite></a>. Mark Foltz; Dominik Röttsches.  W3C. 16 October 2023. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/presentation-api/">https://www.w3.org/TR/presentation-api/</a>
     </dd><dt id="bib-rfc2119">[RFC2119]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. S. Bradner.  IETF. March 1997. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>
     </dd><dt id="bib-rfc8174">[RFC8174]</dt><dd>
@@ -1915,7 +1916,7 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
   </section><section id="informative-references"><div class="header-wrapper"><h3 id="b-2-informative-references"><bdi class="secno">B.2 </bdi>Informative references</h3><a class="self-link" href="#informative-references" aria-label="Permalink for Appendix B.2"></a></div>
     
     <dl class="bibliography"><dt id="bib-secure-contexts">[SECURE-CONTEXTS]</dt><dd>
-      <a href="https://www.w3.org/TR/secure-contexts/"><cite>Secure Contexts</cite></a>. Mike West.  W3C. 18 September 2021. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/secure-contexts/">https://www.w3.org/TR/secure-contexts/</a>
+      <a href="https://www.w3.org/TR/secure-contexts/"><cite>Secure Contexts</cite></a>. Mike West.  W3C. 10 November 2023. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/secure-contexts/">https://www.w3.org/TR/secure-contexts/</a>
     </dd><dt id="bib-url">[url]</dt><dd>
       <a href="https://url.spec.whatwg.org/"><cite>URL Standard</cite></a>. Anne van Kesteren.  WHATWG. Living Standard. URL: <a href="https://url.spec.whatwg.org/">https://url.spec.whatwg.org/</a>
     </dd></dl>
@@ -1930,10 +1931,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-media-mirroring-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
-  </li><li>
-    <a href="#ref-for-dfn-media-mirroring-2" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> 
-  </li>
+      <a href="#ref-for-dfn-media-mirroring-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
+    </li><li>
+      <a href="#ref-for-dfn-media-mirroring-2" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-media-remoting" aria-label="Links in this document to definition: media remoting">
       <span class="caret"></span>
@@ -1944,10 +1945,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-media-remoting-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
-  </li><li>
-    <a href="#ref-for-dfn-media-remoting-2" title="§ A. Candidate Recommendation exit criteria">§ A. Candidate Recommendation exit criteria</a> 
-  </li>
+      <a href="#ref-for-dfn-media-remoting-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
+    </li><li>
+      <a href="#ref-for-dfn-media-remoting-2" title="§ A. Candidate Recommendation exit criteria">§ A. Candidate Recommendation exit criteria</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-media-flinging" aria-label="Links in this document to definition: media flinging">
       <span class="caret"></span>
@@ -1958,12 +1959,12 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-media-flinging-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
-  </li><li>
-    <a href="#ref-for-dfn-media-flinging-2" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> 
-  </li><li>
-    <a href="#ref-for-dfn-media-flinging-3" title="§ A. Candidate Recommendation exit criteria">§ A. Candidate Recommendation exit criteria</a> 
-  </li>
+      <a href="#ref-for-dfn-media-flinging-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
+    </li><li>
+      <a href="#ref-for-dfn-media-flinging-2" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> 
+    </li><li>
+      <a href="#ref-for-dfn-media-flinging-3" title="§ A. Candidate Recommendation exit criteria">§ A. Candidate Recommendation exit criteria</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-local-playback-device" aria-label="Links in this document to definition: local playback device">
       <span class="caret"></span>
@@ -1974,10 +1975,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-local-playback-device-1" title="§ 5.1 Common idioms">§ 5.1 Common idioms</a> <a href="#ref-for-dfn-local-playback-device-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-local-playback-device-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-local-playback-device-4" title="Reference 4">(4)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-local-playback-device-5" title="§ 6.4 Messaging between the local and remote playback devices">§ 6.4 Messaging between the local and remote playback devices</a> 
-  </li>
+      <a href="#ref-for-dfn-local-playback-device-1" title="§ 5.1 Common idioms">§ 5.1 Common idioms</a> <a href="#ref-for-dfn-local-playback-device-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-local-playback-device-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-local-playback-device-4" title="Reference 4">(4)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-local-playback-device-5" title="§ 6.4 Messaging between the local and remote playback devices">§ 6.4 Messaging between the local and remote playback devices</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-remote-playback-devices" aria-label="Links in this document to definition: remote playback device">
       <span class="caret"></span>
@@ -1988,38 +1989,38 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-remote-playback-devices-1" title="§ 2. Introduction">§ 2. Introduction</a> <a href="#ref-for-dfn-remote-playback-devices-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-devices-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-devices-4" title="Reference 4">(4)</a> <a href="#ref-for-dfn-remote-playback-devices-5" title="Reference 5">(5)</a> <a href="#ref-for-dfn-remote-playback-devices-6" title="Reference 6">(6)</a> <a href="#ref-for-dfn-remote-playback-devices-7" title="Reference 7">(7)</a> <a href="#ref-for-dfn-remote-playback-devices-8" title="Reference 8">(8)</a> <a href="#ref-for-dfn-remote-playback-devices-9" title="Reference 9">(9)</a> <a href="#ref-for-dfn-remote-playback-devices-10" title="Reference 10">(10)</a> <a href="#ref-for-dfn-remote-playback-devices-11" title="Reference 11">(11)</a> <a href="#ref-for-dfn-remote-playback-devices-12" title="Reference 12">(12)</a> <a href="#ref-for-dfn-remote-playback-devices-13" title="Reference 13">(13)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-14" title="§ 5.1 Common idioms">§ 5.1 Common idioms</a> <a href="#ref-for-dfn-remote-playback-devices-15" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-16" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> <a href="#ref-for-dfn-remote-playback-devices-17" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-18" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-remote-playback-devices-19" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-devices-20" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-devices-21" title="Reference 4">(4)</a> <a href="#ref-for-dfn-remote-playback-devices-22" title="Reference 5">(5)</a> <a href="#ref-for-dfn-remote-playback-devices-23" title="Reference 6">(6)</a> <a href="#ref-for-dfn-remote-playback-devices-24" title="Reference 7">(7)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-25" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> <a href="#ref-for-dfn-remote-playback-devices-26" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-27" title="§ 5.2.1.5 Stop observing remote playback devices availability">§ 5.2.1.5 Stop observing remote playback devices availability</a> <a href="#ref-for-dfn-remote-playback-devices-28" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-29" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dfn-remote-playback-devices-30" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-devices-31" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-devices-32" title="Reference 4">(4)</a> <a href="#ref-for-dfn-remote-playback-devices-33" title="Reference 5">(5)</a> <a href="#ref-for-dfn-remote-playback-devices-34" title="Reference 6">(6)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-35" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-36" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> <a href="#ref-for-dfn-remote-playback-devices-37" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-devices-38" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-devices-39" title="Reference 4">(4)</a> <a href="#ref-for-dfn-remote-playback-devices-40" title="Reference 5">(5)</a> <a href="#ref-for-dfn-remote-playback-devices-41" title="Reference 6">(6)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-42" title="§ 5.2.5 Browser initiated remote playback">§ 5.2.5 Browser initiated remote playback</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-43" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> <a href="#ref-for-dfn-remote-playback-devices-44" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-devices-45" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-devices-46" title="Reference 4">(4)</a> <a href="#ref-for-dfn-remote-playback-devices-47" title="Reference 5">(5)</a> <a href="#ref-for-dfn-remote-playback-devices-48" title="Reference 6">(6)</a> <a href="#ref-for-dfn-remote-playback-devices-49" title="Reference 7">(7)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-50" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-51" title="§ 5.3.2 Disabling remote playback">§ 5.3.2 Disabling remote playback</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-52" title="§ 6.1 Personally identifiable information">§ 6.1 Personally identifiable information</a> <a href="#ref-for-dfn-remote-playback-devices-53" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-devices-54" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-devices-55" title="Reference 4">(4)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-56" title="§ 6.2 User interface guidelines">§ 6.2 User interface guidelines</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-devices-57" title="§ 6.4 Messaging between the local and remote playback devices">§ 6.4 Messaging between the local and remote playback devices</a> 
-  </li>
+      <a href="#ref-for-dfn-remote-playback-devices-1" title="§ 2. Introduction">§ 2. Introduction</a> <a href="#ref-for-dfn-remote-playback-devices-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-devices-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-devices-4" title="Reference 4">(4)</a> <a href="#ref-for-dfn-remote-playback-devices-5" title="Reference 5">(5)</a> <a href="#ref-for-dfn-remote-playback-devices-6" title="Reference 6">(6)</a> <a href="#ref-for-dfn-remote-playback-devices-7" title="Reference 7">(7)</a> <a href="#ref-for-dfn-remote-playback-devices-8" title="Reference 8">(8)</a> <a href="#ref-for-dfn-remote-playback-devices-9" title="Reference 9">(9)</a> <a href="#ref-for-dfn-remote-playback-devices-10" title="Reference 10">(10)</a> <a href="#ref-for-dfn-remote-playback-devices-11" title="Reference 11">(11)</a> <a href="#ref-for-dfn-remote-playback-devices-12" title="Reference 12">(12)</a> <a href="#ref-for-dfn-remote-playback-devices-13" title="Reference 13">(13)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-14" title="§ 5.1 Common idioms">§ 5.1 Common idioms</a> <a href="#ref-for-dfn-remote-playback-devices-15" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-16" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> <a href="#ref-for-dfn-remote-playback-devices-17" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-18" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-remote-playback-devices-19" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-devices-20" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-devices-21" title="Reference 4">(4)</a> <a href="#ref-for-dfn-remote-playback-devices-22" title="Reference 5">(5)</a> <a href="#ref-for-dfn-remote-playback-devices-23" title="Reference 6">(6)</a> <a href="#ref-for-dfn-remote-playback-devices-24" title="Reference 7">(7)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-25" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> <a href="#ref-for-dfn-remote-playback-devices-26" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-27" title="§ 5.2.1.5 Stop observing remote playback devices availability">§ 5.2.1.5 Stop observing remote playback devices availability</a> <a href="#ref-for-dfn-remote-playback-devices-28" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-29" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dfn-remote-playback-devices-30" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-devices-31" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-devices-32" title="Reference 4">(4)</a> <a href="#ref-for-dfn-remote-playback-devices-33" title="Reference 5">(5)</a> <a href="#ref-for-dfn-remote-playback-devices-34" title="Reference 6">(6)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-35" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-36" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> <a href="#ref-for-dfn-remote-playback-devices-37" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-devices-38" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-devices-39" title="Reference 4">(4)</a> <a href="#ref-for-dfn-remote-playback-devices-40" title="Reference 5">(5)</a> <a href="#ref-for-dfn-remote-playback-devices-41" title="Reference 6">(6)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-42" title="§ 5.2.5 Browser initiated remote playback">§ 5.2.5 Browser initiated remote playback</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-43" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> <a href="#ref-for-dfn-remote-playback-devices-44" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-devices-45" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-devices-46" title="Reference 4">(4)</a> <a href="#ref-for-dfn-remote-playback-devices-47" title="Reference 5">(5)</a> <a href="#ref-for-dfn-remote-playback-devices-48" title="Reference 6">(6)</a> <a href="#ref-for-dfn-remote-playback-devices-49" title="Reference 7">(7)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-50" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-51" title="§ 5.3.2 Disabling remote playback">§ 5.3.2 Disabling remote playback</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-52" title="§ 6.1 Personally identifiable information">§ 6.1 Personally identifiable information</a> <a href="#ref-for-dfn-remote-playback-devices-53" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-devices-54" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-devices-55" title="Reference 4">(4)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-56" title="§ 6.2 User interface guidelines">§ 6.2 User interface guidelines</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-devices-57" title="§ 6.4 Messaging between the local and remote playback devices">§ 6.4 Messaging between the local and remote playback devices</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-media-element-state" aria-label="Links in this document to definition: media element state">
       <span class="caret"></span>
@@ -2030,14 +2031,14 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-media-element-state-1" title="§ 5.1 Common idioms">§ 5.1 Common idioms</a> <a href="#ref-for-dfn-media-element-state-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-media-element-state-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-media-element-state-4" title="Reference 4">(4)</a> <a href="#ref-for-dfn-media-element-state-5" title="Reference 5">(5)</a> <a href="#ref-for-dfn-media-element-state-6" title="Reference 6">(6)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-media-element-state-7" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> <a href="#ref-for-dfn-media-element-state-8" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-media-element-state-9" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> <a href="#ref-for-dfn-media-element-state-10" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-media-element-state-11" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
-  </li>
+      <a href="#ref-for-dfn-media-element-state-1" title="§ 5.1 Common idioms">§ 5.1 Common idioms</a> <a href="#ref-for-dfn-media-element-state-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-media-element-state-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-media-element-state-4" title="Reference 4">(4)</a> <a href="#ref-for-dfn-media-element-state-5" title="Reference 5">(5)</a> <a href="#ref-for-dfn-media-element-state-6" title="Reference 6">(6)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-media-element-state-7" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> <a href="#ref-for-dfn-media-element-state-8" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-media-element-state-9" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> <a href="#ref-for-dfn-media-element-state-10" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-media-element-state-11" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-local-playback-state" aria-label="Links in this document to definition: local playback state">
       <span class="caret"></span>
@@ -2048,12 +2049,12 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-local-playback-state-1" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> <a href="#ref-for-dfn-local-playback-state-2" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-local-playback-state-3" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> <a href="#ref-for-dfn-local-playback-state-4" title="Reference 2">(2)</a> <a href="#ref-for-dfn-local-playback-state-5" title="Reference 3">(3)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-local-playback-state-6" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
-  </li>
+      <a href="#ref-for-dfn-local-playback-state-1" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> <a href="#ref-for-dfn-local-playback-state-2" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-local-playback-state-3" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> <a href="#ref-for-dfn-local-playback-state-4" title="Reference 2">(2)</a> <a href="#ref-for-dfn-local-playback-state-5" title="Reference 3">(3)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-local-playback-state-6" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-remote-playback-state" aria-label="Links in this document to definition: remote playback state">
       <span class="caret"></span>
@@ -2064,14 +2065,14 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-remote-playback-state-1" title="§ 5.1 Common idioms">§ 5.1 Common idioms</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-state-2" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-state-3" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> <a href="#ref-for-dfn-remote-playback-state-4" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-state-5" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-state-6" title="Reference 4">(4)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-state-7" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> <a href="#ref-for-dfn-remote-playback-state-8" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-state-9" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-state-10" title="Reference 4">(4)</a> <a href="#ref-for-dfn-remote-playback-state-11" title="Reference 5">(5)</a> 
-  </li>
+      <a href="#ref-for-dfn-remote-playback-state-1" title="§ 5.1 Common idioms">§ 5.1 Common idioms</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-state-2" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-state-3" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> <a href="#ref-for-dfn-remote-playback-state-4" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-state-5" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-state-6" title="Reference 4">(4)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-state-7" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> <a href="#ref-for-dfn-remote-playback-state-8" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-state-9" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-state-10" title="Reference 4">(4)</a> <a href="#ref-for-dfn-remote-playback-state-11" title="Reference 5">(5)</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplayback" aria-label="Links in this document to definition: RemotePlayback">
       <span class="caret"></span>
@@ -2082,26 +2083,26 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-remoteplayback-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> <a href="#ref-for-dom-remoteplayback-2" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-3" title="§ 5.2.1.1 The set of availability callbacks">§ 5.2.1.1 The set of availability callbacks</a> <a href="#ref-for-dom-remoteplayback-4" title="Reference 2">(2)</a> <a href="#ref-for-dom-remoteplayback-5" title="Reference 3">(3)</a> <a href="#ref-for-dom-remoteplayback-6" title="Reference 4">(4)</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-7" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dom-remoteplayback-8" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-9" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-10" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-11" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-12" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-13" title="§ 5.2.8 Event Handlers">§ 5.2.8 Event Handlers</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-14" title="§ 5.3 Extensions to HTMLMediaElement">§ 5.3 Extensions to HTMLMediaElement</a> <a href="#ref-for-dom-remoteplayback-15" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-16" title="§ 5.3.2 Disabling remote playback">§ 5.3.2 Disabling remote playback</a> 
-  </li>
+      <a href="#ref-for-dom-remoteplayback-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> <a href="#ref-for-dom-remoteplayback-2" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-3" title="§ 5.2.1.1 The set of availability callbacks">§ 5.2.1.1 The set of availability callbacks</a> <a href="#ref-for-dom-remoteplayback-4" title="Reference 2">(2)</a> <a href="#ref-for-dom-remoteplayback-5" title="Reference 3">(3)</a> <a href="#ref-for-dom-remoteplayback-6" title="Reference 4">(4)</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-7" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dom-remoteplayback-8" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-9" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-10" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-11" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-12" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-13" title="§ 5.2.8 Event Handlers">§ 5.2.8 Event Handlers</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-14" title="§ 5.3 Extensions to HTMLMediaElement">§ 5.3 Extensions to HTMLMediaElement</a> <a href="#ref-for-dom-remoteplayback-15" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-16" title="§ 5.3.2 Disabling remote playback">§ 5.3.2 Disabling remote playback</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplaybackstate" aria-label="Links in this document to definition: RemotePlaybackState">
       <span class="caret"></span>
@@ -2112,10 +2113,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-remoteplaybackstate-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> <a href="#ref-for-dom-remoteplaybackstate-2" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplaybackstate-3" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> 
-  </li>
+      <a href="#ref-for-dom-remoteplaybackstate-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> <a href="#ref-for-dom-remoteplaybackstate-2" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplaybackstate-3" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplaybackavailabilitycallback" aria-label="Links in this document to definition: RemotePlaybackAvailabilityCallback">
       <span class="caret"></span>
@@ -2126,12 +2127,12 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-remoteplaybackavailabilitycallback-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> <a href="#ref-for-dom-remoteplaybackavailabilitycallback-2" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplaybackavailabilitycallback-3" title="§ 5.2.1 Observing remote playback device availability">§ 5.2.1 Observing remote playback device availability</a> <a href="#ref-for-dom-remoteplaybackavailabilitycallback-4" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplaybackavailabilitycallback-5" title="§ 5.2.1.1 The set of availability callbacks">§ 5.2.1.1 The set of availability callbacks</a> 
-  </li>
+      <a href="#ref-for-dom-remoteplaybackavailabilitycallback-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> <a href="#ref-for-dom-remoteplaybackavailabilitycallback-2" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplaybackavailabilitycallback-3" title="§ 5.2.1 Observing remote playback device availability">§ 5.2.1 Observing remote playback device availability</a> <a href="#ref-for-dom-remoteplaybackavailabilitycallback-4" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplaybackavailabilitycallback-5" title="§ 5.2.1.1 The set of availability callbacks">§ 5.2.1.1 The set of availability callbacks</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-remote-playback-device-availability" aria-label="Links in this document to definition: remote playback device availability">
       <span class="caret"></span>
@@ -2142,8 +2143,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-remote-playback-device-availability-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
-  </li>
+      <a href="#ref-for-dfn-remote-playback-device-availability-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-set-of-availability-callbacks" aria-label="Links in this document to definition: set of availability callbacks">
       <span class="caret"></span>
@@ -2154,20 +2155,20 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-set-of-availability-callbacks-1" title="§ 5.2.1.1 The set of availability callbacks">§ 5.2.1.1 The set of availability callbacks</a> <a href="#ref-for-dfn-set-of-availability-callbacks-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-set-of-availability-callbacks-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-set-of-availability-callbacks-4" title="Reference 4">(4)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-set-of-availability-callbacks-5" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
-  </li><li>
-    <a href="#ref-for-dfn-set-of-availability-callbacks-6" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> 
-  </li><li>
-    <a href="#ref-for-dfn-set-of-availability-callbacks-7" title="§ 5.2.1.4 Monitoring the list of available remote playback devices">§ 5.2.1.4 Monitoring the list of available remote playback devices</a> <a href="#ref-for-dfn-set-of-availability-callbacks-8" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-set-of-availability-callbacks-9" title="§ 5.2.1.5 Stop observing remote playback devices availability">§ 5.2.1.5 Stop observing remote playback devices availability</a> <a href="#ref-for-dfn-set-of-availability-callbacks-10" title="Reference 2">(2)</a> <a href="#ref-for-dfn-set-of-availability-callbacks-11" title="Reference 3">(3)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-set-of-availability-callbacks-12" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
-  </li><li>
-    <a href="#ref-for-dfn-set-of-availability-callbacks-13" title="§ 5.3.2 Disabling remote playback">§ 5.3.2 Disabling remote playback</a> 
-  </li>
+      <a href="#ref-for-dfn-set-of-availability-callbacks-1" title="§ 5.2.1.1 The set of availability callbacks">§ 5.2.1.1 The set of availability callbacks</a> <a href="#ref-for-dfn-set-of-availability-callbacks-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-set-of-availability-callbacks-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-set-of-availability-callbacks-4" title="Reference 4">(4)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-set-of-availability-callbacks-5" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
+    </li><li>
+      <a href="#ref-for-dfn-set-of-availability-callbacks-6" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> 
+    </li><li>
+      <a href="#ref-for-dfn-set-of-availability-callbacks-7" title="§ 5.2.1.4 Monitoring the list of available remote playback devices">§ 5.2.1.4 Monitoring the list of available remote playback devices</a> <a href="#ref-for-dfn-set-of-availability-callbacks-8" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-set-of-availability-callbacks-9" title="§ 5.2.1.5 Stop observing remote playback devices availability">§ 5.2.1.5 Stop observing remote playback devices availability</a> <a href="#ref-for-dfn-set-of-availability-callbacks-10" title="Reference 2">(2)</a> <a href="#ref-for-dfn-set-of-availability-callbacks-11" title="Reference 3">(3)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-set-of-availability-callbacks-12" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
+    </li><li>
+      <a href="#ref-for-dfn-set-of-availability-callbacks-13" title="§ 5.3.2 Disabling remote playback">§ 5.3.2 Disabling remote playback</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplayback-watchavailability" aria-label="Links in this document to definition: watchAvailability()">
       <span class="caret"></span>
@@ -2178,18 +2179,18 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-remoteplayback-watchavailability-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-watchavailability-2" title="§ 5.2.1 Observing remote playback device availability">§ 5.2.1 Observing remote playback device availability</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-watchavailability-3" title="§ 5.2.1.1 The set of availability callbacks">§ 5.2.1.1 The set of availability callbacks</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-watchavailability-4" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-watchavailability-5" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-watchavailability-6" title="§ 6.1 Personally identifiable information">§ 6.1 Personally identifiable information</a> 
-  </li>
+      <a href="#ref-for-dom-remoteplayback-watchavailability-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-watchavailability-2" title="§ 5.2.1 Observing remote playback device availability">§ 5.2.1 Observing remote playback device availability</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-watchavailability-3" title="§ 5.2.1.1 The set of availability callbacks">§ 5.2.1.1 The set of availability callbacks</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-watchavailability-4" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-watchavailability-5" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-watchavailability-6" title="§ 6.1 Personally identifiable information">§ 6.1 Personally identifiable information</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-global-set-of-availability-callbacks" aria-label="Links in this document to definition: global set of availability callbacks">
       <span class="caret"></span>
@@ -2200,8 +2201,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-global-set-of-availability-callbacks-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-global-set-of-availability-callbacks-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-global-set-of-availability-callbacks-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-global-set-of-availability-callbacks-4" title="Reference 4">(4)</a> 
-  </li>
+      <a href="#ref-for-dfn-global-set-of-availability-callbacks-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-global-set-of-availability-callbacks-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-global-set-of-availability-callbacks-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-global-set-of-availability-callbacks-4" title="Reference 4">(4)</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-list-of-available-remote-playback-devices" aria-label="Links in this document to definition: list of available remote playback devices">
       <span class="caret"></span>
@@ -2212,12 +2213,12 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-list-of-available-remote-playback-devices-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
-  </li><li>
-    <a href="#ref-for-dfn-list-of-available-remote-playback-devices-2" title="§ 5.2.1.4 Monitoring the list of available remote playback devices">§ 5.2.1.4 Monitoring the list of available remote playback devices</a> <a href="#ref-for-dfn-list-of-available-remote-playback-devices-3" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-list-of-available-remote-playback-devices-4" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dfn-list-of-available-remote-playback-devices-5" title="Reference 2">(2)</a> 
-  </li>
+      <a href="#ref-for-dfn-list-of-available-remote-playback-devices-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
+    </li><li>
+      <a href="#ref-for-dfn-list-of-available-remote-playback-devices-2" title="§ 5.2.1.4 Monitoring the list of available remote playback devices">§ 5.2.1.4 Monitoring the list of available remote playback devices</a> <a href="#ref-for-dfn-list-of-available-remote-playback-devices-3" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-list-of-available-remote-playback-devices-4" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dfn-list-of-available-remote-playback-devices-5" title="Reference 2">(2)</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-compatible-remote-playback-device" aria-label="Links in this document to definition: compatible remote playback device">
       <span class="caret"></span>
@@ -2228,8 +2229,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-compatible-remote-playback-device-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-compatible-remote-playback-device-2" title="Reference 2">(2)</a> 
-  </li>
+      <a href="#ref-for-dfn-compatible-remote-playback-device-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-compatible-remote-playback-device-2" title="Reference 2">(2)</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-availability-sources-set" aria-label="Links in this document to definition: availability sources set">
       <span class="caret"></span>
@@ -2240,12 +2241,12 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-availability-sources-set-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-availability-sources-set-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-availability-sources-set-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-availability-sources-set-4" title="Reference 4">(4)</a> <a href="#ref-for-dfn-availability-sources-set-5" title="Reference 5">(5)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-availability-sources-set-6" title="§ 5.2.1.5 Stop observing remote playback devices availability">§ 5.2.1.5 Stop observing remote playback devices availability</a> 
-  </li><li>
-    <a href="#ref-for-dfn-availability-sources-set-7" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> 
-  </li>
+      <a href="#ref-for-dfn-availability-sources-set-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-availability-sources-set-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-availability-sources-set-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-availability-sources-set-4" title="Reference 4">(4)</a> <a href="#ref-for-dfn-availability-sources-set-5" title="Reference 5">(5)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-availability-sources-set-6" title="§ 5.2.1.5 Stop observing remote playback devices availability">§ 5.2.1.5 Stop observing remote playback devices availability</a> 
+    </li><li>
+      <a href="#ref-for-dfn-availability-sources-set-7" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-remote-playback-source" aria-label="Links in this document to definition: remote playback source">
       <span class="caret"></span>
@@ -2256,10 +2257,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-remote-playback-source-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-remote-playback-source-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-source-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-source-4" title="Reference 4">(4)</a> <a href="#ref-for-dfn-remote-playback-source-5" title="Reference 5">(5)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-remote-playback-source-6" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> 
-  </li>
+      <a href="#ref-for-dfn-remote-playback-source-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-remote-playback-source-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-remote-playback-source-3" title="Reference 3">(3)</a> <a href="#ref-for-dfn-remote-playback-source-4" title="Reference 4">(4)</a> <a href="#ref-for-dfn-remote-playback-source-5" title="Reference 5">(5)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-remote-playback-source-6" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-unavailable" aria-label="Links in this document to definition: unavailable">
       <span class="caret"></span>
@@ -2270,10 +2271,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-unavailable-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
-  </li><li>
-    <a href="#ref-for-dfn-unavailable-2" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> 
-  </li>
+      <a href="#ref-for-dfn-unavailable-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
+    </li><li>
+      <a href="#ref-for-dfn-unavailable-2" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-available" aria-label="Links in this document to definition: available">
       <span class="caret"></span>
@@ -2284,8 +2285,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-available-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
-  </li>
+      <a href="#ref-for-dfn-available-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-availability" aria-label="Links in this document to definition: availability">
       <span class="caret"></span>
@@ -2296,12 +2297,12 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-availability-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
-  </li><li>
-    <a href="#ref-for-dfn-availability-2" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> 
-  </li><li>
-    <a href="#ref-for-dfn-availability-3" title="§ 5.2.1.4 Monitoring the list of available remote playback devices">§ 5.2.1.4 Monitoring the list of available remote playback devices</a> <a href="#ref-for-dfn-availability-4" title="Reference 2">(2)</a> 
-  </li>
+      <a href="#ref-for-dfn-availability-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> 
+    </li><li>
+      <a href="#ref-for-dfn-availability-2" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> 
+    </li><li>
+      <a href="#ref-for-dfn-availability-3" title="§ 5.2.1.4 Monitoring the list of available remote playback devices">§ 5.2.1.4 Monitoring the list of available remote playback devices</a> <a href="#ref-for-dfn-availability-4" title="Reference 2">(2)</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-monitor-the-list-of-available-remote-playback-devices" aria-label="Links in this document to definition: monitor the list of available remote playback devices">
       <span class="caret"></span>
@@ -2312,22 +2313,22 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-1" title="§ 5.2.1 Observing remote playback device availability">§ 5.2.1 Observing remote playback device availability</a> 
-  </li><li>
-    <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-2" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-3" title="Reference 2">(2)</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-4" title="Reference 3">(3)</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-5" title="Reference 4">(4)</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-6" title="Reference 5">(5)</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-7" title="Reference 6">(6)</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-8" title="Reference 7">(7)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-9" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-10" title="Reference 2">(2)</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-11" title="Reference 3">(3)</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-12" title="Reference 4">(4)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-13" title="§ 5.2.1.5 Stop observing remote playback devices availability">§ 5.2.1.5 Stop observing remote playback devices availability</a> 
-  </li><li>
-    <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-14" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-15" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-16" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
-  </li><li>
-    <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-17" title="§ 6.1 Personally identifiable information">§ 6.1 Personally identifiable information</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-18" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-19" title="§ 6.5 Secure Contexts">§ 6.5 Secure Contexts</a> 
-  </li>
+      <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-1" title="§ 5.2.1 Observing remote playback device availability">§ 5.2.1 Observing remote playback device availability</a> 
+    </li><li>
+      <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-2" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-3" title="Reference 2">(2)</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-4" title="Reference 3">(3)</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-5" title="Reference 4">(4)</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-6" title="Reference 5">(5)</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-7" title="Reference 6">(6)</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-8" title="Reference 7">(7)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-9" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-10" title="Reference 2">(2)</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-11" title="Reference 3">(3)</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-12" title="Reference 4">(4)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-13" title="§ 5.2.1.5 Stop observing remote playback devices availability">§ 5.2.1.5 Stop observing remote playback devices availability</a> 
+    </li><li>
+      <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-14" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-15" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-16" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
+    </li><li>
+      <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-17" title="§ 6.1 Personally identifiable information">§ 6.1 Personally identifiable information</a> <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-18" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-monitor-the-list-of-available-remote-playback-devices-19" title="§ 6.5 Secure Contexts">§ 6.5 Secure Contexts</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplayback-cancelwatchavailability" aria-label="Links in this document to definition: cancelWatchAvailability()">
       <span class="caret"></span>
@@ -2338,8 +2339,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-remoteplayback-cancelwatchavailability-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
-  </li>
+      <a href="#ref-for-dom-remoteplayback-cancelwatchavailability-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplayback-prompt" aria-label="Links in this document to definition: prompt()">
       <span class="caret"></span>
@@ -2350,18 +2351,18 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-remoteplayback-prompt-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-prompt-2" title="§ 5.2.1 Observing remote playback device availability">§ 5.2.1 Observing remote playback device availability</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-prompt-3" title="§ 5.2.1.4 Monitoring the list of available remote playback devices">§ 5.2.1.4 Monitoring the list of available remote playback devices</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-prompt-4" title="§ 5.2.1.5 Stop observing remote playback devices availability">§ 5.2.1.5 Stop observing remote playback devices availability</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-prompt-5" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dom-remoteplayback-prompt-6" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-prompt-7" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> <a href="#ref-for-dom-remoteplayback-prompt-8" title="Reference 2">(2)</a> 
-  </li>
+      <a href="#ref-for-dom-remoteplayback-prompt-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-prompt-2" title="§ 5.2.1 Observing remote playback device availability">§ 5.2.1 Observing remote playback device availability</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-prompt-3" title="§ 5.2.1.4 Monitoring the list of available remote playback devices">§ 5.2.1.4 Monitoring the list of available remote playback devices</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-prompt-4" title="§ 5.2.1.5 Stop observing remote playback devices availability">§ 5.2.1.5 Stop observing remote playback devices availability</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-prompt-5" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dom-remoteplayback-prompt-6" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-prompt-7" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> <a href="#ref-for-dom-remoteplayback-prompt-8" title="Reference 2">(2)</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-change-remote-playback-state" aria-label="Links in this document to definition: change remote playback state">
       <span class="caret"></span>
@@ -2372,8 +2373,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-change-remote-playback-state-1" title="§ 6.2 User interface guidelines">§ 6.2 User interface guidelines</a> 
-  </li>
+      <a href="#ref-for-dfn-change-remote-playback-state-1" title="§ 6.2 User interface guidelines">§ 6.2 User interface guidelines</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-initiate-remote-playback" aria-label="Links in this document to definition: initiate remote playback">
       <span class="caret"></span>
@@ -2384,12 +2385,12 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-initiate-remote-playback-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-initiate-remote-playback-2" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-initiate-remote-playback-3" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> 
-  </li><li>
-    <a href="#ref-for-dfn-initiate-remote-playback-4" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> <a href="#ref-for-dfn-initiate-remote-playback-5" title="Reference 2">(2)</a> 
-  </li>
+      <a href="#ref-for-dfn-initiate-remote-playback-1" title="§ 5.2.1.2 The list of available remote playback devices">§ 5.2.1.2 The list of available remote playback devices</a> <a href="#ref-for-dfn-initiate-remote-playback-2" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-initiate-remote-playback-3" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> 
+    </li><li>
+      <a href="#ref-for-dfn-initiate-remote-playback-4" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> <a href="#ref-for-dfn-initiate-remote-playback-5" title="Reference 2">(2)</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplayback-state" aria-label="Links in this document to definition: state">
       <span class="caret"></span>
@@ -2400,24 +2401,24 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-remoteplayback-state-1" title="§ 5.1 Common idioms">§ 5.1 Common idioms</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-state-2" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-state-3" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dom-remoteplayback-state-4" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-state-5" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-state-6" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> <a href="#ref-for-dom-remoteplayback-state-7" title="Reference 2">(2)</a> <a href="#ref-for-dom-remoteplayback-state-8" title="Reference 3">(3)</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-state-9" title="§ 5.2.5 Browser initiated remote playback">§ 5.2.5 Browser initiated remote playback</a> <a href="#ref-for-dom-remoteplayback-state-10" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-state-11" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-state-12" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplayback-state-13" title="§ 5.3.2 Disabling remote playback">§ 5.3.2 Disabling remote playback</a> 
-  </li>
+      <a href="#ref-for-dom-remoteplayback-state-1" title="§ 5.1 Common idioms">§ 5.1 Common idioms</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-state-2" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-state-3" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dom-remoteplayback-state-4" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-state-5" title="§ 5.2.3 The state attribute">§ 5.2.3 The state attribute</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-state-6" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> <a href="#ref-for-dom-remoteplayback-state-7" title="Reference 2">(2)</a> <a href="#ref-for-dom-remoteplayback-state-8" title="Reference 3">(3)</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-state-9" title="§ 5.2.5 Browser initiated remote playback">§ 5.2.5 Browser initiated remote playback</a> <a href="#ref-for-dom-remoteplayback-state-10" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-state-11" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-state-12" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplayback-state-13" title="§ 5.3.2 Disabling remote playback">§ 5.3.2 Disabling remote playback</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplaybackstate-connecting" aria-label="Links in this document to definition: connecting">
       <span class="caret"></span>
@@ -2428,14 +2429,14 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-remoteplaybackstate-connecting-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplaybackstate-connecting-2" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplaybackstate-connecting-3" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplaybackstate-connecting-4" title="§ 5.2.5 Browser initiated remote playback">§ 5.2.5 Browser initiated remote playback</a> 
-  </li>
+      <a href="#ref-for-dom-remoteplaybackstate-connecting-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplaybackstate-connecting-2" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplaybackstate-connecting-3" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplaybackstate-connecting-4" title="§ 5.2.5 Browser initiated remote playback">§ 5.2.5 Browser initiated remote playback</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplaybackstate-connected" aria-label="Links in this document to definition: connected">
       <span class="caret"></span>
@@ -2446,12 +2447,12 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-remoteplaybackstate-connected-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplaybackstate-connected-2" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> <a href="#ref-for-dom-remoteplaybackstate-connected-3" title="Reference 2">(2)</a> <a href="#ref-for-dom-remoteplaybackstate-connected-4" title="Reference 3">(3)</a> <a href="#ref-for-dom-remoteplaybackstate-connected-5" title="Reference 4">(4)</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplaybackstate-connected-6" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> 
-  </li>
+      <a href="#ref-for-dom-remoteplaybackstate-connected-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplaybackstate-connected-2" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> <a href="#ref-for-dom-remoteplaybackstate-connected-3" title="Reference 2">(2)</a> <a href="#ref-for-dom-remoteplaybackstate-connected-4" title="Reference 3">(3)</a> <a href="#ref-for-dom-remoteplaybackstate-connected-5" title="Reference 4">(4)</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplaybackstate-connected-6" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplaybackstate-disconnected" aria-label="Links in this document to definition: disconnected">
       <span class="caret"></span>
@@ -2462,10 +2463,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-remoteplaybackstate-disconnected-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
-  </li><li>
-    <a href="#ref-for-dom-remoteplaybackstate-disconnected-2" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> 
-  </li>
+      <a href="#ref-for-dom-remoteplaybackstate-disconnected-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
+    </li><li>
+      <a href="#ref-for-dom-remoteplaybackstate-disconnected-2" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-establish-a-connection-with-the-remote-playback-device" aria-label="Links in this document to definition: establish a connection with the remote playback device">
       <span class="caret"></span>
@@ -2476,10 +2477,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-establish-a-connection-with-the-remote-playback-device-1" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> 
-  </li><li>
-    <a href="#ref-for-dfn-establish-a-connection-with-the-remote-playback-device-2" title="§ 5.2.5 Browser initiated remote playback">§ 5.2.5 Browser initiated remote playback</a> <a href="#ref-for-dfn-establish-a-connection-with-the-remote-playback-device-3" title="Reference 2">(2)</a> <a href="#ref-for-dfn-establish-a-connection-with-the-remote-playback-device-4" title="Reference 3">(3)</a> 
-  </li>
+      <a href="#ref-for-dfn-establish-a-connection-with-the-remote-playback-device-1" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> 
+    </li><li>
+      <a href="#ref-for-dfn-establish-a-connection-with-the-remote-playback-device-2" title="§ 5.2.5 Browser initiated remote playback">§ 5.2.5 Browser initiated remote playback</a> <a href="#ref-for-dfn-establish-a-connection-with-the-remote-playback-device-3" title="Reference 2">(2)</a> <a href="#ref-for-dfn-establish-a-connection-with-the-remote-playback-device-4" title="Reference 3">(3)</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-browser-initiated-remote-playback" aria-label="Links in this document to definition: browser initiated remote playback">
       <span class="caret"></span>
@@ -2490,8 +2491,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-browser-initiated-remote-playback-1" title="§ 5.2.5 Browser initiated remote playback">§ 5.2.5 Browser initiated remote playback</a> <a href="#ref-for-dfn-browser-initiated-remote-playback-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-browser-initiated-remote-playback-3" title="Reference 3">(3)</a> 
-  </li>
+      <a href="#ref-for-dfn-browser-initiated-remote-playback-1" title="§ 5.2.5 Browser initiated remote playback">§ 5.2.5 Browser initiated remote playback</a> <a href="#ref-for-dfn-browser-initiated-remote-playback-2" title="Reference 2">(2)</a> <a href="#ref-for-dfn-browser-initiated-remote-playback-3" title="Reference 3">(3)</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-disconnect-from-a-remote-playback-device" aria-label="Links in this document to definition: disconnect from a remote playback device">
       <span class="caret"></span>
@@ -2502,16 +2503,16 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-disconnect-from-a-remote-playback-device-1" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dfn-disconnect-from-a-remote-playback-device-2" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dfn-disconnect-from-a-remote-playback-device-3" title="§ 5.2.5 Browser initiated remote playback">§ 5.2.5 Browser initiated remote playback</a> 
-  </li><li>
-    <a href="#ref-for-dfn-disconnect-from-a-remote-playback-device-4" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> 
-  </li><li>
-    <a href="#ref-for-dfn-disconnect-from-a-remote-playback-device-5" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
-  </li><li>
-    <a href="#ref-for-dfn-disconnect-from-a-remote-playback-device-6" title="§ 5.3.2 Disabling remote playback">§ 5.3.2 Disabling remote playback</a> 
-  </li>
+      <a href="#ref-for-dfn-disconnect-from-a-remote-playback-device-1" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> <a href="#ref-for-dfn-disconnect-from-a-remote-playback-device-2" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-disconnect-from-a-remote-playback-device-3" title="§ 5.2.5 Browser initiated remote playback">§ 5.2.5 Browser initiated remote playback</a> 
+    </li><li>
+      <a href="#ref-for-dfn-disconnect-from-a-remote-playback-device-4" title="§ 5.2.6 Media commands and media playback state">§ 5.2.6 Media commands and media playback state</a> 
+    </li><li>
+      <a href="#ref-for-dfn-disconnect-from-a-remote-playback-device-5" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> 
+    </li><li>
+      <a href="#ref-for-dfn-disconnect-from-a-remote-playback-device-6" title="§ 5.3.2 Disabling remote playback">§ 5.3.2 Disabling remote playback</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplayback-onconnecting" aria-label="Links in this document to definition: onconnecting">
       <span class="caret"></span>
@@ -2522,8 +2523,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-remoteplayback-onconnecting-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
-  </li>
+      <a href="#ref-for-dom-remoteplayback-onconnecting-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-connecting" aria-label="Links in this document to definition: connecting">
       <span class="caret"></span>
@@ -2534,8 +2535,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-connecting-1" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> 
-  </li>
+      <a href="#ref-for-dfn-connecting-1" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplayback-onconnect" aria-label="Links in this document to definition: onconnect">
       <span class="caret"></span>
@@ -2546,8 +2547,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-remoteplayback-onconnect-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
-  </li>
+      <a href="#ref-for-dom-remoteplayback-onconnect-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-connect" aria-label="Links in this document to definition: connect">
       <span class="caret"></span>
@@ -2558,8 +2559,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-connect-1" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> 
-  </li>
+      <a href="#ref-for-dfn-connect-1" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-remoteplayback-ondisconnect" aria-label="Links in this document to definition: ondisconnect">
       <span class="caret"></span>
@@ -2570,8 +2571,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-remoteplayback-ondisconnect-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
-  </li>
+      <a href="#ref-for-dom-remoteplayback-ondisconnect-1" title="§ 5.2 RemotePlayback interface">§ 5.2 RemotePlayback interface</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-disconnect" aria-label="Links in this document to definition: disconnect">
       <span class="caret"></span>
@@ -2582,10 +2583,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-disconnect-1" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> 
-  </li><li>
-    <a href="#ref-for-dfn-disconnect-2" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> <a href="#ref-for-dfn-disconnect-3" title="Reference 2">(2)</a> 
-  </li>
+      <a href="#ref-for-dfn-disconnect-1" title="§ 5.2.4 Establishing a connection with a remote playback device">§ 5.2.4 Establishing a connection with a remote playback device</a> 
+    </li><li>
+      <a href="#ref-for-dfn-disconnect-2" title="§ 5.2.7 Disconnecting from a remote playback device">§ 5.2.7 Disconnecting from a remote playback device</a> <a href="#ref-for-dfn-disconnect-3" title="Reference 2">(2)</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-htmlmediaelement-remote" aria-label="Links in this document to definition: remote">
       <span class="caret"></span>
@@ -2596,10 +2597,10 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-htmlmediaelement-remote-1" title="§ 5.2.1.1 The set of availability callbacks">§ 5.2.1.1 The set of availability callbacks</a> 
-  </li><li>
-    <a href="#ref-for-dom-htmlmediaelement-remote-2" title="§ 5.3 Extensions to HTMLMediaElement">§ 5.3 Extensions to HTMLMediaElement</a> 
-  </li>
+      <a href="#ref-for-dom-htmlmediaelement-remote-1" title="§ 5.2.1.1 The set of availability callbacks">§ 5.2.1.1 The set of availability callbacks</a> 
+    </li><li>
+      <a href="#ref-for-dom-htmlmediaelement-remote-2" title="§ 5.3 Extensions to HTMLMediaElement">§ 5.3 Extensions to HTMLMediaElement</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-htmlmediaelement-disableremoteplayback" aria-label="Links in this document to definition: disableRemotePlayback">
       <span class="caret"></span>
@@ -2610,20 +2611,20 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-1" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> 
-  </li><li>
-    <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-2" title="§ 5.2.1.4 Monitoring the list of available remote playback devices">§ 5.2.1.4 Monitoring the list of available remote playback devices</a> 
-  </li><li>
-    <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-3" title="§ 5.2.1.5 Stop observing remote playback devices availability">§ 5.2.1.5 Stop observing remote playback devices availability</a> 
-  </li><li>
-    <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-4" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> 
-  </li><li>
-    <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-5" title="§ 5.3 Extensions to HTMLMediaElement">§ 5.3 Extensions to HTMLMediaElement</a> 
-  </li><li>
-    <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-6" title="§ 5.3.1 The disableRemotePlayback attribute">§ 5.3.1 The disableRemotePlayback attribute</a> <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-7" title="Reference 2">(2)</a> 
-  </li><li>
-    <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-8" title="§ 5.3.2 Disabling remote playback">§ 5.3.2 Disabling remote playback</a> <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-9" title="Reference 2">(2)</a> 
-  </li>
+      <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-1" title="§ 5.2.1.3 Getting the remote playback devices availability information">§ 5.2.1.3 Getting the remote playback devices availability information</a> 
+    </li><li>
+      <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-2" title="§ 5.2.1.4 Monitoring the list of available remote playback devices">§ 5.2.1.4 Monitoring the list of available remote playback devices</a> 
+    </li><li>
+      <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-3" title="§ 5.2.1.5 Stop observing remote playback devices availability">§ 5.2.1.5 Stop observing remote playback devices availability</a> 
+    </li><li>
+      <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-4" title="§ 5.2.2 Prompt user for changing remote playback state">§ 5.2.2 Prompt user for changing remote playback state</a> 
+    </li><li>
+      <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-5" title="§ 5.3 Extensions to HTMLMediaElement">§ 5.3 Extensions to HTMLMediaElement</a> 
+    </li><li>
+      <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-6" title="§ 5.3.1 The disableRemotePlayback attribute">§ 5.3.1 The disableRemotePlayback attribute</a> <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-7" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-8" title="§ 5.3.2 Disabling remote playback">§ 5.3.2 Disabling remote playback</a> <a href="#ref-for-dom-htmlmediaelement-disableremoteplayback-9" title="Reference 2">(2)</a> 
+    </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-disable-remote-playback" aria-label="Links in this document to definition: disable remote playback">
       <span class="caret"></span>
@@ -2634,8 +2635,8 @@ callback <a class="internalDFN idlID" data-link-type="callback" href="#dom-remot
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-    <a href="#ref-for-dfn-disable-remote-playback-1" title="§ 5.3.1 The disableRemotePlayback attribute">§ 5.3.1 The disableRemotePlayback attribute</a> 
-  </li>
+      <a href="#ref-for-dfn-disable-remote-playback-1" title="§ 5.3.1 The disableRemotePlayback attribute">§ 5.3.1 The disableRemotePlayback attribute</a> 
+    </li>
   </ul>
     </div><script id="respec-dfn-panel">(() => {
 // @ts-check
