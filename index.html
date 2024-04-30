@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en-US"><head>
 <meta charset="UTF-8">
-<meta name="generator" content="ReSpec 34.5.0">
+<meta name="generator" content="ReSpec 35.0.2">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 span.example-title{text-transform:none}
@@ -112,8 +112,6 @@ dfn{cursor:pointer}
 25%{transform:scale(1.25,1.25);opacity:.75}
 100%{transform:scale(1,1)}
 }
-:is(h1,h2,h3,h4,h5,h6,a) abbr{border:none}
-dfn{font-weight:700}
 a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}
 a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}
 a.bibref{text-decoration:none}
@@ -127,19 +125,8 @@ a.bibref{text-decoration:none}
 cite .bibref{font-style:normal}
 a[href].orcid{padding-left:4px;padding-right:4px}
 a[href].orcid>svg{margin-bottom:-2px}
-.toc a,.tof a{text-decoration:none}
 ol.tof,ul.tof{list-style:none outside none}
 .caption{margin-top:.5em;font-style:italic}
-table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}
-.simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}
-.simple th a{color:#fff;padding:3px 5px;text-align:left}
-.simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}
-.simple td{padding:3px 10px;border-top:1px solid #ddd}
-.simple tr:nth-child(even){background:#f0f6ff}
-.section dd>p:first-child{margin-top:0}
-.section dd>p:last-child{margin-bottom:0}
-.section dd{margin-bottom:1em}
-.section dl.attrs dd,.section dl.eldef dd{margin-bottom:0}
 #issue-summary>ul{column-count:2}
 #issue-summary li{list-style:none;display:inline-block}
 details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
@@ -163,7 +150,8 @@ dd{margin-left:0}
 .removeOnSave{display:none}
 }
 </style>
-<meta name="revision" content="c06e93d20818b015e4c80c9315680f6367f97e8b">
+<meta name="color-scheme" content="light">
+<meta name="revision" content="151a3f48986c0a390903c4a16c09e5c85c2cb6d0">
 <meta name="description" content="This specification defines an API extending the HTMLMediaElement
         that enables controlling remote playback of media from a web page.">
 <style>
@@ -235,16 +223,16 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "github": "https://github.com/w3c/remote-playback",
   "crEnd": "2017-11-30",
   "implementationReportURI": "https://www.w3.org/wiki/Second_Screen/Implementation_Status#Remote_Playback_API",
-  "gitRevision": "c06e93d20818b015e4c80c9315680f6367f97e8b",
-  "publishISODate": "2024-04-15T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 15 April 2024"
+  "gitRevision": "151a3f48986c0a390903c4a16c09e5c85c2cb6d0",
+  "publishISODate": "2024-04-30T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 30 April 2024"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
   <body data-cite="WEBIDL HTML DOM URL SECURE-CONTEXTS" class="h-entry"><div class="head">
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">Remote Playback API</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2024-04-15">15 April 2024</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2024-04-30">30 April 2024</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -626,7 +614,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     switchToRemoteUI();
 
   videoElem.remote.onconnecting = switchToRemoteUI;
-  videoElem.remote.onconnect = swithToRemoteUI;
+  videoElem.remote.onconnect = switchToRemoteUI;
   videoElem.remote.ondisconnect = switchToLocalUI;
 
   <span class="hljs-comment">// Handles both 'connecting' and 'connected' state. Calling more than once</span>
