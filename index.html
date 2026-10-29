@@ -867,21 +867,17 @@
               Let |promise:Promise| be a new {{Promise}}.
             </li>
             <li>
-              Return |promise| and continue running these steps
-              <a>in parallel</a>.
-            </li>
-            <li>
               If the <a data-link-for=
               "HTMLMediaElement">disableRemotePlayback</a> attribute is present
               for the <a>media element</a>, reject the |promise| with
-              {{InvalidStateError}} and abort all the remaining steps.
+              {{InvalidStateError}} and return |promise|.
             </li>
             <li>
               If there is already an unsettled promise from a previous call to
               {{RemotePlayback/prompt()}} for the same <a>media element</a> or
               even for the same <a>browsing context</a>, the user agent MAY reject
-              |promise| with an {{OperationError}} exception and abort all
-              remaining steps.
+              |promise| with an {{OperationError}} exception and return
+              |promise|.
               <div class="note">
                 The rationale here is that the user agent might show a dialog
                 that's modal to either the <a>media element</a> or the
@@ -892,20 +888,28 @@
             <li>
               If the document's [=navigable/active window=] does not have
               [=transient activation=], reject |promise| with an
-              {{InvalidAccessError}} exception and abort these steps.
+              {{InvalidAccessError}} exception and return |promise|.
             </li>
             <li>
               OPTIONALLY, if the user agent knows a priori that remote playback
               of this particular <a>media element</a> is not feasible (independent
               of the current <a>`state`</a> or the <a>list of available remote
               playback devices</a>), reject |promise| with a {{NotSupportedError}}
-              and abort all remaining steps.
+              and return |promise|.
               <div class="note">
                 An example of this situation is when the user agent only
                 supports <a>media flinging</a>, and the media element's source
                 is not a {{URL}} that can be passed to a
                 <a>remote playback device</a>.
               </div>
+            </li>
+            <li>
+              Let |global| be the <a>media element</a>'s [=relevant global
+              object=].
+            </li>
+            <li>
+              Return |promise| and continue running these steps
+              <a>in parallel</a>.
             </li>
             <li>
               If the user agent needs to show the <a>list of available remote
@@ -917,9 +921,18 @@
             </li>
             <li>
               If remote playback is <a>unavailable</a> and will remain so
-              before the request for user permission is complete,
-              reject |promise| with a {{NotFoundError}} exception and
-              abort all remaining steps.
+              before the request for user permission is complete, then:
+              <ol>
+                <li>
+                  [=Queue a global task=] on the <a data-cite=
+                  "HTML#media-element-event-task-source">media element event
+                  task source</a> given |global| to reject |promise| with a
+                  {{NotFoundError}} exception.
+                </li>
+                <li>
+                  Abort all remaining steps.
+                </li>
+              </ol>
             </li>
             <li>
               Request user permission to <dfn>change remote playback
@@ -944,22 +957,36 @@
               user agent MUST run the following steps:
               <ol>
                 <li>
-                  Set the <a>state</a> of the |remote:RemotePlayback| object
-                  to <a data-link-for="RemotePlaybackState">connecting</a>.
+                  [=Queue a global task=] on the <a data-cite=
+                  "HTML#media-element-event-task-source">media element event
+                  task source</a> given |global| to run the following steps:
+                  <ol>
+                    <li>
+                      Set the <a>state</a> of the |remote:RemotePlayback| object
+                      to <a data-link-for="RemotePlaybackState">connecting</a>.
+                    </li>
+                    <li>
+                      Fulfill |promise|.
+                    </li>
+                  </ol>
                 </li>
                 <li>
-                  Fulfill |promise|.
-                </li>
-                <li>
-                  <a>Queue a task</a> to <a>fire an event</a> named
-                  <a>connecting</a> at the <a data-lt=
-                  "RemotePlayback">remote</a> property of the <a>media
-                  element</a>. The event must not bubble, must not be
-                  cancelable, and has no default action.
-                </li>
-                <li>
-                  <a>Establish a connection with the remote playback device</a>
-                  |device| for the <a>media element</a>.
+                  [=Queue a global task=] on the <a data-cite=
+                  "HTML#media-element-event-task-source">media element event
+                  task source</a> given |global| to run the following steps:
+                  <ol>
+                    <li>
+                      <a>Fire an event</a> named <a>connecting</a> at the
+                      <a data-lt="RemotePlayback">remote</a> property of the
+                      <a>media element</a>. The event must not bubble, must not
+                      be cancelable, and has no default action.
+                    </li>
+                    <li>
+                      <a>Establish a connection with the remote playback
+                      device</a> |device| for the <a>media element</a> <a>in
+                      parallel</a>.
+                    </li>
+                  </ol>
                 </li>
               </ol>
               <p class="note">
@@ -973,7 +1000,9 @@
               following steps:
               <ol>
                 <li>
-                  Fulfill |promise|.
+                  [=Queue a global task=] on the <a data-cite=
+                  "HTML#media-element-event-task-source">media element event
+                  task source</a> given |global| to fulfill |promise|.
                 </li>
                 <li>
                   Run the <a>disconnect from a remote playback device</a>
@@ -983,8 +1012,11 @@
             </li>
             <li>
               Otherwise, the user is considered to <em>deny permission</em> to
-              use the device, so reject |promise| with {{NotAllowedError}}
-              exception and hide the UI shown by the user agent.
+              use the device, so hide the UI shown by the user agent and
+              [=queue a global task=] on the <a data-cite=
+              "HTML#media-element-event-task-source">media element event task
+              source</a> given |global| to reject |promise| with a
+              {{NotAllowedError}} exception.
             </li>
           </ol>
           <div class="note">
